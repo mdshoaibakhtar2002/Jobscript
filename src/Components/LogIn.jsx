@@ -1,5 +1,6 @@
 import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material'
 import '../Style/Stylesheet.css'
+import '../Style/Responsive.css'
 import { useState } from 'react';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import logo from "../Images/logo.png";
@@ -11,8 +12,17 @@ export default function LogIn() {
         event.preventDefault();
     };
     let navigate = useNavigate()
-    const signIn = () =>{
-        navigate('/app/')
+    const pageChanger = (e, page) =>{
+        e.preventDefault()
+        if(page === "signin"){
+            navigate('/app/')
+        }
+        if(page === "signup"){
+            navigate("/signup")
+        }
+        if(page === "forgotpassword"){
+            navigate("/forgotpassword")
+        }
     }
     return (
         <div className="login">
@@ -44,11 +54,11 @@ export default function LogIn() {
                 />
             </FormControl>
             <div className='space-between login-option'>
-                <button>Forgot password</button>
-                <button>Create new account</button>
+                <button onClick={(e) => pageChanger(e,"forgotpassword")}>Forgot password</button>
+                <button onClick={(e) => pageChanger(e,"signup")}>Create new account</button>
             </div>
             <div className='padding'>
-            <Button variant="contained" onClick={signIn} className='margin width dark'>Sign In</Button>
+            <Button variant="contained" onClick={(e) => pageChanger(e, "signin")} className='margin width dark'>Sign In</Button>
             </div>
         </div>
     )

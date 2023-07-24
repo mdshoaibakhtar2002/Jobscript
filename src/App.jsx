@@ -8,6 +8,8 @@ import {
 } from "react-router-dom";
 import LogIn from './Components/LogIn';
 import SignUp from './Components/SignUp';
+import ForgotPassword from './Components/Forgot_Password';
+import ChangePassword from './Components/Change_Password';
 function App() {
   const Test = () => {
     return (
@@ -26,7 +28,8 @@ function App() {
         <Routes>
           <Route exact path='/' element={<LogIn />} />
           <Route exact path='/signup' element={<SignUp />} />
-          <Route exact path='/forgot' element={<SignUp />} />
+          <Route exact path='/forgotpassword' element={<ForgotPassword />} />
+          <Route exact path='/changepassword' element={<ChangePassword />} />
           <Route exact path='/app/*' element={<Test />} />
         </Routes>
       </Router>

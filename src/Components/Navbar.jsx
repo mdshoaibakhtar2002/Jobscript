@@ -14,6 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import profilePicture from '../Images/profile.jpg';
 import '../Style/Stylesheet.css'
+import '../Style/Responsive.css'
 import { useNavigate } from 'react-router';
 
 const pages = ['Home', 'Course', 'Blog'];

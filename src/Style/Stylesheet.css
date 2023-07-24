@@ -4,7 +4,7 @@
 }
 .login {
     width: 30%;
-    margin: 10% auto;
+    margin: 8% auto;
     padding: 1rem;
     border: 1px solid #ededed;
     border-radius: 0.4rem;
@@ -42,55 +42,8 @@
 .padding-right{
     padding-right: .5rem;
 }
-
-@media only screen and (max-width: 1000px) {
-    .login {
-        width: 35%;
-        margin: 15% auto;
-    }
-    .login-option button{
-        font-size: .99rem;
-    }
-  }
-@media only screen and (max-width: 900px) {
-    .login {
-        width: 40%;
-        margin: 20% auto;
-    }
-    .login-option button{
-        font-size: .8rem;
-    }
-  }
-@media only screen and (max-width: 800px) {
-    .login {
-        width: 45%;
-        margin: 25% auto;
-    }
-    .login-option button{
-        font-size: .79rem;
-    }
-  }
-@media only screen and (max-width: 700px) {
-    .login {
-        width: 55%;
-        margin: 30% auto;
-    }
-    .login-option button{
-        font-size: .69rem;
-    }
-  }
-@media only screen and (max-width: 600px) {
-    .login {
-        width: 65%;
-        margin:35% auto;
-    }
-  }
-@media only screen and (max-width: 450px) {
-    .login {
-        width: 75%;
-        margin: 40% auto;
-    }
-  }
-#navbar{
-    background-color: black !important;
+.flex-column{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
