@@ -1,4 +1,11 @@
 
+@media only screen and (max-width: 1150px) {
+  .all-cards{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+}
+  }
 @media only screen and (max-width: 1000px) {
     .login {
         width: 35%;
@@ -6,6 +13,9 @@
     }
     .login-option button{
         font-size: .99rem;
+    }
+    .crousel-img{
+        height: 100vh;
     }
   }
 @media only screen and (max-width: 900px) {
@@ -16,6 +26,9 @@
     .login-option button{
         font-size: .8rem;
     }
+    .crousel-img{
+        height: 100vh;
+    }
   }
 @media only screen and (max-width: 800px) {
     .login {
@@ -25,6 +38,9 @@
     .login-option button{
         font-size: .79rem;
     }
+    .crousel-img{
+        height: 100vh;
+    }
   }
 @media only screen and (max-width: 700px) {
     .login {
@@ -33,6 +49,9 @@
     }
     .login-option button{
         font-size: .69rem;
+    }
+    .crousel-img{
+        height: 100vh;
     }
   }
 @media only screen and (max-width: 600px) {
@@ -46,7 +65,7 @@
         width: 75%;
         margin: 40% auto;
     }
+    .crousel-img{
+        height: 100vh;
+    }
   }
-#navbar{
-    background-color: black !important;
-}

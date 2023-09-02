@@ -2,6 +2,9 @@
     transition: none !important;
     outline: none !important;
 }
+#navbar{
+    background-color: black !important;
+}
 .login {
     width: 30%;
     margin: 8% auto;
@@ -46,4 +49,16 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+}
+.crousel-img{
+    height: 90.3vh;
+}
+.card{
+    padding: 0rem;
+    width:24rem;
+}
+.all-cards{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
 }
