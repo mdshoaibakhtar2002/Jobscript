@@ -1,9 +1,9 @@
-import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material'
-import '../Style/Stylesheet.css'
-import '../Style/Responsive.css'
+import {Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material'
+import '../Custom-css/Stylesheet.css'
+import '../Custom-css/Responsive.css'
 import { useState } from 'react';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import logo from "../Images/logo.png";
+import logo from "../img/logo.png";
 import { useNavigate } from 'react-router';
 export default function ForgotPassword() {
     const [showPassword, setShowPassword] = useState(false);

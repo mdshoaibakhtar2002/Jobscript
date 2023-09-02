@@ -1,9 +1,9 @@
-import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material'
-import '../Style/Stylesheet.css'
-import '../Style/Responsive.css'
+import { Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material'
+import '../Custom-css/Stylesheet.css'
+import '../Custom-css/Responsive.css'
 import { useState } from 'react';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import logo from "../Images/logo.png";
+import logo from "../img/logo.png";
 import { useNavigate } from 'react-router';
 export default function LogIn() {
     const [showPassword, setShowPassword] = useState(false);
@@ -29,30 +29,32 @@ export default function LogIn() {
             <div className='padding-right'>
                 <img className='width' src = {logo} alt='logo'/>
             </div>
-            <FormControl id="cred-field">
-                <TextField label="Email" variant="outlined" size="small" defaultValue="imdshoaibakhtar@opp.com"/>
-            </FormControl>
-            <FormControl id="cred-field" sx={{ m: 1 }} variant="outlined" size="small">
-                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                <OutlinedInput
-                    id="outlined-adornment-password"
-                    type={showPassword ? 'text' : 'password'}
-                    defaultValue="786@imdshoaibakhtar"
-                    endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                            >
-                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                        </InputAdornment>
-                    }
-                    label="Password"
-                />
-            </FormControl>
+            <div>
+                <FormControl id="cred-field">
+                    <TextField label="Email" variant="outlined" size="small" defaultValue="imdshoaibakhtar@opp.com"/>
+                </FormControl>
+                <FormControl id="cred-field" sx={{ m: 1 }} variant="outlined" size="small">
+                    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                    <OutlinedInput
+                        id="outlined-adornment-password"
+                        type={showPassword ? 'text' : 'password'}
+                        defaultValue="786@imdshoaibakhtar"
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                    edge="end"
+                                >
+                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                        label="Password"
+                    />
+                </FormControl>
+            </div>
             <div className='space-between login-option'>
                 <button onClick={(e) => pageChanger(e,"forgotpassword")}>Forgot password</button>
                 <button onClick={(e) => pageChanger(e,"signup")}>Create new account</button>

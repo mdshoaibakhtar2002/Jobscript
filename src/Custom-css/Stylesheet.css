@@ -1,0 +1,308 @@
+#root{
+    margin: 0;
+}
+.main-div{
+    width: 100%;
+    /* display: grid;
+    grid-template-columns: .8fr 4fr; */
+}
+.sub-div{
+    /* display: grid;
+    grid-template-columns: 1fr 4fr; */
+    /* border-right: 1px solid rgb(237, 237, 237); */
+    box-shadow: 2px 2px 6px 3px #d7d7d6;
+}
+.Home{
+    display: grid;
+    grid-template-columns:1fr 2fr 1fr;
+    width: 100%;
+    grid-gap: 1rem;
+    padding: 1rem 2rem;
+}
+.aside{
+    padding: 1rem;
+    width: 100%;
+}
+.aside-job-card::-webkit-scrollbar, .promotion::-webkit-scrollbar{
+    display: none;
+}
+.aside-job-card{
+    height: 100vh;
+    overflow: auto;
+    padding: 1rem;
+}
+.job-card, .filter{
+    background: transparent;
+    border-radius: .4rem;
+    background: rgb(255, 255, 255);
+    padding: 2rem;
+    border: 1px solid rgb(237, 237, 237);
+    box-shadow: 2px 2px 6px 3px #d7d7d6;
+    margin-top: 2rem;
+}
+.job-card h5{
+    font-weight: 400;
+    font-size: 1.1rem;
+}
+.job-card p{
+    font-weight: 200;
+    font-size: .8rem;
+    margin-bottom: 0;
+}
+.card-header{
+    display: flex;
+    justify-content: space-between;
+}
+.card-subheader{
+    display: flex;
+    justify-content: center;
+}
+.icon{
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: .5rem;
+}
+.tech-bubble{
+    width: 100%;
+    display: flex;
+}
+.bubble{
+    background: aliceblue;
+    border-radius: .8rem;
+    padding: .4rem .5rem;
+    margin-right: .9rem;
+    margin-top: 1rem;
+    color: gray;
+    cursor: pointer;
+}
+.job-details{
+    padding: 1.4rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+.job-details-value{
+    font-weight: bold !important;
+}
+.card-footer{
+    display: flex;
+    justify-content: space-between;
+}
+.button{
+    background: none;
+    border: 1px solid gray;
+    border-radius: 0.4rem;
+    padding: 0.5rem;
+    margin-left: 1.4rem;
+}
+.black-white{
+    background-color: black !important;
+    color: white !important;
+}
+.apply-filter{
+    font-weight: 600;
+    text-align: start;
+}
+.css-u4tvz2-MuiFormLabel-root{
+    text-align: start !important;
+}
+.css-qfz70r-MuiFormGroup-root{
+    justify-content: space-between !important;
+}
+.css-1869usk-MuiFormControl-root, .css-1w4vsez-MuiFormControl-root{
+    width: 100% !important;
+    margin: 0rem !important;
+}
+.filter p, .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
+    color: gray;
+    text-align: start;
+}
+.filter-div{
+    margin-top: 1rem;
+}
+.margin-top{
+    margin-top: 1rem;
+}
+.margin-left{
+    margin-left: 0rem;
+}
+.width{
+    width: 100%;
+}
+.apple{
+    background-color: whitesmoke;
+}
+.css-187mznn-MuiSlider-root{
+    color: black !important;
+}
+.graph-body{
+    width: 49%;
+}
+.logo{
+    width: 4rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+.icon-size{
+    width: 1rem;
+    margin-right: 1rem;
+}
+.css-vj11vy{
+    background-color: white;
+    color: black;
+}
+.logo-wrapper{
+    display: flex;
+    justify-content: center;
+}
+.filter-button{
+    display: none;
+}
+.sidebar{
+    /* height: 100vh; */
+    border-right: 1px solid rgb(237, 237, 237);
+    box-shadow: 2px 2px 6px 3px #d7d7d6;
+    /* width: 75%; */
+}
+.filter-icon{
+    margin-right: 0.4rem;
+    width: 1rem;
+}
+.css-1wvake5{
+    border: none;
+    border-right-style:none !important;
+}
+.navbar{
+    height: 4rem;
+    border-right: 1px solid rgb(237, 237, 237);
+    box-shadow: 2px 2px 6px 3px #d7d7d6;
+    display: flex;
+    justify-content: end;
+    padding-right: 3rem;
+}
+.header-name{
+    margin-top: 0.7rem;
+    margin-bottom: 0rem;
+    text-align: center;
+    margin-left: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.cursor{
+    cursor: pointer;
+}
+.fill-white{
+    fill: white;
+}
+.dark{
+    color: black;
+}
+.css-hip9hq-MuiPaper-root-MuiAppBar-root{
+    background-color: white !important;
+    color: black !important;
+}
+.promotion-img{
+    width: 20rem;
+    margin-top: 2rem;
+}
+.promotion{
+    height: 100vh;
+    overflow: auto;
+}
+.border-radius{
+    border-radius: 2rem;
+}
+.team-notes{
+    background-color: #ededed;
+    padding: 1rem;
+    margin-top: 2rem;
+    border-radius: 1rem;
+}
+.team-notes p{
+    text-align: start;
+}
+.padding{
+    padding: 1rem;
+}
+.space-between{
+    display: flex;
+    justify-content: space-between;
+}
+.dashboard-card{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.css-1nrlq1o-MuiFormControl-root{
+    width: 100% !important;
+    /* max-height: 10rem; */
+}.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.Mui-checked, .css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.MuiCheckbox-indeterminate{
+    color: black !important;
+}
+
+
+#abc:focus, .login-option button{
+    transition: none !important;
+    outline: none !important;
+}
+#navbar{
+    background-color: black !important;
+}
+.login {
+    width: 30%;
+    margin: 8% auto;
+    padding: 1rem;
+    border: 1px solid #ededed;
+    border-radius: 0.4rem;
+    box-shadow: 0.1rem 0.1rem 0.4rem 0.4rem #dedede;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+#cred-field {
+    margin: 1rem;
+    width: 92% !important;
+}
+.space-between{
+    display: flex;
+    justify-content: space-between;
+}
+.login-option button{
+    background: none;
+    font-size: 1rem;
+    margin: 0 .6rem;
+}
+.login-option button:hover{
+    border: none;
+}
+.margin{
+    margin: 1rem;
+}
+.width{
+    width: 100%;
+}
+.padding{
+    padding: 1rem;
+}
+.dark{
+    background-color: black !important;
+}
+.padding-right{
+    padding-right: .5rem;
+}
+.flex-column{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.crousel-img{
+    height: 90.3vh;
+}
+.card{
+    padding: 0rem;
+    width:24rem;
+}
+.all-cards{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+}

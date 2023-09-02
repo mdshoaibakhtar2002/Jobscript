@@ -1,12 +1,10 @@
-/* eslint-disable react/prop-types */
-import { useState } from "react";
-// import Button from '@mui/material/Button';
+import * as React from 'react';
+import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { Avatar } from "@mui/material";
 
-export default function NavBar() {
-  const [anchorEl, setAnchorEl] = useState(null);
+export default function BasicMenu() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -14,9 +12,17 @@ export default function NavBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
-    <div className="navbar">
-      <Avatar className="cursor" alt="Remy Sharp" src="https://mui.com/static/images/avatar/2.jpg" onClick={handleClick}/>
+    <div>
+      <Button
+        id="basic-button"
+        aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}>
+        Dashboard
+      </Button>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
