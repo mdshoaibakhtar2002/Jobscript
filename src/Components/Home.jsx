@@ -1,8 +1,16 @@
+import MyCards from "./Cards";
+import MyCarousel from "./Carousel";
 
 export default function Home() {
   return (
     <div>
-    <h1>Home Is Loading.............</h1>
+      <MyCarousel />
+      <div className="all-cards">
+        <MyCards />
+        <MyCards />
+        <MyCards />
+        <MyCards />
+      </div>
     </div>
   )
 }

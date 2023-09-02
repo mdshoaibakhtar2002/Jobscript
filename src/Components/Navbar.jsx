@@ -32,9 +32,10 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    console.log("clicked...");
-    navigate('/')
+  const handleCloseNavMenu = (e, name) => {
+    e.preventDefault();
+    console.log(name)
+    // navigate('/')
   };
 
   const handleCloseUserMenu = (e, name) => {
@@ -42,6 +43,7 @@ const ResponsiveAppBar = () => {
     if(name === "Logout"){
         navigate('/')
     }
+    console.log(name)
   };
 
   return (
@@ -53,7 +55,7 @@ const ResponsiveAppBar = () => {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href="/app/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -64,7 +66,7 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            THE OPPORTUNISTIC
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -97,7 +99,7 @@ const ResponsiveAppBar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={(e) => handleCloseNavMenu(e, page)}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -108,7 +110,7 @@ const ResponsiveAppBar = () => {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/app/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -120,7 +122,7 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            THE OPPORTUNISTIC
           </Typography>
           {/* menu option */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -128,7 +130,7 @@ const ResponsiveAppBar = () => {
               <Button
                 id='abc'
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={(e) => handleCloseNavMenu(e, page)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
