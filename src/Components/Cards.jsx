@@ -3,8 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 function Cards(props) {
-    const goto = (link) => window.open(link, "_blank");
-    console.log(props.link)
+  const goto = (link) => window.open(link, "_blank");
   return (
     <Card className='cards' style={{ width: '20rem', height:'32rem', margin:'2rem 1rem'}}>
       <Card.Img variant="top" src={props.image} className={props.class}/>

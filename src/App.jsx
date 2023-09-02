@@ -7,9 +7,12 @@ import LogIn from "../src/Components/LogIn";
 import SignUp from "../src/Components/SignUp";
 import ForgotPassword from "../src/Components/Forgot_Password";
 import ChangePassword from "../src/Components/Change_Password";
+import LinearIndeterminate from "./Components/LinearProgressbar";
+import { useSelector } from "react-redux";
 
 
 function App() {
+  const {Loader} = useSelector(state => state.myAppState)
   const Test = () => {
     return (
       <div>
@@ -24,6 +27,7 @@ function App() {
   return (
     <Router>
      <div className='main-div'>
+      {Loader && <LinearIndeterminate/>}
      <Routes>
           <Route exact path='/' element={<LogIn />} />
           <Route exact path='/signup' element={<SignUp />} />

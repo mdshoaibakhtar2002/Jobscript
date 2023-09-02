@@ -5,7 +5,13 @@ import { useState } from 'react';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import logo from "../img/logo.png";
 import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { store } from '../Redux/Store/myAppStore';
+import { Loading, LoadingStop } from '../Redux/Reducer';
+
 export default function LogIn() {
+    const state = store.getState()
+    const dispatch = useDispatch()
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event) => {
@@ -15,6 +21,7 @@ export default function LogIn() {
     const pageChanger = (e, page) =>{
         e.preventDefault()
         if(page === "signin"){
+            // dispatch(Loading())
             navigate('/app/')
         }
         if(page === "signup"){
