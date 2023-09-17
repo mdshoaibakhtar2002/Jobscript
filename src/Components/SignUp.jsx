@@ -19,7 +19,7 @@ export default function SignUp() {
     }
   }
   return (
-    <div className="login">
+    <div className="login signup">
       <div className='padding-right'>
         <img className='width' src={logo} alt='logo' />
       </div>

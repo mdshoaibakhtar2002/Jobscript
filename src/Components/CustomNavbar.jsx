@@ -57,6 +57,7 @@ function ResponsiveAppBar() {
             noWrap
             component="a"
             href="/app/"
+            id = "company-name"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -101,17 +102,18 @@ function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={() =>gotoPage(page)}>
-                  <Typography textAlign="center" className='dark'>{page}</Typography>
+                  <Typography textAlign="center" className=''>{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
           <Typography
             variant="h5"
             noWrap
             component="a"
             href="/"
+            id = "company-name"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },

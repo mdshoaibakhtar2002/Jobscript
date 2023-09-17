@@ -24,7 +24,7 @@ export default function ViewJobDetails() {
         <div className="job-subdetails">
             <p className="job-details-header">Job Offer</p>
             <p className="job-details-value">Rs 5 LPA - 7 LPA</p>
-        </div>npm start 
+        </div>
         <div className="job-subdetails">
             <p className="job-details-header">Start Date</p>
             <p className="job-details-value">12/12/2023</p>
