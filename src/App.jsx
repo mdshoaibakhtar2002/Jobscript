@@ -9,6 +9,7 @@ import ForgotPassword from "./Components/onBoarding/ForgotPassword";
 import ChangePassword from "./Components/onBoarding/ChangePassword";
 import LinearIndeterminate from "./Components/Resuable/LinearProgressbar";
 import { useSelector } from "react-redux";
+import { Stack } from "@mui/material";
 // import { useRef } from "react";
 // import { useEffect } from "react";
 
@@ -39,7 +40,7 @@ function App() {
   return (
     <Router>
       {Loader && <LinearIndeterminate/>}
-     <div className='main-div'>
+     <Stack height={'100%'} width={'100%'}>
         <Routes>
           <Route exact path='/' element={<LogIn />} />
           <Route exact path='/signup' element={<SignUp />} />
@@ -47,7 +48,7 @@ function App() {
           <Route exact path='/changepassword' element={<ChangePassword />} />
           <Route exact path='/app/*' element={<Test />} />
         </Routes>
-    </div>
+    </Stack>
       </Router>
   )
 }

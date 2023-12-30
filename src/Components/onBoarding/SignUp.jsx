@@ -1,4 +1,4 @@
-import { Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material'
+import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Stack, TextField } from '@mui/material'
 import '../../Custom-css/Stylesheet.css'
 import '../../Custom-css/Responsive.css'
 import { useState } from 'react';
@@ -43,10 +43,19 @@ export default function SignUp() {
     })
   }
   return (
-    <div className="login signup">
-      <div className='padding-right'>
+    <Stack
+    padding={2} 
+    width='30%' 
+    height={'84%'}
+    display='flex' 
+    justifyContent='center' 
+    margin={'auto'} 
+    boxShadow={'2px 2px 6px 3px #d7d7d6'}
+    borderRadius={'8px'}
+    >
+      <Box>
         <img className='width' src={logo} alt='logo' />
-      </div>
+      </Box>
       <div className='flex-column'>
         <div className='space-between'>
             <TextField sx={{width:"49%"}} name = "firstName" required label="First Name" variant="outlined" onChange={(e) => handleChange(e)} />
@@ -101,6 +110,6 @@ export default function SignUp() {
       </div>
         <button style={{marginTop:MarginStyle.margintop2}} onClick={(e) => pageChanger(e, "login")}>Already have an account, log in</button>
         <Button fullWidth variant="contained" onClick={(e) => createUser(e)} style={ButtonStyle}>Sign Up</Button>
-    </div>
+    </Stack>
   )
 }

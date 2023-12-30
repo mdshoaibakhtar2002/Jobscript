@@ -1,4 +1,4 @@
-import {Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material'
+import {Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Stack } from '@mui/material'
 import '../../Custom-css/Stylesheet.css'
 import '../../Custom-css/Responsive.css'
 import { useState } from 'react';
@@ -20,10 +20,19 @@ export default function ChangePassword() {
         }
     }
     return (
-        <div className="login" style={{margin:"13% auto"}}>
-            <div className='padding-right'>
+        <Stack
+        padding={2} 
+        width='30%' 
+        height={'60%'}
+        display='flex' 
+        justifyContent='center' 
+        margin={'auto'} 
+        boxShadow={'2px 2px 6px 3px #d7d7d6'}
+        borderRadius={'8px'}
+        >
+            <Box>
                 <img className='width' src = {logo} alt='logo'/>
-            </div>
+            </Box>
             <FormControl sx={{marginTop:MarginStyle.margintop2}} variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-password">Old Password</InputLabel>
                 <OutlinedInput
@@ -88,6 +97,6 @@ export default function ChangePassword() {
                 />
             </FormControl>
             <Button variant="contained" onClick={(e) => pageChanger(e, "signin")} style={ButtonStyle}>Reset Password</Button>
-        </div>
+        </Stack>
     )
 }
