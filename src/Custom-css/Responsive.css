@@ -20,8 +20,8 @@
     }
   @media only screen and (max-width: 900px) {
       .login {
-          width: 40%;
-          margin: 20% auto;
+          width: 70%;
+          margin: 50% auto !important;
       }
       .login-option button{
           font-size: .8rem;
@@ -30,7 +30,7 @@
           height: 100vh;
       }
       .signup{
-        margin: 6% auto !important;
+        margin: 40% auto !important;
       }
     }
   @media only screen and (max-width: 800px) {
@@ -74,18 +74,29 @@
     }
   @media only screen and (max-width: 450px) {
       .login {
-          width: 75%;
-          margin: 40% auto;
+          width: 90%;
+          margin: 50% auto !important;
       }
       .crousel-img{
           height: 100vh;
       }
       .signup{
-        margin: 16% auto !important;
+        margin: 40% auto !important;
       }
       #company-name{
         font-size: .8rem !important;
       }
+      .graph p{
+        margin-top: 0;
+        margin-bottom: 1rem;
+        margin-bottom: 0px;
+        font-size: 10px;
+        text-align: center;
+        padding-top: 5px;
+    }
+    .rect-box-1, .rect-box-2{
+        width: 70px;
+    }
     }
     /*Responsive CSS*/
 @media only screen and (max-width: 1250px) {

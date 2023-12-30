@@ -9,16 +9,12 @@ const appSlice = createSlice({
     initialState,
     reducers:{
         Loading : (state, action) =>{
-            state.Loader = true
-        },
-        LoadingStop : (state, action) =>{
-            state.Loader = false
+            state.Loader = action.payload;
         }
     }
 })
 
 export const {
-    Loading, 
-    LoadingStop
+    Loading,
 } = appSlice.actions;
 export default appSlice.reducer

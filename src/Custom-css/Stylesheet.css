@@ -3,13 +3,8 @@
 }
 .main-div{
     width: 100%;
-    /* display: grid;
-    grid-template-columns: .8fr 4fr; */
 }
 .sub-div{
-    /* display: grid;
-    grid-template-columns: 1fr 4fr; */
-    /* border-right: 1px solid rgb(237, 237, 237); */
     box-shadow: 2px 2px 6px 3px #d7d7d6;
 }
 .Home{
@@ -27,7 +22,7 @@
     display: none;
 }
 .aside-job-card{
-    height: 100vh;
+    height: 107vh;
     overflow: auto;
     padding: 1rem;
 }
@@ -155,6 +150,10 @@
     display: flex;
     justify-content: center;
 }
+.center{
+    display: flex;
+    justify-content: center;
+}
 .filter-button{
     display: none;
 }
@@ -249,7 +248,7 @@
 }
 .login {
     width: 30%;
-    margin: 8% auto;
+    margin: 14% auto;
     padding: 1rem;
     border: 1px solid #ededed;
     border-radius: 0.4rem;
@@ -258,9 +257,10 @@
     justify-content: center;
     flex-direction: column;
 }
-.signup{
+/* .signup{
     margin: 3% auto !important;
-}
+    width: 40% !important;
+} */
 #cred-field {
     margin: 1rem;
     width: 92% !important;
@@ -317,4 +317,24 @@
 }
 .transparent{
     opacity: 0.1;
+}
+.login p{
+    margin: 0rem;
+}
+.rect-box-1, .rect-box-2{
+    width: 85px;
+    height: 24px;
+    background: #ff5759;
+    border-radius: 2px;
+    margin-right: 5px;
+}
+.rect-box-2{
+    background: #757575;
+}
+.cards-btn:hover{
+    background-color: #ff5759 !important;
+}
+.graph p{
+    margin-top: 0;
+    margin-bottom: 0px;
 }

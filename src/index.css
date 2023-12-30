@@ -28,6 +28,7 @@
     display: flex;
     min-width: 320px;
     min-height: 100vh;
+    color: #757575;
   }
   body::-webkit-scrollbar {
     display: none;
@@ -47,6 +48,7 @@
     background-color: #1a1a1a;
     cursor: pointer;
     transition: border-color 0.25s;
+    padding: 0px;
   }
   
   @media (prefers-color-scheme: light) {
@@ -58,7 +60,7 @@
       color: #747bff;
     }
     button {
-      background-color: #f9f9f9;
+      background-color: white;
     }
   }
   
