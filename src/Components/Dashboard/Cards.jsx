@@ -24,7 +24,7 @@ export default function Cards(props) {
       </CardContent>
       <CardActions>
         <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button size="small" onClick={()=> window.open(props.link, '_blank')}>Learn More</Button>
       </CardActions>
     </Card>
   );

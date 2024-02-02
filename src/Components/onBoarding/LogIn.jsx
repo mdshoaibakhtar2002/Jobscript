@@ -24,21 +24,21 @@ export default function LogIn() {
         if (page === "signin") {
             dispatch(Loading(true))
             //Login api to check whether the user is already registered or not.
-            axios.post(endpoint + "/login", loginCredentials).then(res => {
-                console.log("Res", res)
-                if (res?.["data"]?.["status"] === 200) {
-                    navigate('/app/')
-                    dispatch(Loading(false))
-                } else {
-                    dispatch(Loading(false))
-                }
-            }).catch((err) => {
-                dispatch(Loading(false))
-                console.log(err)
-            })
+            // axios.post(endpoint + "/login", loginCredentials).then(res => {
+            //     console.log("Res", res)
+            //     if (res?.["data"]?.["status"] === 200) {
+            //         navigate('/app/')
+            //         dispatch(Loading(false))
+            //     } else {
+            //         dispatch(Loading(false))
+            //     }
+            // }).catch((err) => {
+            //     dispatch(Loading(false))
+            //     console.log(err)
+            // })
             // dispatch(Loading(false))
-            // navigate('/app/')
-            // dispatch(Loading(false)) 
+            navigate('/app/')
+            dispatch(Loading(false)) 
         }
         if (page === "signup") {
             navigate("/signup")
@@ -113,8 +113,8 @@ export default function LogIn() {
                         )}
                     />
                     <Stack display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
-                        <Button onClick={(e) => pageChanger(e, "forgotpassword")} sx={{maxWidth:'10rem', fontSize:'10px', padding:'8px 3px'}}>Forgot password</Button>
-                        <Button onClick={(e) => pageChanger(e, "signup")}  sx={{maxWidth:'10rem', fontSize:'10px', padding:'8px 3px'}}>Create new account</Button>
+                        <Button onClick={(e) => pageChanger(e, "forgotpassword")} sx={{maxWidth:'10rem', fontSize:'10px', padding:'8px 3px', color:'black'}}>Forgot password</Button>
+                        <Button onClick={(e) => pageChanger(e, "signup")}  sx={{maxWidth:'10rem', fontSize:'10px', padding:'8px 3px', color:'black'}}>Create new account</Button>
                     </Stack>
                     <Button style={ButtonStyle} variant="contained" onClick={(e) => pageChanger(e, "signin")} type="submit" fullWidth >Sign In</Button>
                 </form>
