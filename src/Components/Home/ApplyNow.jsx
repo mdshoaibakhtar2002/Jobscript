@@ -4,13 +4,18 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { primaryColor } from '../Theme/Palette';
 import ViewJobDetails from './ViewJobDetails';
-// import IntegrationNotistack from '../Resuable/SnackBar';
-// import { SnackbarProvider } from 'notistack';
+import IntegrationNotistack from '../Resuable/SnackBar';
+import { useState } from 'react';
+import { SnackbarProvider } from 'notistack';
+import { noteForHR } from '../constant/constant_values';
+import { formatTextWithNewlines } from '../../util/helper';
 
 
 export default function ApplyNow(props) {
+  const [show, setShow] = useState(false)
   const hide = () => {
     props.setModalShow(false)
+    setShow(true)
   }
   function MyVerticallyCenteredModal(props) {
     return (
@@ -36,9 +41,9 @@ export default function ApplyNow(props) {
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <p>What makes you perfect match for this opportunity?</p>
+              <p>Let them know why you are a good fit.</p>
               <FormControl>
-                <TextField multiline minRows={4} maxRows={5} label="Write in your word" fullWidth />
+                <TextField id="note-for-hr" multiline minRows={4} maxRows={18} label="Write a note..." fullWidth defaultValue={formatTextWithNewlines(noteForHR)}/>
               </FormControl>
               <FormControlLabel
                 value=""
@@ -46,9 +51,6 @@ export default function ApplyNow(props) {
                 label="Update me over email"
                 labelPlacement="end"
               />
-              {/* <SnackbarProvider anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
-                <IntegrationNotistack message = "Applied successfull" variant = 'success'/>
-              </SnackbarProvider> */}
             </Modal.Body>
             <Modal.Footer>
               <Button variant="contained" style={{ background: primaryColor.background, color: "white", border: "none" }} onClick={() => hide()}>Apply Now</Button>
@@ -64,6 +66,9 @@ export default function ApplyNow(props) {
         onHide={() => props.setModalShow(false)}
         modaltype={props.modalType}
       />
+      <SnackbarProvider anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+        <IntegrationNotistack message="Applied successfull" variant='success' show = {show} setShow={setShow}/>
+      </SnackbarProvider>
     </>
   );
 }

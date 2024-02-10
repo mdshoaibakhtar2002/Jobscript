@@ -23,7 +23,7 @@
     display: none;
 }
 .aside-job-card{
-    height: 107vh;
+    height: 115vh;
     overflow: auto;
     padding: 1rem;
 }
@@ -338,4 +338,7 @@
 .graph p{
     margin-top: 0;
     margin-bottom: 0px;
+}
+#note-for-hr::-webkit-scrollbar{
+    display: none;
 }

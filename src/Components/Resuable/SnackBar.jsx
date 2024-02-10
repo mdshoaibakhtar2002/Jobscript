@@ -1,16 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import Button from '@mui/material/Button';
-import { SnackbarProvider, useSnackbar } from 'notistack';
+import { useSnackbar } from 'notistack';
+import { useEffect } from 'react';
 
 export default function IntegrationNotistack(props) {
-    const {message, variant} = props
+    const {message, variant, show, setShow} = props
     const { enqueueSnackbar } = useSnackbar();
-    const handleClickVariant = () => () => {
-        enqueueSnackbar(message, { variant });
-    };
-    return (
-        <SnackbarProvider>
-            <Button onClick={handleClickVariant()}>Show success snackbar</Button>
-        </SnackbarProvider>
-    );
+
+    useEffect(() => {
+        if(show){
+            enqueueSnackbar(message, { variant });
+            setShow(false)
+        }
+      }, [show]);
+    return (<></>);
 }

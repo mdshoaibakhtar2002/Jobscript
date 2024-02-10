@@ -1,14 +1,11 @@
-import * as React from 'react';
+/* eslint-disable react/prop-types */
 import { styled, alpha } from '@mui/material/styles';
-import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import EditIcon from '@mui/icons-material/Edit';
-import Divider from '@mui/material/Divider';
-import ArchiveIcon from '@mui/icons-material/Archive';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -51,30 +48,9 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function MenuItem() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
+export default function ShareMenuItem({anchorEl, open, handleClose}) {
   return (
     <div>
-      <Button
-        id="demo-customized-button"
-        aria-controls={open ? 'demo-customized-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        variant="contained"
-        disableElevation
-        onClick={handleClick}
-        endIcon={<KeyboardArrowDownIcon />}
-      >
-        Options
-      </Button>
       <StyledMenu
         id="demo-customized-menu"
         MenuListProps={{
@@ -85,21 +61,20 @@ export default function MenuItem() {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose} disableRipple>
-          <EditIcon />
-          Edit
+          <LinkedInIcon />
+          LinkedIn
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
-          <FileCopyIcon />
-          Duplicate
-        </MenuItem>
-        <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={handleClose} disableRipple>
-          <ArchiveIcon />
-          Archive
+          <WhatsAppIcon />
+          WhatsApp
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
-          <MoreHorizIcon />
-          More
+          <TwitterIcon />
+          Twitter
+        </MenuItem>
+        <MenuItem onClick={handleClose} disableRipple>
+          <ContentCopyIcon />
+          Copy link
         </MenuItem>
       </StyledMenu>
     </div>

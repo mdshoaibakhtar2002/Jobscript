@@ -5,15 +5,29 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import ShareMenuItem from '../Resuable/ShareMenuItem';
+import { useState } from 'react';
 
 export default function Cards(props) {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <Card sx={{ maxWidth: 345, marginTop:"3rem" }}>
       <CardMedia
-        sx={{ height: 350 }}
+        sx={{ height: 350, cursor:'pointer' }}
         image={props.image}
-        title="green iguana"
+        title= {props.title}
+        onClick={() => window.open(props.link, '_blank')}
       />
+      <div>
+        <ShareMenuItem anchorEl = {anchorEl} open={open} handleClose={handleClose}/>
+      </div>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div" color="#757575">
         {props.title}
@@ -23,7 +37,7 @@ export default function Cards(props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
+        <Button size="small" onClick={handleClick}>Share</Button>
         <Button size="small" onClick={()=> window.open(props.link, '_blank')}>Learn More</Button>
       </CardActions>
     </Card>

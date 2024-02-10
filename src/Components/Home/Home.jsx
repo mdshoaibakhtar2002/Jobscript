@@ -8,16 +8,6 @@ export default function Home() {
       <SidePromo />
       <div className='aside-job-card'>
         <JobCards />
-        <JobCards />
-        <JobCards />
-        <JobCards />
-        <JobCards />
-        <JobCards />
-        <JobCards />
-        <JobCards />
-        <JobCards />
-        <JobCards />
-        <JobCards />
       </div>
       <div className="aside">
         <Filter />

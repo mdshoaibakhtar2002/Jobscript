@@ -10,6 +10,7 @@ import ChangePassword from "./Components/onBoarding/ChangePassword";
 import LinearIndeterminate from "./Components/Resuable/LinearProgressbar";
 import { useSelector } from "react-redux";
 import { Stack } from "@mui/material";
+import Footer from "./Components/Resuable/Footer";
 // import { useRef } from "react";
 // import { useEffect } from "react";
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<Dashboard/>}></Route>
           <Route path="/fulltimejob" element={<Home/>}></Route>
         </Routes>
+        <Footer/>
       </div>
     )
   }
