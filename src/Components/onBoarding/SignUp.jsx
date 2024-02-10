@@ -23,7 +23,7 @@ export default function SignUp() {
   const pageChanger = (e, page) => {
     e.preventDefault();
     if(page === "createaccount" || page === "login"){
-      navigate('/')
+      navigate('/auth/')
     }
   }
   const handleChange = (e) =>{
@@ -33,14 +33,19 @@ export default function SignUp() {
   const createUser = (e) =>{
     e.preventDefault();
     dispatch(Loading(true))
-    axios.post(endpoint+"/createuser",newUserDetails).then(res =>{
-      if(res?.["status"] === 200){
-        dispatch(Loading(false))
-        navigate("/")
-      }
-    }).catch(() =>{
+    localStorage.setItem('newUserDetails', JSON.stringify(newUserDetails))
+    // axios.post(endpoint+"/createuser",newUserDetails).then(res =>{
+    //   if(res?.["status"] === 200){
+    //     dispatch(Loading(false))
+    //     navigate("/auth/")
+    //   }
+    // }).catch(() =>{
+    //   dispatch(Loading(false))
+    // })
+    setTimeout(() => {
       dispatch(Loading(false))
-    })
+      navigate("/auth/")
+    }, 4000);
   }
   return (
     <Stack
@@ -49,7 +54,7 @@ export default function SignUp() {
     height={'84%'}
     display='flex' 
     justifyContent='center' 
-    margin={'auto'} 
+    margin={'2% auto'} 
     boxShadow={'2px 2px 6px 3px #d7d7d6'}
     borderRadius={'8px'}
     >

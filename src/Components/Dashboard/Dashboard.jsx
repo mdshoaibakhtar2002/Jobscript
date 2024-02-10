@@ -1,3 +1,5 @@
+import { Stack } from "@mui/material";
+import DrawerCard from "../Resuable/DrawerCard";
 import Cards from "./Cards";
 import Graph from "./Graph";
 
@@ -16,6 +18,8 @@ export default function Dashboard() {
       <div className="graph-div">
         <Graph />
       </div>
+      <Stack>
+      </Stack>
       <div className="dashboard-card">
         <Cards title="Apple" description="This is description which helps you to understand about the job. For more details" link="https://www.apple.com/careers/in/" image="https://upload.wikimedia.org/wikipedia/commons/a/ab/Apple-logo.png" />
         <Cards title="Microsoft" description="This is description which helps you to understand about the job. For more details" link="https://careers.microsoft.com/v2/global/en/home.html" image="https://www.microsoft.com/en-us/microsoft-365/blog/wp-content/uploads/sites/2/2022/06/cropped-microsoft_logo_element.png" />

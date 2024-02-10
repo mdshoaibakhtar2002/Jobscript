@@ -26,7 +26,7 @@ export default function ChangePassword() {
         height={'60%'}
         display='flex' 
         justifyContent='center' 
-        margin={'auto'} 
+        margin={'8% auto'} 
         boxShadow={'2px 2px 6px 3px #d7d7d6'}
         borderRadius={'8px'}
         >
