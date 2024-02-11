@@ -21,7 +21,7 @@ export default function ForgotPassword() {
             setCodeSended(true);
         }
         if (page === "verified") {
-            navigate("/changepassword")
+            navigate("/auth/changepassword")
         }
     }
     return (
@@ -31,10 +31,10 @@ export default function ForgotPassword() {
             height={'50%'}
             display='flex'
             justifyContent='center'
-            margin={'auto'}
+            margin={'10% auto'}
             boxShadow={'2px 2px 6px 3px #d7d7d6'}
             borderRadius={'8px'}
-        >
+            >
             <Stack>
                 <img src={logo} alt='logo' />
             </Stack>

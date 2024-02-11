@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css'
 import Dashboard from './Components/Dashboard/Dashboard'
 import Home from "../src/Components/Home/Home";
@@ -9,23 +9,23 @@ import ForgotPassword from "./Components/onBoarding/ForgotPassword";
 import ChangePassword from "./Components/onBoarding/ChangePassword";
 import LinearIndeterminate from "./Components/Resuable/LinearProgressbar";
 import { useSelector } from "react-redux";
-import { Stack } from "@mui/material";
-// import { useRef } from "react";
-// import { useEffect } from "react";
+import { CircularProgress, Stack } from "@mui/material";
+import Footer from "./Components/Resuable/Footer";
+import CircularLoader from "./Components/Resuable/CircularLoader";
 
 
 function App() {
-  const {Loader} = useSelector(state => state.myAppState)
-  // const mainRef = useRef()
+  const { isLoading } = useSelector(state => state.myAppState)
   const Test = () => {
     return (
-      <div>
-          <CustomNavbar/>
+      <Stack height={'100%'} width={'100%'}>
         <Routes>
-          <Route path="/" element={<Dashboard/>}></Route>
-          <Route path="/fulltimejob" element={<Home/>}></Route>
+          <Route exact path='/' element={<LogIn />} />
+          <Route exact path='/signup' element={<SignUp />} />
+          <Route exact path='/forgotpassword' element={<ForgotPassword />} />
+          <Route exact path='/changepassword' element={<ChangePassword />} />
         </Routes>
-      </div>
+      </Stack>
     )
   }
   // useEffect(() =>{
@@ -37,19 +37,20 @@ function App() {
   //     }
   //   }
   // }, [Loader])
+  // console.log(window.location.pathname)
   return (
     <Router>
-      {Loader && <LinearIndeterminate/>}
-     <Stack height={'100%'} width={'100%'}>
+      {isLoading && <CircularLoader color="secondary" style={{ position: 'fixed', top: '50%'}}/>}
+      <CustomNavbar />
+      <Stack display={isLoading && 'none'}>
         <Routes>
-          <Route exact path='/' element={<LogIn />} />
-          <Route exact path='/signup' element={<SignUp />} />
-          <Route exact path='/forgotpassword' element={<ForgotPassword />} />
-          <Route exact path='/changepassword' element={<ChangePassword />} />
-          <Route exact path='/app/*' element={<Test />} />
-        </Routes>
-    </Stack>
-      </Router>
+        <Route path="/" element={<Dashboard />}></Route>
+        <Route path="/fulltimejob" element={<Home />}></Route>
+        <Route exact path='/auth/*' element={<Test />} />
+      </Routes>
+      {/* {!window.location.pathname.includes('/auth') &&  <Footer />} */}
+      </Stack>
+    </Router>
   )
 }
 

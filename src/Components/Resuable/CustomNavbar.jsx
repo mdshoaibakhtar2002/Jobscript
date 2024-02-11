@@ -14,6 +14,9 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 import Switches from '../Modes/Switches';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import FloaterCard from './FloaterCard';
+import CloseIcon from '@mui/icons-material/Close';
 
 const pages = ['Dashboard', 'Fulltime Job', 'Internships'];
 const settings = ['Profile', 'Account', 'Setting', 'Logout'];
@@ -21,6 +24,7 @@ const settings = ['Profile', 'Account', 'Setting', 'Logout'];
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [userName, setUserName] = React.useState()
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -32,33 +36,54 @@ function ResponsiveAppBar() {
   };
   const handleCloseUserMenu = (e, page) => {
     setAnchorElUser(null);
-    if(page === "Logout"){
-      navigate("/")
+    if (page === "Logout") {
+      navigate("/auth/")
+      setUserName('')
     }
-    if(page === "Fulltime Job"){
-      navigate("/app/fulltimejob")
+    if (page === "Fulltime Job") {
+      navigate("/fulltimejob")
     }
   };
   const navigate = useNavigate();
-  const gotoPage = (page) =>{
-    if(page === "Dashboard"){
-      navigate("/app/")
+  const gotoPage = (page) => {
+    if (page === "Dashboard") {
+      navigate("/")
     }
-    if(page === "Fulltime Job"){
-      navigate("/app/fulltimejob")
+    if (page === "Fulltime Job") {
+      navigate("/fulltimejob")
     }
   }
+  const [showDrawer, setShowDrawer] = React.useState(false);
+  const [contentToShow, setContentToShow] = React.useState(null)
+  const toggleDrawer = () => (event) => {
+    if (
+      event &&
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    setShowDrawer(!showDrawer);
+    // setContentToShow()
+  };
+  React.useEffect(() =>{
+    const userData = localStorage.getItem("newUserDetails")
+    console.log(JSON.parse(userData))
+    if(JSON.parse(userData)){
+      setUserName(JSON.parse(userData)?.['firstName'])
+    }
+
+  },[])
   return (
     <AppBar position="static" className='custom-navbar'>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fill:"#757575" }} />
+          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fill: "#757575" }} />
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="/app/"
-            id = "company-name"
+            href="/"
+            id="company-name"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -102,7 +127,7 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={() =>gotoPage(page)}>
+                <MenuItem key={page} onClick={() => gotoPage(page)}>
                   <Typography textAlign="center" color="#757575" className=''>{page}</Typography>
                 </MenuItem>
               ))}
@@ -114,7 +139,7 @@ function ResponsiveAppBar() {
             noWrap
             component="a"
             href="/"
-            id = "company-name"
+            id="company-name"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -132,15 +157,24 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={() =>gotoPage(page)}
+                onClick={() => gotoPage(page)}
                 sx={{ my: 2, color: '#757575', display: 'block' }}
               >
                 {page}
               </Button>
             ))}
           </Box>
-          <Switches/>
-          <Box sx={{ flexGrow: 0 }}>
+          {/* <Switches/> */}
+          
+          {!userName ?
+          <Box onClick={toggleDrawer()}>
+            <AccountCircleOutlinedIcon sx={{ cursor: 'pointer' }} />
+            <Tooltip title="Add" arrow >
+              <Button sx={{ color: "#757575" }} onClick={toggleDrawer()}>LogIn</Button>
+            </Tooltip>
+          </Box> :
+          <Box sx={{ flexGrow: 0, display:'flex' }}>
+            <Typography sx={{marginRight:'1rem', marginTop:'10px', color:'#757575', fontWeight:'600'}}>{userName}</Typography>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="https://mui.com/static/images/avatar/2.jpg" />
@@ -168,9 +202,14 @@ function ResponsiveAppBar() {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box>}
+          {/* {userName ? } */}
         </Toolbar>
       </Container>
+      {/* {showDrawer && <IconButton sx={{ alignSelf: 'end', padding: '0' }} onClick={toggleDrawer(null)}>
+        <CloseIcon sx={{ cursor: 'pointer' }} />
+      </IconButton>} */}
+      <FloaterCard showDrawer={showDrawer} toggleDrawer={toggleDrawer} contentToShow={contentToShow} />
     </AppBar>
   );
 }
