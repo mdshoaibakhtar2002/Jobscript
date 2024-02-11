@@ -65,14 +65,14 @@ function ResponsiveAppBar() {
     setShowDrawer(!showDrawer);
     // setContentToShow()
   };
-  React.useEffect(() =>{
-    const userData = localStorage.getItem("newUserDetails")
-    console.log(JSON.parse(userData))
-    if(JSON.parse(userData)){
-      setUserName(JSON.parse(userData)?.['firstName'])
-    }
+  // React.useEffect(() =>{
+  //   const userData = localStorage.getItem("newUserDetails")
+  //   // console.log(JSON.parse(userData))
+  //   if(userData && JSON.parse(userData)){
+  //     setUserName(JSON.parse(userData)?.['firstName'])
+  //   }
 
-  },[])
+  // },[])
   return (
     <AppBar position="static" className='custom-navbar'>
       <Container maxWidth="xl">
