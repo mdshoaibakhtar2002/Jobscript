@@ -38,7 +38,7 @@ export default function Filter() {
                 </div>
                 <div className="filter-div">
                     <p>Work Experience</p>
-                    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                    <FormControl sx={{ minWidth: '100%' }} size="small">
                         <InputLabel id="demo-select-small-label">Work Experience</InputLabel>
                         <Select
                             labelId="demo-select-small-label"

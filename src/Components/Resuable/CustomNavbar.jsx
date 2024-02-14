@@ -25,6 +25,7 @@ function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [userName, setUserName] = React.useState()
+  const [showAppBar, setShowAppBar] = React.useState(false)
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -56,7 +57,7 @@ function ResponsiveAppBar() {
   const [showDrawer, setShowDrawer] = React.useState(false);
   const [contentToShow, setContentToShow] = React.useState(null)
   const toggleDrawer = () => (event) => {
-    if (
+        if (
       event &&
       event.type === 'keydown' &&
       (event.key === 'Tab' || event.key === 'Shift')) {
@@ -73,8 +74,15 @@ function ResponsiveAppBar() {
   //   }
 
   // },[])
+  React.useEffect(() =>{
+    if((window.location.pathname).includes('auth')){
+      setShowAppBar(false)
+    }else{
+      setShowAppBar(true)
+    }
+  },[window.location.pathname])
   return (
-    <AppBar position="static" className='custom-navbar'>
+    <AppBar position="static" className='custom-navbar' sx={{backgroundColor:'white', display:showAppBar ? 'block':'none'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fill: "#757575" }} />
@@ -168,7 +176,7 @@ function ResponsiveAppBar() {
           
           {!userName ?
           <Box onClick={toggleDrawer()}>
-            <AccountCircleOutlinedIcon sx={{ cursor: 'pointer' }} />
+            <AccountCircleOutlinedIcon sx={{ cursor: 'pointer' , fill:'black'}} />
             <Tooltip title="Add" arrow >
               <Button sx={{ color: "#757575" }} onClick={toggleDrawer()}>LogIn</Button>
             </Tooltip>
@@ -209,7 +217,7 @@ function ResponsiveAppBar() {
       {/* {showDrawer && <IconButton sx={{ alignSelf: 'end', padding: '0' }} onClick={toggleDrawer(null)}>
         <CloseIcon sx={{ cursor: 'pointer' }} />
       </IconButton>} */}
-      <FloaterCard showDrawer={showDrawer} toggleDrawer={toggleDrawer} contentToShow={contentToShow} />
+      <FloaterCard showDrawer={showDrawer} toggleDrawer={toggleDrawer} contentToShow={contentToShow} setShowDrawer={setShowDrawer}/>
     </AppBar>
   );
 }

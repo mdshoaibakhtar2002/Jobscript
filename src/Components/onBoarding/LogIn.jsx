@@ -22,6 +22,9 @@ export default function LogIn(props) {
     };
     const pageChanger = (e, page) => {
         e.preventDefault()
+        if(props.floater){
+            props.setShowDrawer(!props.showDrawer)
+        }
         if (page === "signin") {
             dispatch(Loading(true))
             //Login api to check whether the user is already registered or not.

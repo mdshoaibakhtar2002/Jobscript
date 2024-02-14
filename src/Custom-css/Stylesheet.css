@@ -104,10 +104,6 @@
 .css-qfz70r-MuiFormGroup-root{
     justify-content: space-between !important;
 }
-.css-1869usk-MuiFormControl-root, .css-1w4vsez-MuiFormControl-root{
-    width: 100% !important;
-    margin: 0rem !important;
-}
 .filter p, .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
     color: gray;
     text-align: start;
@@ -196,10 +192,6 @@
 }
 .dark{
     color: black;
-}
-.css-hip9hq-MuiPaper-root-MuiAppBar-root{
-    background-color: white !important;
-    color: black !important;
 }
 .promotion-img{
     width: 20rem;

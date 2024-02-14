@@ -42,7 +42,7 @@ export default function ApplyNow(props) {
             </Modal.Header>
             <Modal.Body>
               <p>Let them know why you are a good fit.</p>
-              <FormControl>
+              <FormControl sx={{width:'100%'}}>
                 <TextField id="note-for-hr" multiline minRows={4} maxRows={18} label="Write a note..." fullWidth defaultValue={formatTextWithNewlines(noteForHR)}/>
               </FormControl>
               <FormControlLabel
