@@ -42,7 +42,7 @@ function App() {
     <Router>
       {isLoading && <CircularLoader color="secondary"/>}
       <CustomNavbar />
-      <Stack sx={isLoading && {position:'fixed',opacity:'0.3', zIndex:'1'}}>
+      <Stack>
         <Routes>
         <Route path="/" element={<Dashboard />}></Route>
         <Route path="/fulltimejob" element={<Home />}></Route>

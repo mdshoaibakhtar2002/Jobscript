@@ -81,6 +81,9 @@ function ResponsiveAppBar() {
       setShowAppBar(true)
     }
   },[window.location.pathname])
+  const gotoLoginPage = () =>{
+    location.replace('/auth/')
+  }
   return (
     <AppBar position="static" className='custom-navbar' sx={{backgroundColor:'white', display:showAppBar ? 'block':'none'}}>
       <Container maxWidth="xl">
@@ -175,10 +178,10 @@ function ResponsiveAppBar() {
           {/* <Switches/> */}
           
           {!userName ?
-          <Box onClick={toggleDrawer()}>
+          <Box>
             <AccountCircleOutlinedIcon sx={{ cursor: 'pointer' , fill:'black'}} />
             <Tooltip title="Add" arrow >
-              <Button sx={{ color: "#757575" }} onClick={toggleDrawer()}>LogIn</Button>
+              <Button sx={{ color: "#757575" }} onClick={()=>gotoLoginPage()}>LogIn</Button>
             </Tooltip>
           </Box> :
           <Box sx={{ flexGrow: 0, display:'flex' }}>
