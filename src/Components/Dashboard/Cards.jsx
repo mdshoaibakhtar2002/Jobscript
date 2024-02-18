@@ -2,7 +2,6 @@
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ShareMenuItem from '../Resuable/ShareMenuItem';
@@ -18,13 +17,8 @@ export default function Cards(props) {
     setAnchorEl(null);
   };
   return (
-    <Card sx={{ maxWidth: 345, marginTop:"3rem" }}>
-      <CardMedia
-        sx={{ height: 350, cursor:'pointer' }}
-        image={props.image}
-        title= {props.title}
-        onClick={() => window.open(props.link, '_blank')}
-      />
+    <Card sx={{ width: '100%', marginTop:"3rem", borderRadius:'24px', cursor:'pointer'}} id='card-id'>
+      <img src={props.image}  style={{ height: 125, cursor:'pointer', marginTop:'1rem' }}/>
       <div>
         <ShareMenuItem anchorEl = {anchorEl} open={open} handleClose={handleClose}/>
       </div>
@@ -36,9 +30,9 @@ export default function Cards(props) {
         {props.description}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small" onClick={handleClick}>Share</Button>
-        <Button size="small" onClick={()=> window.open(props.link, '_blank')}>Learn More</Button>
+      <CardActions sx={{padding:'12px 48px'}} id='card-buttons'>
+        <Button size="small" fullWidth variant='outlined' onClick={handleClick}>Share</Button>
+        <Button size="small" fullWidth variant='outlined' onClick={()=> window.open(props.link, '_blank')}>Learn More</Button>
       </CardActions>
     </Card>
   );

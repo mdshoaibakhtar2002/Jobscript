@@ -7,8 +7,6 @@ import logo from "../../img/logo.png";
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { Loading } from '../../Redux/Reducer';
-import axios from 'axios';
-import { endpoint } from '../constant/constant_values';
 import { Controller, useForm } from 'react-hook-form';
 import { ButtonStyle, MarginStyle } from '../Theme/Palette';
 
@@ -44,6 +42,7 @@ export default function LogIn(props) {
             setTimeout(() => {
                 dispatch(Loading(false))
                 navigate("/")
+                props.setUserName('Harry')
             }, 4000);
         }
         if (page === "signup") {

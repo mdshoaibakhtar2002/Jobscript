@@ -45,7 +45,7 @@ export default function SignUp() {
     setTimeout(() => {
       dispatch(Loading(false))
       navigate("/auth/")
-    }, 4000);
+    }, 5000);
   }
   return (
     <Stack
