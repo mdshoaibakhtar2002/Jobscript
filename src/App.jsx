@@ -18,7 +18,7 @@ function App() {
   const { isLoading } = useSelector(state => state.myAppState)
   const Test = () => {
     return (
-      <Stack height={'100%'} width={'100%'}>
+      <Stack height={'100%'} width={'100%'} sx={isLoading && {opacity:'0.3'}}>
         <Routes>
           <Route exact path='/' element={<LogIn />} />
           <Route exact path='/signup' element={<SignUp />} />
@@ -40,9 +40,9 @@ function App() {
   // console.log(window.location.pathname)
   return (
     <Router>
-      {isLoading && <CircularLoader color="secondary" style={{ position: 'fixed', top: '50%'}}/>}
+      {isLoading && <CircularLoader color="secondary"/>}
       <CustomNavbar />
-      <Stack display={isLoading && 'none'}>
+      <Stack sx={isLoading && {position:'fixed',opacity:'0.3', zIndex:'1'}}>
         <Routes>
         <Route path="/" element={<Dashboard />}></Route>
         <Route path="/fulltimejob" element={<Home />}></Route>

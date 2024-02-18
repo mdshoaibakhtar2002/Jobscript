@@ -334,3 +334,26 @@
 #note-for-hr::-webkit-scrollbar{
     display: none;
 }
+.dashboard{
+    width: 100%;
+}
+.pattern{
+    background-color: #f8f8f8;
+    opacity: 1;
+    background: repeating-linear-gradient( 45deg, #f3f3f3, #f3f3f3 7px, #f8f8f8 7px, #f8f8f8 35px );
+}
+
+#card-id{
+    transition: transform 0.9s;
+}
+#card-buttons{
+    transition:background-color 0.3s ease-in-out;
+}
+#card-id:hover{
+    #card-buttons button:first-child{
+        background-color: rgb(238, 238, 238);
+    }
+}
+#card-id:hover{
+    transform: scale(1.09);
+}

@@ -24,7 +24,7 @@ const settings = ['Profile', 'Account', 'Setting', 'Logout'];
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [userName, setUserName] = React.useState()
+  const [userName, setUserName] = React.useState("")
   const [showAppBar, setShowAppBar] = React.useState(false)
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -66,14 +66,14 @@ function ResponsiveAppBar() {
     setShowDrawer(!showDrawer);
     // setContentToShow()
   };
-  // React.useEffect(() =>{
-  //   const userData = localStorage.getItem("newUserDetails")
-  //   // console.log(JSON.parse(userData))
-  //   if(userData && JSON.parse(userData)){
-  //     setUserName(JSON.parse(userData)?.['firstName'])
-  //   }
-
-  // },[])
+  React.useEffect(() =>{
+    // const userData = localStorage.getItem("newUserDetails")
+    // // console.log(JSON.parse(userData))
+    // if(userData && JSON.parse(userData)){
+    //   setUserName(JSON.parse(userData)?.['firstName'])
+    // }
+    // setUserName("Harry")
+  },[])
   React.useEffect(() =>{
     if((window.location.pathname).includes('auth')){
       setShowAppBar(false)
@@ -217,7 +217,7 @@ function ResponsiveAppBar() {
       {/* {showDrawer && <IconButton sx={{ alignSelf: 'end', padding: '0' }} onClick={toggleDrawer(null)}>
         <CloseIcon sx={{ cursor: 'pointer' }} />
       </IconButton>} */}
-      <FloaterCard showDrawer={showDrawer} toggleDrawer={toggleDrawer} contentToShow={contentToShow} setShowDrawer={setShowDrawer}/>
+      <FloaterCard showDrawer={showDrawer} toggleDrawer={toggleDrawer} contentToShow={contentToShow} setShowDrawer={setShowDrawer} setUserName={setUserName}/>
     </AppBar>
   );
 }
