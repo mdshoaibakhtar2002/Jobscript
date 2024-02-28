@@ -15,7 +15,10 @@ export default function ApplyNow(props) {
   const [show, setShow] = useState(false)
   const hide = () => {
     props.setModalShow(false)
-    setShow(true)
+    setTimeout(() => {
+      setShow(true)
+    }, 2000);
+
   }
   function MyVerticallyCenteredModal(props) {
     return (
@@ -34,16 +37,16 @@ export default function ApplyNow(props) {
               <Button variant="contained" style={{ background: primaryColor.background, color: "white", border: "none" }} onClick={() => hide()}>Close</Button>
             </Modal.Footer>
           </Modal> :
-          <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter">
+          <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" style={{marginTop:'4rem'}}>
             <Modal.Header closeButton>
-              <Modal.Title id="contained-modal-title-vcenter">
-                Apply Now
+              <Modal.Title id="contained-modal-title-vcenter" style={{fontSize:'16px'}}>
+              Let them know why you are a good fit.
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <p>Let them know why you are a good fit.</p>
-              <FormControl sx={{width:'100%'}}>
-                <TextField id="note-for-hr" multiline minRows={4} maxRows={18} label="Write a note..." fullWidth defaultValue={formatTextWithNewlines(noteForHR)}/>
+              {/* <p>Let them know why you are a good fit.</p> */}
+              <FormControl sx={{ width: '100%' }}>
+                <TextField id="note-for-hr" multiline minRows={4} maxRows={18} label="Write a note..." fullWidth defaultValue={formatTextWithNewlines(noteForHR)} />
               </FormControl>
               <FormControlLabel
                 value=""
@@ -67,7 +70,7 @@ export default function ApplyNow(props) {
         modaltype={props.modalType}
       />
       <SnackbarProvider anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
-        <IntegrationNotistack message="Applied successfull" variant='success' show = {show} setShow={setShow}/>
+        <IntegrationNotistack message="Applied successfull" variant='success' show={show} setShow={setShow} />
       </SnackbarProvider>
     </>
   );

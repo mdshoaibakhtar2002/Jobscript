@@ -1,4 +1,4 @@
-import { Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Stack, TextField } from '@mui/material'
+import { Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Stack, TextField, Grid } from '@mui/material'
 import '../../Custom-css/Stylesheet.css'
 import '../../Custom-css/Responsive.css'
 import { useState } from 'react';
@@ -25,16 +25,8 @@ export default function ForgotPassword() {
         }
     }
     return (
-        <Stack
-            padding={2}
-            width='30%'
-            height={'50%'}
-            display='flex'
-            justifyContent='center'
-            margin={'10% auto'}
-            boxShadow={'2px 2px 6px 3px #d7d7d6'}
-            borderRadius={'8px'}
-            >
+        <Grid container height={'100vh'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
+        <Grid item xs={4} display={'flex'} flexDirection={'column'} boxShadow={'2px 2px 6px 3px #d7d7d6'} padding={4} borderRadius={'16px 0px 16px 0px'}>
             <Stack>
                 <img src={logo} alt='logo' />
             </Stack>
@@ -70,6 +62,7 @@ export default function ForgotPassword() {
                     </Stack>
                 }
             </Stack>
-        </Stack>
+        </Grid>
+        </Grid>
     )
 }

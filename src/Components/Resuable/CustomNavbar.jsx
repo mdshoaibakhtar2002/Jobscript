@@ -1,6 +1,6 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
+import { Box, TextField, OutlinedInput, Badge } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -17,6 +17,29 @@ import Switches from '../Modes/Switches';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import FloaterCard from './FloaterCard';
 import CloseIcon from '@mui/icons-material/Close';
+import { Loading } from '../../Redux/Reducer';
+import { useDispatch } from 'react-redux';
+import { FormControl } from '@mui/material';
+import { InputLabel } from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import SearchIcon from '@mui/icons-material/Search';
+import ClearIcon from '@mui/icons-material/Clear';
+// import Box from '@mui/material/Box';
+// import Avatar from '@mui/material/Avatar';
+// import Menu from '@mui/material/Menu';
+// import MenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Divider from '@mui/material/Divider';
+// import IconButton from '@mui/material/IconButton';
+// import Typography from '@mui/material/Typography';
+// import Tooltip from '@mui/material/Tooltip';
+import PersonAdd from '@mui/icons-material/PersonAdd';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
+import MailIcon from '@mui/icons-material/Mail';
+// import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 
 const pages = ['Dashboard', 'Fulltime Job', 'Internships'];
 const settings = ['Profile', 'Account', 'Setting', 'Logout'];
@@ -26,6 +49,9 @@ function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [userName, setUserName] = React.useState("")
   const [showAppBar, setShowAppBar] = React.useState(false)
+  const [search, setSearch] = React.useState('')
+  const dispatch = useDispatch();
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -57,7 +83,7 @@ function ResponsiveAppBar() {
   const [showDrawer, setShowDrawer] = React.useState(false);
   const [contentToShow, setContentToShow] = React.useState(null)
   const toggleDrawer = () => (event) => {
-        if (
+    if (
       event &&
       event.type === 'keydown' &&
       (event.key === 'Tab' || event.key === 'Shift')) {
@@ -66,62 +92,52 @@ function ResponsiveAppBar() {
     setShowDrawer(!showDrawer);
     // setContentToShow()
   };
-  React.useEffect(() =>{
+  React.useEffect(() => {
     // const userData = localStorage.getItem("newUserDetails")
     // // console.log(JSON.parse(userData))
     // if(userData && JSON.parse(userData)){
     //   setUserName(JSON.parse(userData)?.['firstName'])
     // }
     // setUserName("Harry")
-  },[])
-  React.useEffect(() =>{
-    if((window.location.pathname).includes('auth')){
+  }, [])
+  React.useEffect(() => {
+    if ((window.location.pathname).includes('auth')) {
       setShowAppBar(false)
-    }else{
+    } else {
       setShowAppBar(true)
     }
-  },[window.location.pathname])
-  const gotoLoginPage = () =>{
-    location.replace('/auth/')
+  }, [window.location.pathname])
+  const gotoLoginPage = () => {
+    dispatch(Loading(true))
+    setTimeout(() => {
+      dispatch(Loading(false))
+      navigate("/auth/")
+      setUserName('Harry')
+    }, 4000);
   }
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+    navigate("/auth/")
+    setUserName('')
+  };
   return (
-    <AppBar position="static" className='custom-navbar' sx={{backgroundColor:'white', display:showAppBar ? 'block':'none'}}>
+    <AppBar position="fixed" className='custom-navbar' sx={{ backgroundColor: 'white', display: showAppBar ? 'block' : 'none' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fill: "#757575" }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            id="company-name"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: '#757575',
-              textDecoration: 'none',
-            }}
-          >
+          <Typography variant="h6" noWrap component="a" href="/" id="company-name" sx={{ mr: 2, display: { xs: 'none', md: 'flex' }, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.3rem', color: '#757575', textDecoration: 'none' }}>
             JOBSCRIPT
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="#757575"
-            >
+            <IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenNavMenu} color="#757575">
               <MenuIcon />
             </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
+            <Menu id="menu-appbar" anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'left',
@@ -133,10 +149,7 @@ function ResponsiveAppBar() {
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
+              sx={{ display: { xs: 'block', md: 'none' } }}>
               {pages.map((page) => (
                 <MenuItem key={page} onClick={() => gotoPage(page)}>
                   <Typography textAlign="center" color="#757575" className=''>{page}</Typography>
@@ -145,23 +158,7 @@ function ResponsiveAppBar() {
             </Menu>
           </Box>
           {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            id="company-name"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
+          <Typography variant="h5" noWrap component="a" href="/" id="company-name" sx={{ mr: 2, display: { xs: 'flex', md: 'none' }, flexGrow: 1, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.3rem', color: 'inherit', textDecoration: 'none' }}>
             JOBSCRIPT
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -175,52 +172,132 @@ function ResponsiveAppBar() {
               </Button>
             ))}
           </Box>
+
           {/* <Switches/> */}
-          
+
+          {/* <FormControl sx={{ m: 1, width: '20ch' }} variant="outlined">
+            <OutlinedInput placeholder='Search' size='small' onChange={(e) => setSearch(e.target.value)} value={search}
+              endAdornment={
+                <InputAdornment position="end">
+                  {
+                    search.length > 0 ?
+                        <IconButton aria-label="toggle password visibility" edge="end" onClick={() => setSearch('')} >
+                          <ClearIcon />
+                        </IconButton>:
+                        <IconButton aria-label="toggle password visibility" edge="end">
+                          <SearchIcon />
+                        </IconButton>
+                  }
+                </InputAdornment>
+              }
+            />
+          </FormControl> */}
           {!userName ?
-          <Box>
-            <AccountCircleOutlinedIcon sx={{ cursor: 'pointer' , fill:'black'}} />
-            <Tooltip title="Add" arrow >
-              <Button sx={{ color: "#757575" }} onClick={()=>gotoLoginPage()}>LogIn</Button>
-            </Tooltip>
-          </Box> :
-          <Box sx={{ flexGrow: 0, display:'flex' }}>
-            <Typography sx={{marginRight:'1rem', marginTop:'10px', color:'#757575', fontWeight:'600'}}>{userName}</Typography>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            <Box>
+              <AccountCircleOutlinedIcon sx={{ cursor: 'pointer', fill: 'black' }} />
+              <Tooltip title="Add" arrow >
+                <Button sx={{ color: "#757575" }} onClick={() => gotoLoginPage()}>LogIn</Button>
+              </Tooltip>
+            </Box> :
+            
+          <React.Fragment>
+          <Badge badgeContent={4} color="primary" sx={{
+            '.MuiSvgIcon-root': {
+              width: '2rem !important',
+              height: '2rem !important',
+              transition: 'transform 1s'
+            },
+             '.MuiSvgIcon-root:hover': {
+              transform: 'scale(1.2)'
+            },
+            cursor: 'pointer'
+          }}>
+            <MailIcon color="action" />
+          </Badge>
+          <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+            {/* <Typography sx={{ minWidth: 100 }}>Contact</Typography>
+              <Typography sx={{ minWidth: 100 }}>Profile</Typography> */}
+            <Tooltip title={userName}>
+              <IconButton
+                onClick={handleClick}
+                size="small"
+                sx={{ ml: 2 }}
+                aria-controls={open ? 'account-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+              >
                 <Avatar alt="Remy Sharp" src="https://mui.com/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={(e) => handleCloseUserMenu(e, setting)}>
-                  <Typography textAlign="center" color="">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>}
-          {/* {userName ? } */}
+          </Box>
+          <Menu
+            anchorEl={anchorEl}
+            id="account-menu"
+            open={open}
+            onClose={handleClose}
+            onClick={handleClose}
+            PaperProps={{
+              elevation: 0,
+              sx: {
+                overflow: 'visible',
+                filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                mt: 1.5,
+                '& .MuiAvatar-root': {
+                  width: 32,
+                  height: 32,
+                  ml: -0.5,
+                  mr: 1,
+                },
+                '&::before': {
+                  content: '""',
+                  display: 'block',
+                  position: 'absolute',
+                  top: 0,
+                  right: 14,
+                  width: 10,
+                  height: 10,
+                  bgcolor: 'background.paper',
+                  transform: 'translateY(-50%) rotate(45deg)',
+                  zIndex: 0,
+                },
+              },
+            }}
+            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+          >
+            <MenuItem onClick={handleClose}>
+              <ListItemIcon>
+                <AccountCircleOutlinedIcon />
+              </ListItemIcon> My account
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <ListItemIcon>
+                <Settings fontSize="small" />
+              </ListItemIcon>
+              Settings
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <ListItemIcon>
+                <HelpOutlineOutlinedIcon fontSize="small" />
+              </ListItemIcon>
+              Help centre
+            </MenuItem>
+            <Divider />
+            <MenuItem onClick={handleClose}>
+              <ListItemIcon>
+                <Logout fontSize="small" />
+              </ListItemIcon>
+              Logout
+            </MenuItem>
+          </Menu>
+        </React.Fragment>
+          }
         </Toolbar>
       </Container>
       {/* {showDrawer && <IconButton sx={{ alignSelf: 'end', padding: '0' }} onClick={toggleDrawer(null)}>
         <CloseIcon sx={{ cursor: 'pointer' }} />
       </IconButton>} */}
-      <FloaterCard showDrawer={showDrawer} toggleDrawer={toggleDrawer} contentToShow={contentToShow} setShowDrawer={setShowDrawer} setUserName={setUserName}/>
+      <FloaterCard showDrawer={showDrawer} toggleDrawer={toggleDrawer} contentToShow={contentToShow} setShowDrawer={setShowDrawer} setUserName={setUserName} />
     </AppBar>
   );
 }
