@@ -2,6 +2,7 @@ import company_logo from '../../img/company_logo.png'
 export const endpoint = "http://localhost:3000/api";
 export const data = [
   {
+    job_role : 'Software Development-2',
     company_name: 'Microsoft',
     location: 'Delhi',
     work_mode: 'in-office',
@@ -9,7 +10,7 @@ export const data = [
     company_size: '100,000+ Employees',
     logo: company_logo,
     start_date: '10/06/2024',
-    experience: '2-5 Years',
+    experience: '2-4 Years',
     last_date: '05/03/2024',
     probation_period: '3 months',
     skills: ['React', 'Node.js', 'Azure', 'Git', 'SQL'],
@@ -40,6 +41,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : 'Quality Assurance',
     company_name: 'Google',
     location: 'Gurgaon',
     work_mode: 'hybrid',
@@ -47,10 +49,10 @@ export const data = [
     company_size: '150,000+ Employees',
     logo: company_logo,
     start_date: '02/02/2024',
-    experience: '3-6 Years',
+    experience: '0-2 Years',
     last_date: '10/03/2024',
     probation_period: '4 months',
-    skills: ['Angular', 'Python', 'Google Cloud', 'Git', 'Machine Learning'],
+    skills: ['Angular', 'Python', 'Django', 'Git', 'Java'],
     requirement: ['Design, code, debug, and unit test Android mobile applications',
       'Connecting with the product team to understand the features/business requirements for Android app development',
       'Integrate third-party services, such as REST APIs and Firebase',
@@ -78,6 +80,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : 'Full-stack Developer',
     company_name: 'Amazon',
     location: 'Noida',
     work_mode: 'remote',
@@ -85,7 +88,7 @@ export const data = [
     company_size: '500,000+ Employees',
     logo: company_logo,
     start_date: '05/02/2024',
-    experience: '4-8 Years',
+    experience: '0-2 Years',
     last_date: '15/03/2024',
     probation_period: '2 months',
     skills: ['React', 'Java', 'AWS', 'Git', 'DynamoDB'],
@@ -116,6 +119,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : 'Software Engineer-2',
     company_name: 'Facebook',
     location: 'Hyderabad',
     work_mode: 'in-office',
@@ -123,7 +127,7 @@ export const data = [
     company_size: '75,000+ Employees',
     logo: company_logo,
     start_date: '01/03/2024',
-    experience: '5-10 Years',
+    experience: '4-6 Years',
     last_date: '20/03/2024',
     probation_period: '3 months',
     skills: ['React', 'PHP', 'Hack', 'Git', 'MySQL'],
@@ -154,6 +158,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : 'IOS Developer-2',
     company_name: 'Apple',
     location: 'Bangalore',
     work_mode: 'hybrid',
@@ -161,7 +166,7 @@ export const data = [
     company_size: '150,000+ Employees',
     logo: company_logo,
     start_date: '05/03/2024',
-    experience: '3-7 Years',
+    experience: '2-4 Years',
     last_date: '25/03/2024',
     probation_period: '2 months',
     skills: ['Swift', 'Objective-C', 'iOS', 'Git', 'Xcode'],
@@ -192,6 +197,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : 'Android Developer',
     company_name: 'Tesla',
     location: 'Kolkata',
     work_mode: 'in-office',
@@ -199,7 +205,7 @@ export const data = [
     company_size: '50,000+ Employees',
     logo: company_logo,
     start_date: '10/03/2024',
-    experience: '8-12 Years',
+    experience: 'Fresher',
     last_date: '30/03/2024',
     probation_period: '3 months',
     skills: ['JavaScript', 'Python', 'C++', 'Git', 'Autopilot'],
@@ -230,6 +236,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : 'Frontend Developer',
     company_name: 'Netflix',
     location: 'Delhi',
     work_mode: 'remote',
@@ -237,7 +244,7 @@ export const data = [
     company_size: '10,000+ Employees',
     logo: company_logo,
     start_date: '09/03/2024',
-    experience: '5-9 Years',
+    experience: '0-1 Years',
     last_date: '05/04/2024',
     probation_period: '2 months',
     skills: ['React', 'Java', 'Spring', 'Git', 'Microservices'],
@@ -268,6 +275,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : 'Fullstack Developer',
     company_name: 'LinkedIn',
     location: 'Gurgaon',
     work_mode: 'hybrid',
@@ -275,7 +283,7 @@ export const data = [
     company_size: '15,000+ Employees',
     logo: company_logo,
     start_date: '10/03/2024',
-    experience: '4-8 Years',
+    experience: '1-2 Years',
     last_date: '10/04/2024',
     probation_period: '3 months',
     skills: ['React', 'Node.js', 'Express.js', 'Git', 'MongoDB'],
@@ -306,6 +314,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : 'Backend Developer',
     company_name: 'Uber',
     location: 'Noida',
     work_mode: 'in-office',
@@ -313,7 +322,7 @@ export const data = [
     company_size: '20,000+ Employees',
     logo: company_logo,
     start_date: '08/03/2024',
-    experience: '6-10 Years',
+    experience: '0-2 Years',
     last_date: '15/04/2024',
     probation_period: '2 months',
     skills: ['React', 'Node.js', 'Python', 'Git', 'RESTful APIs'],
@@ -344,6 +353,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : 'IOS Developer',
     company_name: 'Twitter',
     location: 'Delhi',
     work_mode: 'remote',
@@ -351,7 +361,7 @@ export const data = [
     company_size: '5,000+ Employees',
     logo: company_logo,
     start_date: '01/04/2024',
-    experience: '3-7 Years',
+    experience: '2-3 Years',
     last_date: '20/04/2024',
     probation_period: '3 months',
     skills: ['React', 'Java', 'Spring Boot', 'Git', 'Kafka'],
@@ -382,6 +392,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : 'Portal Engineer-2',
     company_name: 'Salesforce',
     location: 'Gurgaon',
     work_mode: 'hybrid',
@@ -389,7 +400,7 @@ export const data = [
     company_size: '50,000+ Employees',
     logo: company_logo,
     start_date: '05/04/2024',
-    experience: '5-9 Years',
+    experience: '2-4 Years',
     last_date: '25/04/2024',
     probation_period: '2 months',
     skills: ['React', 'Apex', 'Salesforce Lightning', 'Git', 'SQL'],
@@ -420,6 +431,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : 'React Developer',
     company_name: 'Adobe',
     location: 'Noida',
     work_mode: 'in-office',
@@ -427,7 +439,7 @@ export const data = [
     company_size: '20,000+ Employees',
     logo: company_logo,
     start_date: '10/04/2024',
-    experience: '4-8 Years',
+    experience: '0-2 Years',
     last_date: '30/04/2024',
     probation_period: '3 months',
     skills: ['React', 'Node.js', 'JavaScript', 'Git', 'Photoshop'],
@@ -458,6 +470,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : 'AI Engineer',
     company_name: 'Intel',
     location: 'Hyderabad',
     work_mode: 'remote',
@@ -496,6 +509,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : 'Cloud Architect-4',
     company_name: 'IBM',
     location: 'Bangalore',
     work_mode: 'in-office',
@@ -534,6 +548,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : 'Network Engineer',
     company_name: 'Cisco',
     location: 'Kolkata',
     work_mode: 'hybrid',
@@ -572,6 +587,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : 'Game Developer',
     company_name: 'HP',
     location: 'Delhi',
     work_mode: 'remote',
@@ -610,6 +626,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : 'Database Engineer',
     company_name: 'Oracle',
     location: 'Gurgaon',
     work_mode: 'in-office',
@@ -648,6 +665,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : '.Net Developer-2',
     company_name: 'Dell',
     location: 'Noida',
     work_mode: 'hybrid',
@@ -655,7 +673,7 @@ export const data = [
     company_size: '150,000+ Employees',
     logo: company_logo,
     start_date: '10/05/2024',
-    experience: '5-9 Years',
+    experience: '2-4 Years',
     last_date: '30/05/2024',
     probation_period: '3 months',
     skills: ['C#', 'JavaScript', '.NET', 'Git', 'Dell EMC'],
@@ -686,6 +704,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : 'Machine Learning Engineer',
     company_name: 'NVIDIA',
     location: 'Hyderabad',
     work_mode: 'remote',
@@ -693,7 +712,7 @@ export const data = [
     company_size: '20,000+ Employees',
     logo: company_logo,
     start_date: '15/05/2024',
-    experience: '8-12 Years',
+    experience: '2-4 Years',
     last_date: '05/06/2024',
     probation_period: '2 months',
     skills: ['C++', 'CUDA', 'Machine Learning', 'Git', 'Graphics Programming'],
@@ -724,6 +743,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : 'Databse Engineer-4',
     company_name: 'VMware',
     location: 'Kolkata',
     work_mode: 'in-office',
@@ -762,6 +782,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : 'DevOps Engineer-4',
     company_name: 'Accenture',
     location: 'Delhi',
     work_mode: 'hybrid',
@@ -800,6 +821,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : 'ERP Engineer',
     company_name: 'SAP',
     location: 'Gurgaon',
     work_mode: 'remote',
@@ -838,6 +860,7 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
+    job_role : 'Java Developer',
     company_name: 'Capgemini',
     location: 'Noida',
     work_mode: 'in-office',
@@ -845,7 +868,7 @@ export const data = [
     company_size: '200,000+ Employees',
     logo: company_logo,
     start_date: '05/06/2024',
-    experience: '4-8 Years',
+    experience: '0-2 Years',
     last_date: '25/06/2024',
     probation_period: '2 months',
     skills: ['Java', 'Spring', 'Hibernate', 'Git', 'Agile'],
@@ -877,4 +900,4 @@ export const data = [
   }
 ];
 
-export const noteForHR = 'Dear Hiring Manager,\n\nI am writing to express my keen interest in the developer role at your esteemed company. With a strong background in [mention relevant skills or technologies], I am confident in my ability to contribute effectively to your team.\n\nThroughout my career, I have successfully [mention specific achievements or projects] that demonstrate my problem-solving skills, attention to detail, and passion for creating high-quality software solutions. My expertise in [mention specific technologies, languages, or frameworks] aligns well with the requirements of the position, and I am eager to bring my skills to your dynamic team.\n\nI am particularly drawn to your company commitment to [mention specific values or goals of the company], and I believe that my technical proficiency and collaborative approach make me a strong fit for the innovative work your team is doing.\n\nThank you for considering my application.I am excited about the opportunity to contribute to your company success, and I look forward to the possibility of discussing how my skills and experiences align with your team needs.\n\nSincerely, [Your Full Name]'
+export const noteForHR = 'Dear Hiring Manager,\n\nI am excited to express my keen interest in the developer role at your esteemed company. With a strong background in [mention relevant skills or technologies], I am confident in my ability to make valuable contributions to your dynamic and innovative team.\n\nThroughout my career, I have successfully [mention specific achievements or projects], showcasing my problem-solving skills and dedication to creating high-quality software solutions. My expertise in [mention specific technologies, languages, or frameworks] aligns seamlessly with the positions requirements.\n\nI am drawn to your companys commitment to [mention specific values or goals of the company], and I believe that my technical proficiency and collaborative approach make me a strong fit for your team.\nThank you for considering my application. I look forward to the possibility of discussing how my skills and experiences align with your teams needs.\n\nSincerely, [Your Full Name]'

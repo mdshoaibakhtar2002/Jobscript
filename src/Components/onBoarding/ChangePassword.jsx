@@ -1,4 +1,4 @@
-import {Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Stack } from '@mui/material'
+import {Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Grid } from '@mui/material'
 import '../../Custom-css/Stylesheet.css'
 import '../../Custom-css/Responsive.css'
 import { useState } from 'react';
@@ -20,16 +20,8 @@ export default function ChangePassword() {
         }
     }
     return (
-        <Stack
-        padding={2} 
-        width='30%' 
-        height={'60%'}
-        display='flex' 
-        justifyContent='center' 
-        margin={'8% auto'} 
-        boxShadow={'2px 2px 6px 3px #d7d7d6'}
-        borderRadius={'8px'}
-        >
+        <Grid container height={'100vh'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
+        <Grid item xs={4} display={'flex'} flexDirection={'column'} boxShadow={'2px 2px 6px 3px #d7d7d6'} padding={4} borderRadius={'16px 0px 16px 0px'}>
             <Box>
                 <img className='width' src = {logo} alt='logo'/>
             </Box>
@@ -97,6 +89,7 @@ export default function ChangePassword() {
                 />
             </FormControl>
             <Button variant="contained" onClick={(e) => pageChanger(e, "signin")} style={ButtonStyle}>Reset Password</Button>
-        </Stack>
+        </Grid>
+        </Grid>
     )
 }
