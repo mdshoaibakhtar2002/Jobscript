@@ -120,10 +120,12 @@ function ResponsiveAppBar() {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleClose = (action) => {
     setAnchorEl(null);
-    navigate("/auth/")
-    setUserName('')
+    if(action === 'log_out'){
+      navigate("/auth/")
+      setUserName('')
+    }
   };
   return (
     <AppBar position="fixed" className='custom-navbar' sx={{ backgroundColor: 'white', display: showAppBar ? 'block' : 'none' }}>
@@ -234,8 +236,8 @@ function ResponsiveAppBar() {
             anchorEl={anchorEl}
             id="account-menu"
             open={open}
-            onClose={handleClose}
-            onClick={handleClose}
+            onClose={() => handleClose('close')}
+            onClick={() => handleClose('close')}
             PaperProps={{
               elevation: 0,
               sx: {
@@ -265,25 +267,25 @@ function ResponsiveAppBar() {
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={() => handleClose('my_account')}>
               <ListItemIcon>
                 <AccountCircleOutlinedIcon />
               </ListItemIcon> My account
             </MenuItem>
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={() => handleClose('setting')}>
               <ListItemIcon>
                 <Settings fontSize="small" />
               </ListItemIcon>
               Settings
             </MenuItem>
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={() => handleClose('help_centre')}>
               <ListItemIcon>
                 <HelpOutlineOutlinedIcon fontSize="small" />
               </ListItemIcon>
               Help centre
             </MenuItem>
             <Divider />
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={() => handleClose('log_out')}>
               <ListItemIcon>
                 <Logout fontSize="small" />
               </ListItemIcon>

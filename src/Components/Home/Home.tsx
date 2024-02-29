@@ -51,9 +51,9 @@ export default function Home() {
           width:'21.4vw'
         }
       }}>
-        <IconButton sx={{ alignSelf: 'end', padding: '0', position:'absolute', background:'white', width:'23px', top:'2.4rem'}} id='cross-icon' onClick={toggleDrawer()}>
+        {/* <IconButton sx={{ alignSelf: 'end', padding: '0', position:'absolute', background:'white', width:'23px', top:'2.4rem'}} id='cross-icon' onClick={toggleDrawer()}>
           <CloseIcon sx={{ cursor: 'pointer', width:'14px'}} />
-        </IconButton>
+        </IconButton> */}
         <img className='promotion-img' src='https://cuvette.tech/app/static/media/cgipBannerPurple.88a26d80.png' />
       </Drawer>
     </Grid>

@@ -34,7 +34,7 @@ export default function Filter({showDrawer, setShowDrawer}) {
                     <p className="apply-filter">Apply Filter</p>
                     <FormControl>
                         <FormLabel id="demo-row-radio-buttons-group-label" sx={{ display: 'flex', '&.Mui-focused': { color: '#888a88' } }}>Office Type</FormLabel>
-                        <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="work_mode" onChange={handleChange} value={filterData['work_mode']}>
+                        <RadioGroup sx={{display:'flex', justifyContent:'space-between'}} row aria-labelledby="demo-row-radio-buttons-group-label" name="work_mode" onChange={handleChange} value={filterData['work_mode']}>
                             <FormControlLabel defaultChecked={true} value="remote" control={<Radio sx={{
                                 "&.Mui-checked": {
                                     color: '#888a88'
@@ -55,7 +55,7 @@ export default function Filter({showDrawer, setShowDrawer}) {
                 </div>
                 <div className="filter-div">
                     <p>Work Experience</p>
-                    <FormControl size="small">
+                    <FormControl size="small" width='100%'>
                         <InputLabel id="demo-select-small-label">Work Experience</InputLabel>
                         <Select
                             labelId="demo-select-small-label"
@@ -65,13 +65,14 @@ export default function Filter({showDrawer, setShowDrawer}) {
                             label="Work Experience"
                             onChange={handleChange}
                             display='flex'
+                            width='100%'
                             sx={{
                                 '& .MuiSelect-select': {
                                     display: 'flex'
                                 }
                             }}
                         >
-                            <MenuItem value={0}><em>0 (Fresher)</em></MenuItem>
+                            <MenuItem value={0}>0 (Fresher)</MenuItem>
                             <MenuItem value={1}>0-2 Years</MenuItem>
                             <MenuItem value={3}>2-4 Years</MenuItem>
                             <MenuItem value={5}>4-6 Years</MenuItem>
