@@ -1,17 +1,15 @@
-import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Grid, TextField } from '@mui/material'
+import { Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Grid, TextField } from '@mui/material'
 import '../../Custom-css/Stylesheet.css'
 import '../../Custom-css/Responsive.css'
 import { useState } from 'react';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import logo from "../../img/logo.png";
 import { useNavigate } from 'react-router';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { Loading } from '../../Redux/Reducer';
 import { ButtonStyle, MarginStyle } from '../Theme/Palette';
-import { endpoint } from '../constant/constant_values';
 import googleIcon from "../../img/googleG.png";
 import { Typography } from '@mui/material';
+import React from 'react';
 
 export default function SignUp() {
   let navigate = useNavigate()
@@ -50,13 +48,10 @@ export default function SignUp() {
     }, 5000);
   }
   return (
-
-    <Grid container height={'100vh'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
-      <Grid item xs={4} display={'flex'} flexDirection={'column'} boxShadow={'2px 2px 6px 3px #d7d7d6'} padding={4} borderRadius={'16px 0px 16px 0px'}>
-        {/* <Box>
-          <img className='width' src={logo} alt='logo' />
-        </Box> */}
-        <Button sx={{margin:'1rem 0rem'}} variant='outlined'><img src={googleIcon} style={{width:'15px', marginRight:'10px'}}/>Continue with Google</Button>
+    <Grid container spacing={{ xs: 0, sm: 0, md: 0 }} sx={{ '&.MuiGrid-root': { width: '100%', marginLeft: '0px', marginTop: '0px' } }} columns={{ xs: 3.3, sm: 12, md: 20 }} height={'100vh'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
+      <Grid item xs={3} sm={6} md={6} display={'flex'} flexDirection={'column'} boxShadow={'2px 2px 6px 3px #d7d7d6'} padding={4} borderRadius={'16px 0px 16px 0px'}
+        sx={{ '&.MuiGrid-item': { padding: '24px' } }}>
+        <Button sx={{ margin: '1rem 0rem' }} variant='outlined'><img src={googleIcon} style={{ width: '15px', marginRight: '10px' }} />Continue with Google</Button>
         <Typography mb={2}>Or</Typography>
         <div className='flex-column'>
           <div className='space-between'>

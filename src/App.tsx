@@ -5,9 +5,9 @@ import Dashboard from './Components/Dashboard/Dashboard'
 import Home from "./Components/Home/Home.tsx";
 import CustomNavbar from "./Components/Resuable/CustomNavbar";
 import LogIn from "./Components/onBoarding/LogIn.tsx";
-import SignUp from "./Components/onBoarding/SignUp";
-import ForgotPassword from "./Components/onBoarding/ForgotPassword";
-import ChangePassword from "./Components/onBoarding/ChangePassword";
+import SignUp from "./Components/onBoarding/SignUp.tsx";
+import ForgotPassword from "./Components/onBoarding/ForgotPassword.tsx";
+import ChangePassword from "./Components/onBoarding/ChangePassword.tsx";
 import { useSelector } from "react-redux";
 import { Stack } from "@mui/material";
 import Footer from "./Components/Resuable/Footer";
