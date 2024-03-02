@@ -167,7 +167,7 @@
     }
     .apply-now{
         display: flex;
-        justify-content: space-between;
+        justify-content: end;
         margin-top: 1rem
     }
     .button{

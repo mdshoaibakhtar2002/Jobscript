@@ -1,17 +1,18 @@
 import React from 'react'
 import { Stack, Grid, Skeleton} from '@mui/material';
 import EachCardSkeleton from './EachCardSkeleton';
+import { isMobile } from 'react-device-detect';
 
 const SkeletonLoader = () => {
     return (
         <Stack direction={'row'}>
             <Grid container mt={0}>
-                <Grid item xs={5} paddingTop={'0rem !important'} height={'100vh'} overflow={'auto'} id='abc'>
+                <Grid item xs={isMobile ? 12 : 5} paddingTop={'0rem !important'} height={'100vh'} overflow={'auto'} id='abc'>
                     <EachCardSkeleton />
                     <EachCardSkeleton />
                     <EachCardSkeleton />
                 </Grid>
-                <Grid item xs={7} paddingTop={'0rem !important'} paddingLeft={4}>
+                {!isMobile && <Grid item xs={7} paddingTop={'0rem !important'} paddingLeft={4}>
                     <Stack border={'1px solid rgb(237, 237, 237)'} padding={3} borderRadius={'.4rem'} boxShadow={'2px 2px 6px 3px #ebebeb'} sx={{ cursor: 'pointer' }} mt={4}>
                         <Stack direction={'row'} spacing={2}>
                             <Skeleton variant="circular" width={'6vw'} height={75} sx={{ marginTop: '5px !important' }} />
@@ -58,7 +59,7 @@ const SkeletonLoader = () => {
                             <Skeleton variant="text" sx={{ fontSize: '1.4rem' }} width={'100%'} />
                         </Stack>
                     </Stack>
-                </Grid>
+                </Grid>}
             </Grid>
 
 
