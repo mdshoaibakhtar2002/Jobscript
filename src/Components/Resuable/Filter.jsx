@@ -32,7 +32,7 @@ export default function Filter({showDrawer, setShowDrawer}) {
             <Box padding={'16px'}>
                 <div className="">
                     <p className="apply-filter">Apply Filter</p>
-                    <FormControl>
+                    <FormControl width='100%'>
                         <FormLabel id="demo-row-radio-buttons-group-label" sx={{ display: 'flex', '&.Mui-focused': { color: '#888a88' } }}>Office Type</FormLabel>
                         <RadioGroup sx={{display:'flex', justifyContent:'space-between'}} row aria-labelledby="demo-row-radio-buttons-group-label" name="work_mode" onChange={handleChange} value={filterData['work_mode']}>
                             <FormControlLabel defaultChecked={true} value="remote" control={<Radio sx={{
@@ -55,7 +55,7 @@ export default function Filter({showDrawer, setShowDrawer}) {
                 </div>
                 <div className="filter-div">
                     <p>Work Experience</p>
-                    <FormControl size="small" width='100%'>
+                    <FormControl size="small" width='100% !important'>
                         <InputLabel id="demo-select-small-label">Work Experience</InputLabel>
                         <Select
                             labelId="demo-select-small-label"
