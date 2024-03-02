@@ -1,11 +1,15 @@
 import {Avatar, Card, CardActions, CardContent, Grid, Link, Typography } from "@mui/material";
+import React, { useEffect } from "react";
+import { isMobile } from "react-device-detect";
 
 export default function Reviews() {
     return (
         <Grid container mt={5} justifyContent={'center'} display={'flex'} flexDirection={'column'}>
             <Typography sx={{fontSize:'20px', fontWeight:'600'}}>Mentee Reviews</Typography>
-            <Grid container display={'flex'} spacing={5} mt={0}>
-                <Grid item xs={3} display={'flex'}>
+            <Grid container display={'flex'} spacing={5} mt={0} sx={{'&.MuiGrid-root':{width:'100%', marginLeft:'0'}, '&.MuiGrid-root >.MuiGrid-item':{padding:isMobile ? '10px 40px':'0px 10px'}}}>
+            {/* :<Grid container display={'flex'} spacing={5} mt={0}>} */}
+            {/* <Grid container display={'flex'} spacing={5} mt={0} direction={isMobile ?'column':'row'}>/ */}
+                <Grid item xs={isMobile?12:3} display={'flex'}>
                     <Card sx={{ width: '100%', padding:'1rem', cursor:'pointer'}} id="card-id">
                         <CardContent sx={{display:'flex', flexDirection:'column', textAlign:'left', alignItems:'start', color:'gray'}}>
                             <img src="https://d8it4huxumps7.cloudfront.net/uploads/images/655dc734b7246_frame.svg" style={{height:'2rem'}}/>
@@ -18,7 +22,7 @@ export default function Reviews() {
                         </CardActions>
                     </Card>
                 </Grid>
-                <Grid item xs={3} display={'flex'}>
+                <Grid item xs={isMobile?12:3} display={'flex'}>
                     <Card sx={{ width: '100%', padding:'1rem', cursor:'pointer'}} id="card-id">
                         <CardContent sx={{display:'flex', flexDirection:'column', textAlign:'left', alignItems:'start', color:'gray'}}>
                             <img src="https://d8it4huxumps7.cloudfront.net/uploads/images/655dc734b7246_frame.svg" style={{height:'2rem'}}/>
@@ -31,7 +35,7 @@ export default function Reviews() {
                         </CardActions>
                     </Card>
                 </Grid>
-                <Grid item xs={3} display={'flex'}>
+                <Grid item xs={isMobile?12:3} display={'flex'}>
                     <Card sx={{ width: '100%', padding:'1rem', cursor:'pointer'}} id="card-id">
                         <CardContent sx={{display:'flex', flexDirection:'column', textAlign:'left', alignItems:'start', color:'gray'}}>
                             <img src="https://d8it4huxumps7.cloudfront.net/uploads/images/655dc734b7246_frame.svg" style={{height:'2rem'}}/>
@@ -44,7 +48,7 @@ export default function Reviews() {
                         </CardActions>
                     </Card>
                 </Grid>
-                <Grid item xs={3} display={'flex'}>
+                <Grid item xs={isMobile?12:3} display={'flex'}>
                     <Card sx={{ width: '100%', padding:'1rem', cursor:'pointer'}} id="card-id">
                         <CardContent sx={{display:'flex', flexDirection:'column', textAlign:'left', alignItems:'start', color:'gray'}}>
                             <img src="https://d8it4huxumps7.cloudfront.net/uploads/images/655dc734b7246_frame.svg" style={{height:'2rem'}}/>

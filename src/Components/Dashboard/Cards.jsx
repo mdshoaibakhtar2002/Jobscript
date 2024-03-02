@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ShareMenuItem from '../Resuable/ShareMenuItem';
 import { useState } from 'react';
+import { isMobile } from 'react-device-detect';
 
 export default function Cards(props) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -17,7 +18,7 @@ export default function Cards(props) {
     setAnchorEl(null);
   };
   return (
-    <Card sx={{height:'19rem', width: '100%', marginTop:"3rem", borderRadius:'24px', cursor:'pointer'}} id='card-id'>
+    <Card sx={{height:isMobile ? '22rem':'20rem', width: '100%', marginTop:"3rem", borderRadius:'24px', cursor:'pointer'}} id='card-id'>
       <img src={props.image}  style={{ height: 125, cursor:'pointer', marginTop:'1rem' }}/>
       <div>
         <ShareMenuItem anchorEl = {anchorEl} open={open} handleClose={handleClose}/>
@@ -30,9 +31,9 @@ export default function Cards(props) {
         {props.description}
         </Typography>
       </CardContent>
-      <CardActions sx={{padding:'12px 48px'}} id='card-buttons'>
-        <Button size="small" fullWidth variant='outlined' onClick={handleClick}>Share</Button>
-        <Button size="small" fullWidth variant='outlined' onClick={()=> window.open(props.link, '_blank')}>Learn More</Button>
+      <CardActions sx={{padding:isMobile ? '12px':'12px 48px'}} id='card-buttons'>
+        <Button size="small" fullWidth variant='outlined' sx={{fontSize:isMobile ?'10px':'14px'}} onClick={handleClick}>Share</Button>
+        <Button size="small" fullWidth variant='outlined' sx={{fontSize:isMobile ?'10px':'14px'}} onClick={()=> window.open(props.link, '_blank')}>Learn More</Button>
       </CardActions>
     </Card>
   );

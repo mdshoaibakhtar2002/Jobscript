@@ -1,4 +1,4 @@
-import { Button, Grid, OutlinedInput, InputAdornment, IconButton } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { useState, useEffect } from "react";
 import ApplyNow from "../Home/ApplyNow";
 import { primaryColor } from "../Theme/Palette";
@@ -6,20 +6,11 @@ import SideDrawer from "../Resuable/SideDrawer";
 import { data } from "../constant/constant_values";
 import moment from "moment";
 import ViewJobDetails from './ViewJobDetails';
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import { Box, Typography } from '@mui/material';
-import { styled } from '@mui/system';
-import { FormControl } from '@mui/material';
-import { InputLabel } from '@mui/material';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import SearchIcon from '@mui/icons-material/Search';
-import ClearIcon from '@mui/icons-material/Clear';
 import AdvFilter from '../Resuable/AdvFilter';
 import SkeletonLoader from './SkeletonLoader';
+import { isMobile } from "react-device-detect";
 
-// let skeletonLoader = true
-export default function JobCards(props) {
+export default function JobCards() {
     const [modalShow, setModalShow] = useState(false);
     const [modalType, setmodalType] = useState("");
     const [jobList, setJobList] = useState([])
@@ -46,7 +37,7 @@ export default function JobCards(props) {
     const getSkillsList = (listOfSkills) => {
         let array = []
         listOfSkills.map((skill, ind) => {
-            array.push(<div key={ind} className="bubble">{skill}</div>)
+            array.push(<div key={ind} className="bubble" style={{fontSize:isMobile?'12px':'16px'}}>{skill}</div>)
         })
         return array;
     }
@@ -71,16 +62,16 @@ export default function JobCards(props) {
         let array = [...jobList]
         data && data.map((each_company, index) => {
             array.push(
-                <div className="job-card" key={index} onClick={(e) => handleOnClick(e, index)}>
+                <div className="job-card" key={index} onClick={isMobile ? toggleDrawer(index):(e) => handleOnClick(e, index)}>
                     <div className="card-header">
                         <div className="card-subheader">
                             <img src={each_company['logo']} alt="" className="icon" />
                             <div className="start-text-align">
-                                <h5>{each_company['job_role']}</h5>
+                                <Typography sx={{fontSize:isMobile?'12px':'16px'}}>{each_company['job_role']}</Typography>
                                 <p>{`${each_company['company_name']}, ${each_company['location']}`}</p>
                             </div>
                         </div>
-                        <h5 style={{ textTransform: 'capitalize' }}>{each_company['work_mode']}</h5>
+                        <Typography sx={{ textTransform: 'capitalize',fontSize:isMobile?'12px':'16px'}}>{each_company['work_mode']}</Typography>
                     </div>
                     <div className="tech-bubble">{getSkillsList(each_company['skills'])}</div>
                     <div className="job-details">
@@ -103,13 +94,13 @@ export default function JobCards(props) {
                     </div>
                     <div className="card-footer">
                         <div className="applicantion-dets start-text-align">
-                            <p className="job-details-value">Apply By {moment(each_company['last_date']).format('ll')}</p>
+                            <p className="job-details-value" style={{fontSize:isMobile?'12px':'15px'}}>Apply By {moment(each_company['last_date']).format('ll')}</p>
                             <p style={{ fontSize: ".7rem" }}>Posted {Math.floor(Math.random() * 60) + 1} min ago</p>
                         </div>
-                        {/* <div className="apply-now">
-                            <Button className="button" style={{ color: primaryColor.color, marginRight: "4px" }} onClick={(e) => handleOnClick(e, index)}>View Details</Button>
+                        <div className="apply-now">
+                            {/* <Button className="button" style={{ color: primaryColor.color, marginRight: "4px" }} onClick={toggleDrawer(index)}>View Details</Button> */}
                             <Button className="button" style={{ background: primaryColor.background, color: "white", border: "none" }} onClick={() => handleShow("applyNow")}>Apply Now</Button>
-                        </div> */}
+                        </div>
                     </div>
                 </div>
             )
@@ -121,14 +112,14 @@ export default function JobCards(props) {
         <>
             <AdvFilter setSearch={setSearch} search={search} />
             {skeletonLoader ? <SkeletonLoader /> : <Grid container mt={0} id='search'>
-                <Grid item xs={5} paddingTop={'0rem !important'} height={'100vh'} overflow={'auto'} id='abc'>
+                <Grid item xs={isMobile ? 12 : 5} paddingTop={'0rem !important'} height={'100vh'} overflow={'auto'} id='abc'>
                     {jobList}
                 </Grid>
-                <Grid item xs={7} paddingTop={'0rem !important'} paddingLeft={4}><ViewJobDetails contentToShow={contentToShow} handleShow={handleShow} /></Grid>
+                {!isMobile && <Grid item xs={7} paddingTop={'0rem !important'} paddingLeft={4}><ViewJobDetails contentToShow={contentToShow} handleShow={handleShow} /></Grid>}
             </Grid>}
 
             <ApplyNow modalShow={modalShow} setModalShow={setModalShow} modalType={modalType} />
-            {/* <SideDrawer showDrawer={showDrawer} setShowDrawer={setShowDrawer} toggleDrawer={toggleDrawer} contentToShow={contentToShow} /> */}
+            <SideDrawer showDrawer={showDrawer} setShowDrawer={setShowDrawer} toggleDrawer={toggleDrawer} contentToShow={contentToShow} />
         </>
     )
 }

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useNavigate } from 'react-router';
 import { ButtonStyle, MarginStyle } from '../Theme/Palette';
+import React from 'react';
 export default function ForgotPassword() {
     const [showPassword, setShowPassword] = useState(false);
     const [codeSended, setCodeSended] = useState(false)

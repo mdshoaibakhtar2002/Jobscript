@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { SnackbarProvider } from 'notistack';
 import { noteForHR } from '../constant/constant_values';
 import { formatTextWithNewlines } from '../../util/helper';
+import { isMobile } from 'react-device-detect';
 
 
 export default function ApplyNow(props) {
@@ -37,16 +38,16 @@ export default function ApplyNow(props) {
               <Button variant="contained" style={{ background: primaryColor.background, color: "white", border: "none" }} onClick={() => hide()}>Close</Button>
             </Modal.Footer>
           </Modal> :
-          <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" style={{marginTop:'4rem'}}>
+          <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" style={{ marginTop: '4rem' }}>
             <Modal.Header closeButton>
-              <Modal.Title id="contained-modal-title-vcenter" style={{fontSize:'16px'}}>
-              Let them know why you are a good fit.
+              <Modal.Title id="contained-modal-title-vcenter" style={{ fontSize: '16px' }}>
+                Let them know why you are a good fit.
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
               {/* <p>Let them know why you are a good fit.</p> */}
               <FormControl sx={{ width: '100%' }}>
-                <TextField id="note-for-hr" multiline minRows={4} maxRows={18} label="Write a note..." fullWidth defaultValue={formatTextWithNewlines(noteForHR)} />
+                <TextField id="note-for-hr" multiline minRows={4} maxRows={isMobile ? 14 : 18} label="Write a note..." fullWidth defaultValue={formatTextWithNewlines(noteForHR)} />
               </FormControl>
               <FormControlLabel
                 value=""

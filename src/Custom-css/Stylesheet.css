@@ -71,7 +71,7 @@
     margin-top: 1rem;
     color: gray;
     cursor: pointer;
-    font-size: 1vw;
+    /* font-size: 15px; */
 }
 .job-details{
     padding: 1.4rem 0;
@@ -359,13 +359,13 @@
 #card-id:hover{
     transform: scale(1.09);
 }
-.job-card, #hover-effect{
+/* .job-card, #hover-effect{
     cursor: pointer;
     transition: transform 0.9s;
 }
 .job-card:hover, #hover-effect:hover{
     transform: scale(1.01);
-}
+} */
 #cross-icon:hover{
  background: rgb(225, 225, 225);
 }

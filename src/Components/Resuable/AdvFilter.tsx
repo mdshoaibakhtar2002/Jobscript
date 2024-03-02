@@ -72,7 +72,7 @@ const AdvFilter = ({ search, setSearch }) => {
                         <CloseIcon sx={{ cursor: 'pointer' }} />
                     </IconButton>
                 </Stack>
-                <Divider/>
+                <Divider/>a
                 <Filter setShowDrawer={setShowDrawer} showDrawer={showDrawer} />
             </Drawer>
         </Grid>

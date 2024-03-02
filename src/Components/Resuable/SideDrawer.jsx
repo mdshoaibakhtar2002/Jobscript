@@ -7,7 +7,7 @@ import { data } from '../constant/constant_values';
 
 const StyledDrawer = styled(SwipeableDrawer)(() => ({
   '& .MuiDrawer-paper': {
-    width: '30%',
+    // width: '30%',
     padding: '20px 20px',
     margin: '1rem',
     borderRadius: '10px',
