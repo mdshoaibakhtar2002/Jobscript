@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Grid, IconButton, InputAdornment, OutlinedInput, Stack, Typography } from '@mui/material';
+import { Button, Divider, Grid, IconButton, InputAdornment, OutlinedInput, Stack, Typography } from '@mui/material';
 import { FormControl } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
@@ -12,7 +12,7 @@ import { Link } from '@mui/material';
 import Drawer from '@mui/material/Drawer';
 import Filter from './Filter';
 
-const AdvFilter = ({search, setSearch}) => {
+const AdvFilter = ({ search, setSearch }) => {
     // const [search, setSearch] = useState('')
     const [showDrawer, setShowDrawer] = useState(false);
     const StyledDrawer = styled(Drawer)(() => ({
@@ -66,22 +66,15 @@ const AdvFilter = ({search, setSearch}) => {
                     padding: '16px'
                 }
             }}>
-                <IconButton sx={{ alignSelf: 'end', padding: '0' }} onClick={toggleDrawer()}>
-                    <CloseIcon sx={{ cursor: 'pointer' }} />
-                </IconButton>
+                <Stack direction={'row'} display={'flex'} justifyContent={'space-between'} padding={'0px 16px'}>
+                    <Typography>Filter</Typography>
+                    <IconButton sx={{ alignSelf: 'end', padding: '0' }} onClick={toggleDrawer()}>
+                        <CloseIcon sx={{ cursor: 'pointer' }} />
+                    </IconButton>
+                </Stack>
+                <Divider/>
                 <Filter setShowDrawer={setShowDrawer} showDrawer={showDrawer} />
             </Drawer>
-            {/* <IconButton sx={{ alignSelf: 'end', padding: '0' }} onClick={toggleDrawer()}>
-                    <CloseIcon sx={{ cursor: 'pointer' }} />
-                </IconButton>
-                <Stack direction={'row'}>
-                    <img src="https://cdn-icons-png.flaticon.com/512/1047/1047711.png" style={{ 'width': '15%' }} alt="" />
-                    <Typography sx={{ margin: '1rem 1rem', padding: '0rem 3rem' }}>This website uses cookies to ensure you get the best experience on our website. <Link sx={{ cursor: 'pointer' }}>Learn more.</Link></Typography>
-                </Stack>
-                <Stack spacing={2} margin={'4rem 3rem'}>
-                    <Button variant="contained" onClick={() => setShowDrawer(!showDrawer)}>Accept all cookies</Button>
-                    <Button variant="outlined" onClick={() => setShowDrawer(!showDrawer)}>Customize setting</Button>
-                </Stack> */}
         </Grid>
     )
 }
