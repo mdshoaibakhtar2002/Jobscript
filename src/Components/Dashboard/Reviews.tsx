@@ -6,9 +6,7 @@ export default function Reviews() {
     return (
         <Grid container mt={5} justifyContent={'center'} display={'flex'} flexDirection={'column'}>
             <Typography sx={{fontSize:'20px', fontWeight:'600'}}>Mentee Reviews</Typography>
-            <Grid container display={'flex'} spacing={5} mt={0} sx={{'&.MuiGrid-root':{width:'100%', marginLeft:'0'}, '&.MuiGrid-root >.MuiGrid-item':{padding:isMobile ? '10px 40px':'0px 10px'}}}>
-            {/* :<Grid container display={'flex'} spacing={5} mt={0}>} */}
-            {/* <Grid container display={'flex'} spacing={5} mt={0} direction={isMobile ?'column':'row'}>/ */}
+            <Grid container display={'flex'} spacing={5} mt={0} sx={{'&.MuiGrid-root':{width:'100%', marginLeft:'0'}, '&.MuiGrid-root >.MuiGrid-item':{padding:isMobile ? '10px 20px':'0px 10px'}}}>
                 <Grid item xs={isMobile?12:3} display={'flex'}>
                     <Card sx={{ width: '100%', padding:'1rem', cursor:'pointer'}} id="card-id">
                         <CardContent sx={{display:'flex', flexDirection:'column', textAlign:'left', alignItems:'start', color:'gray'}}>

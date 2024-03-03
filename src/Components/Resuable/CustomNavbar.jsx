@@ -73,6 +73,7 @@ function ResponsiveAppBar() {
   };
   const navigate = useNavigate();
   const gotoPage = (page) => {
+    handleCloseNavMenu()
     if (page === "Dashboard") {
       navigate("/")
     }
