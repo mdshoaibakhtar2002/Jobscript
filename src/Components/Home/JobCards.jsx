@@ -62,7 +62,7 @@ export default function JobCards() {
         let array = [...jobList]
         data && data.map((each_company, index) => {
             array.push(
-                <div className="job-card" key={index} onClick={isMobile ? toggleDrawer(index):(e) => handleOnClick(e, index)}>
+                <div className="job-card" key={index} onClick={isMobile ? ()=>{}:(e) => handleOnClick(e, index)}>
                     <div className="card-header">
                         <div className="card-subheader">
                             <img src={each_company['logo']} alt="" className="icon" />
@@ -92,15 +92,15 @@ export default function JobCards() {
                             <p className="job-details-value">{each_company['probation_period']}</p>
                         </div>
                     </div>
-                    <div className="card-footer">
-                        <div className="applicantion-dets start-text-align">
+                    <div className="card-footer" style={{display:isMobile ? 'flex' :'block'}}>
+                        <div className="applicantion-dets start-text-align" style={{display:isMobile?'flex':'block', flexDirection:'column', justifyContent:'start'}}>
                             <p className="job-details-value" style={{fontSize:isMobile?'12px':'15px'}}>Apply By {moment(each_company['last_date']).format('ll')}</p>
                             <p style={{ fontSize: ".7rem" }}>Posted {Math.floor(Math.random() * 60) + 1} min ago</p>
                         </div>
-                        <div className="apply-now">
-                            {/* <Button className="button" style={{ color: primaryColor.color, marginRight: "4px" }} onClick={toggleDrawer(index)}>View Details</Button> */}
-                            <Button className="button" style={{ background: primaryColor.background, color: "white", border: "none" }} onClick={() => handleShow("applyNow")}>Apply Now</Button>
-                        </div>
+                        {isMobile && <div className="apply-now" style={{marginTop:'0'}}>
+                            <Button className="button" style={{ color: primaryColor.color, marginRight: "4px", fontSize:'11px' }} onClick={toggleDrawer(index)}>View Details</Button>
+                            <Button className="button" style={{ background: primaryColor.background, color: "white", border: "none", fontSize:'11px' }} onClick={() => handleShow("applyNow")}>Apply Now</Button>
+                        </div>}
                     </div>
                 </div>
             )

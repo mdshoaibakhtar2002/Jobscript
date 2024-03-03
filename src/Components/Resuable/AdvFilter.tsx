@@ -11,6 +11,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Link } from '@mui/material';
 import Drawer from '@mui/material/Drawer';
 import Filter from './Filter';
+import { isMobile } from 'react-device-detect';
 
 const AdvFilter = ({ search, setSearch }) => {
     // const [search, setSearch] = useState('')
@@ -60,7 +61,7 @@ const AdvFilter = ({ search, setSearch }) => {
             <Button variant='outlined' size='small' sx={{ height: '38px', borderColor: '#bbbbbb', color: '#757575' }} onClick={() => setShowDrawer(!showDrawer)}><FilterAltOutlinedIcon sx={{ width: '18px', marginRight: '6px' }} />Filter</Button>
             <Drawer anchor='top' open={showDrawer} onClose={toggleDrawer()} sx={{
                 '& .MuiDrawer-paper': {
-                    width: '36%',
+                    width: isMobile?'98%':'36%',
                     borderRadius: '.4rem',
                     margin: '19vh auto',
                     padding: '16px'
@@ -72,7 +73,7 @@ const AdvFilter = ({ search, setSearch }) => {
                         <CloseIcon sx={{ cursor: 'pointer' }} />
                     </IconButton>
                 </Stack>
-                <Divider/>a
+                <Divider/>
                 <Filter setShowDrawer={setShowDrawer} showDrawer={showDrawer} />
             </Drawer>
         </Grid>

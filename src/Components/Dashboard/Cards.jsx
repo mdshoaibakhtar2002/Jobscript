@@ -18,7 +18,7 @@ export default function Cards(props) {
     setAnchorEl(null);
   };
   return (
-    <Card sx={{height:isMobile ? '22rem':'20rem', width: '100%', marginTop:"3rem", borderRadius:'24px', cursor:'pointer'}} id='card-id'>
+    <Card sx={{height:isMobile ? '19.8rem':'20rem', width: '100%', marginTop:"1rem", borderRadius:'24px', cursor:'pointer'}} id='card-id'>
       <img src={props.image}  style={{ height: 125, cursor:'pointer', marginTop:'1rem' }}/>
       <div>
         <ShareMenuItem anchorEl = {anchorEl} open={open} handleClose={handleClose}/>

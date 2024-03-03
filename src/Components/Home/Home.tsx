@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import JobCards from './JobCards'
 import { Drawer, Grid } from '@mui/material';
+import { isMobile } from 'react-device-detect';
 
 export default function Home() {
   const [showDrawer, setShowDrawer] = useState(false);
@@ -22,7 +23,7 @@ export default function Home() {
     }
   }, [])
   return (
-    <Grid container mt={0} padding={'24px 8vw'} marginTop={9}>
+    <Grid container mt={0} padding={isMobile?'8px 2vw':'24px 8vw'} marginTop={9}>
       <Grid item xs={12} paddingTop={'0rem !important'}><JobCards/></Grid>
       <Drawer anchor='left' open={showDrawer} onClose={toggleDrawer()} sx={{
         '& .MuiDrawer-paper': {
