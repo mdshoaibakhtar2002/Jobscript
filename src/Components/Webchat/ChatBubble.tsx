@@ -1,6 +1,6 @@
 import { Stack } from "@mui/material"
 import React, { useState } from "react"
-import bot from "../../img/ChatBubble.png"
+import bot from "../../img/chatBubble.png"
 import ChatUI from "./ChatUI"
 import { isMobile } from 'react-device-detect';
 
