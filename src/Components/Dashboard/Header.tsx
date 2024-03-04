@@ -5,7 +5,6 @@ import React from "react";
 import { isMobile } from "react-device-detect";
 
 export default function Header() {
-    console.log(isMobile)
     return (
         <Grid className="pattern" item xs={12} sm={12} md={20} sx={{ '&.MuiGrid-item': { padding: '24px' } }} display={'flex'} flexDirection={isMobile ? 'column' : 'row'}>
             <Stack width={'100%'} margin={'auto'}>
