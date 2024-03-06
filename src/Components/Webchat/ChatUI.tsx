@@ -16,7 +16,7 @@ const ChatUI = ({ showChat, setShowChat }) => {
                 </IconButton>
             </Grid>
             <Divider variant="fullWidth" sx={{ background: 'white', width: '100%' }} />
-            <Grid item xs={12} display={'flex'} flexDirection={'column'} justifyContent={'space-between'} sx={{ background: 'white', margin: '0px', height: '91%', color: 'gray', padding: '12px 16px' }}>
+            <Grid item xs={12} display={'flex'} flexDirection={'column'} justifyContent={'space-between'} sx={{ background: 'white', margin: '0px', height: '94%', color: 'gray', padding: '12px 16px' }}>
                 <Stack>
                     <Thread userInput={userInput} send={send}/>
                 </Stack>
