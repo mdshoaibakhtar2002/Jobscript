@@ -9,7 +9,7 @@ const ChatUI = ({ showChat, setShowChat }) => {
     const [userInput, setUserInput] = useState('')
     const [send, setSend] = useState(false)
     return (
-        <Grid container width={'100%'} height={isMobile ? '100%':'97.1%'}  sx={{ display: showChat, background: '#ff5758', color: 'white', borderRadius: '.5rem', transition: 'display 1s ease-in-out' }}>
+        <Grid container width={'100%'} height={isMobile ? '100%':'98%'}  sx={{ display: showChat, background: '#ff5758', color: 'white', borderRadius: '.5rem', transition: 'display 1s ease-in-out' }}>
             <Grid item xs={12} display={'flex'} flexDirection={'row'} padding={2} justifyContent={'space-between'}>
                 <Typography>Chat with Zinnie</Typography>
                 <IconButton sx={{ padding: '0' }} onClick={() => setShowChat('none')}>
