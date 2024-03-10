@@ -198,13 +198,16 @@ function ResponsiveAppBar() {
           {!userName ?
             <Box>
               <AccountCircleOutlinedIcon sx={{ cursor: 'pointer', fill: 'black' }} />
-              <Tooltip title="Add" arrow >
+              <Tooltip title="Login" arrow >
                 <Button sx={{ color: "#757575" }} onClick={() => gotoLoginPage()}>LogIn</Button>
               </Tooltip>
             </Box> :
             
           <React.Fragment>
           <Badge badgeContent={4} color="primary" sx={{
+            '.MuiBadge-badge':{
+              background:'#ff5758'
+            },
             '.MuiSvgIcon-root': {
               width: '2rem !important',
               height: '2rem !important',

@@ -19,7 +19,7 @@ export default function Header() {
                     </ImageListItem>
                 </Stack>
             </Stack>
-            <Stack width={'100%'}>
+            <Stack width={'100%'} marginBottom={isMobile ?'4rem' :'0rem'}>
                 <ImageListItem sx={{ display: 'flex', justifyContent: 'center' }}>
                     <img style={{ width: '70%', marginTop: '2rem' }} src={imageHeader} alt="Loading...." />
                 </ImageListItem>
