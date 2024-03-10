@@ -19,7 +19,7 @@ function App() {
   const { isLoading } = useSelector<any>(state => state.myAppState)
   const Test = () => {
     return (
-      <Stack height={'100vh'} width={'100vw'} sx={isLoading ? {opacity:'0.3'} : {opacity:'1'}}>
+      <Stack height={'100vh'} width={'100vw'} sx={isLoading ? { opacity: '0.3' } : { opacity: '1' }}>
         <Routes>
           <Route path='/' element={<LogIn />} />
           <Route path='/signup' element={<SignUp />} />
@@ -32,17 +32,16 @@ function App() {
   //NEED_TO_BE_FIXED:OnLoading i am able to scroll the page and do other actions
   return (
     <Router>
-      {isLoading && <CircularLoader/>}
+      {isLoading && <CircularLoader />}
       <CustomNavbar />
-      <Stack sx={isLoading ? {opacity:'0.3', zIndex:'99999'} : {opacity:'1'}}>
+      <Stack sx={isLoading ? { opacity: '0.3', zIndex: '99999' } : { opacity: '1' }}>
         <Routes>
-        <Route path="/" element={<Dashboard />}></Route>
-        <Route path="/fulltimejob" element={<Home />}></Route>
-        <Route path='/auth/*' element={<Test />} />
-      </Routes>
+          <Route path="/" element={<Dashboard />}></Route>
+          <Route path="/fulltimejob" element={<Home />}></Route>
+          <Route path='/auth/*' element={<Test />} />
+        </Routes>
+        {!(window.location.pathname).includes('/auth') && <Footer />}
       </Stack>
-      <Divider/>
-      <Footer/>
     </Router>
   )
 }
