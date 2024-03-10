@@ -41,7 +41,7 @@ import MailIcon from '@mui/icons-material/Mail';
 // import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 
-const pages = ['Dashboard', 'Fulltime Job', 'Internships'];
+const pages = ['Dashboard', 'Fulltime Job', 'Internships', 'Company Reviews', 'Hackathon', 'Community'];
 const settings = ['Profile', 'Account', 'Setting', 'Logout'];
 
 function ResponsiveAppBar() {

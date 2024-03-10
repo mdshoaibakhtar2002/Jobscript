@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, Grid, Stack, Typography } from "@mui/material";
 import { useState, useEffect } from "react";
 import ApplyNow from "../Home/ApplyNow";
 import { primaryColor } from "../Theme/Palette";
@@ -62,7 +62,7 @@ export default function JobCards() {
         let array = [...jobList]
         data && data.map((each_company, index) => {
             array.push(
-                <div className="job-card" key={index} onClick={isMobile ? ()=>{}:(e) => handleOnClick(e, index)}>
+                <div className="job-card" style={{marginTop:index === 0 ?'0rem' :'2rem'}} key={index} onClick={isMobile ? ()=>{}:(e) => handleOnClick(e, index)}>
                     <div className="card-header">
                         <div className="card-subheader">
                             <img src={each_company['logo']} alt="" className="icon" />
@@ -109,9 +109,9 @@ export default function JobCards() {
         handleSkeleton()
     }, [])
     return (
-        <>
+        <Stack>
             <AdvFilter setSearch={setSearch} search={search} />
-            {skeletonLoader ? <SkeletonLoader /> : <Grid container mt={0} id='search'>
+            {skeletonLoader ? <SkeletonLoader /> : <Grid container mt={4} id='search'>
                 <Grid item xs={isMobile ? 12 : 5} paddingTop={'0rem !important'} height={'100vh'} overflow={'auto'} id='abc'>
                     {jobList}
                 </Grid>
@@ -120,6 +120,6 @@ export default function JobCards() {
 
             <ApplyNow modalShow={modalShow} setModalShow={setModalShow} modalType={modalType} />
             <SideDrawer showDrawer={showDrawer} setShowDrawer={setShowDrawer} toggleDrawer={toggleDrawer} contentToShow={contentToShow} />
-        </>
+        </Stack>
     )
 }

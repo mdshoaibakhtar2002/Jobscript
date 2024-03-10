@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 
 import { Stack, Button} from '@mui/material';
 import { useEffect, useState } from 'react';
@@ -87,7 +88,7 @@ export default function ViewJobDetails(props) {
         )
     }, [props.contentToShow])
     return (
-        <Stack border={'1px solid rgb(237, 237, 237)'} marginTop={'2rem'} boxShadow={'2px 2px 6px 3px #d7d7d6'} borderRadius={'.4rem'} padding={3} height={'100vh'} overflow={'auto'} id='abc'>
+        <Stack border={'1px solid rgb(237, 237, 237)'} boxShadow={'2px 2px 6px 3px #d7d7d6'} borderRadius={'.4rem'} padding={3} height={'100vh'} overflow={'auto'} id='abc'>
             {jobDetails}
         </Stack>
     )

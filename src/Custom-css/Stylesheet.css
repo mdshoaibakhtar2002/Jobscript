@@ -34,7 +34,7 @@
     padding: 2rem;
     border: 1px solid rgb(237, 237, 237);
     box-shadow: 2px 2px 6px 3px #ebebeb;
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
     cursor: pointer;
 }
 .job-card h5{
