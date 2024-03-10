@@ -11,7 +11,7 @@ const Thread = ({userInput, send}) => {
                 background: '#eaeaea',
                 width:'fit-content',
                 marginTop: '4px',
-                fontSize:'14px',
+                fontSize:'15px',
                 maxWidth:'18rem'
             }
         }}>
