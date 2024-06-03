@@ -36,6 +36,7 @@ export default function Dashboard() {
       display: 'none'
     }
   }));
+  console.log('Test');
   return (
     <Grid container mt={isMobile ? 8 : 9.4} spacing={{ xs: 0, sm: 0, md: 0 }} sx={{ '&.MuiGrid-root': { width: '100%', marginLeft: '0px' } }} columns={{ xs: 3.3, sm: 12, md: 20 }}>
       <Grid container spacing={{ xs: 0, sm: 0, md: 0 }} sx={{ '&.MuiGrid-root': { width: '100%', marginLeft: '0px', height:'85vh' } }} columns={{ xs: 10, sm: 8, md: 20 }}>
