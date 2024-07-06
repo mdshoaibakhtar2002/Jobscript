@@ -11,6 +11,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Reviews from "./Reviews.tsx";
 import React from "react";
 import { isMobile } from "react-device-detect";
+import Graph from './Graph';
 
 export default function Dashboard() {
   const [showDrawer, setShowDrawer] = useState(!localStorage.getItem('cookies'));
@@ -36,11 +37,10 @@ export default function Dashboard() {
       display: 'none'
     }
   }));
-  console.log('Test');
   return (
     <Grid container mt={isMobile ? 8 : 9.4} spacing={{ xs: 0, sm: 0, md: 0 }} sx={{ '&.MuiGrid-root': { width: '100%', marginLeft: '0px' } }} columns={{ xs: 3.3, sm: 12, md: 20 }}>
-      <Grid container spacing={{ xs: 0, sm: 0, md: 0 }} sx={{ '&.MuiGrid-root': { width: '100%', marginLeft: '0px', height:'85vh' } }} columns={{ xs: 10, sm: 8, md: 20 }}>
-        <Header />
+      <Grid container spacing={{ xs: 0, sm: 0, md: 0 }} sx={{ '&.MuiGrid-root': { width: '100%', marginLeft: '0px' } }} columns={{ xs: 10, sm: 8, md: 20 }}>
+        <Graph />
       </Grid>
       <ImageListItem sx={{ margin: '1rem 0rem' }}>
         <img src={banner1} style={{ margin: 'auto', width: isMobile ? '98%' : '88%', cursor: 'pointer' }} id="hover-effect" />

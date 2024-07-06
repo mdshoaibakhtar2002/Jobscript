@@ -29,6 +29,7 @@
     min-width: 320px;
     min-height: 100vh;
     color: #757575;
+    padding: 0px 12px;
   }
   body::-webkit-scrollbar {
     display: none;
