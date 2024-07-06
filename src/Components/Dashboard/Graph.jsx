@@ -1,56 +1,64 @@
+import React from 'react';
+import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    BarElement,
-    Filler
-} from 'chart.js';
+import { Stack } from '@mui/material';
 
+// Register the necessary components in ChartJS
 ChartJS.register(
+    BarElement,
     CategoryScale,
     LinearScale,
-    PointElement,
-    BarElement,
-    Filler
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
 );
 
-export default function Graph() {
-    const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
-    
-    // Define two datasets, each with different data and colors
-    const datasets = [
+// Your data and configuration
+const DATA_COUNT = 12;
+const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
+
+// Sample Utils object to simulate your Utils functions
+const Utils = {
+    months: (config) => ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    numbers: (config) => Array.from({ length: config.count }, () => Math.floor(Math.random() * (config.max - config.min + 1)) + config.min),
+    CHART_COLORS: {
+        red: 'rgba(54, 54, 54)',
+        blue: 'rgba(232, 232, 232)'
+    },
+    transparentize: (color, opacity) => {
+        const alpha = 1 - opacity;
+        return color.replace('1)', `${alpha})`);
+    }
+};
+
+const labels = Utils.months({ count: 7 });
+const data = {
+    labels: labels,
+    datasets: [
         {
-            label: "Fulltime Offer",
-            data: [14, 25, 19, 22, 23, 29, 19, 29, 15, 22, 25, 10],
-            backgroundColor: "#ff5758",
+            label: 'Applied',
+            data: Utils.numbers(NUMBER_CFG),
+            borderColor: Utils.CHART_COLORS.red,
+            backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
+            stack: 'Stack 0'
         },
         {
-            label: "Internship Offer",
-            data: [10, 12, 21, 14, 15, 22.25, 17, 33, 19, 31, 19.35, 13],
-            backgroundColor: "#757575"
+            label: 'Selected',
+            data: Utils.numbers(NUMBER_CFG),
+            borderColor: Utils.CHART_COLORS.blue,
+            backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
+            stack: 'Stack 1',
         }
-    ];
+    ]
+};
 
-    const data = {
-        labels,
-        datasets,
-    };
-
+const Graph = () => {
     return (
-              <div style={{maxHeight:"75vh", width:"100%", marginBottom:"10px"}} className='graph'>
-                    <div className='center' style={{padding:"0px 10px"}}>
-                        <div className='center'>
-                            <div className='rect-box-1'></div>
-                            <p>Fulltime offer</p>
-                        </div>
-                        <div className='center'style={{padding:"0px 10px"}}>
-                            <div className='rect-box-2'></div>
-                            <p>Internship offer</p>
-                        </div>
-                    </div>
-                    <Bar data={data} style={{minWidth:"100%"}}/>
-            </div>
+        <Stack width={'100%'}>
+            <Bar data={data} options={{ responsive: true, plugins: { legend: { position: 'top' }, title: { display: true} } }} />
+        </Stack>
     );
-}
+};
+
+export default Graph;
