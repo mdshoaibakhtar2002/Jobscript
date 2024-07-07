@@ -16,7 +16,7 @@ export default function ChangePassword() {
     const pageChanger = (e, page) => {
         e.preventDefault()
         if (page === "signin") {
-            navigate('/')
+            navigate('/auth/')
         }
     }
     return (

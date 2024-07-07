@@ -12,6 +12,9 @@ import { ButtonStyle, MarginStyle } from '../Theme/Palette';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { Box } from '@mui/material';
 import React from 'react';
+import axios from 'axios';
+import { endpoint } from '../constant/constant_values';
+import { saveToken } from '../Utilities/HelperUtils';
 
 export default function LogIn(props) {
     const { control, handleSubmit, formState: { errors } } = useForm();
@@ -30,25 +33,17 @@ export default function LogIn(props) {
             props.setShowDrawer(!props.showDrawer)
         }
         if (page === "signin") {
-            dispatch(Loading(true))
-            //Login api to check whether the user is already registered or not.
-            // axios.post(endpoint + "/login", loginCredentials).then(res => {
-            //     console.log("Res", res)
-            //     if (res?.["data"]?.["status"] === 200) {
-            //         navigate('/app/')
-            //         dispatch(Loading(false))
-            //     } else {
-            //         dispatch(Loading(false))
-            //     }
-            // }).catch((err) => {
-            //     dispatch(Loading(false))
-            //     console.log(err)
-            // })
-            // dispatch(Loading(false))
-            setTimeout(() => {
+            axios.post(endpoint + "/login", loginCredentials).then(res => {
+                if (res?.["data"]?.["statusCode"] === 200) {
+                    saveToken(res['data']['token'])
+                    navigate('/app/')
+                    dispatch(Loading(false))
+                } else {
+                    dispatch(Loading(false))
+                }
+            }).catch((err) => {
                 dispatch(Loading(false))
-                navigate("/")
-            }, 4000);
+            })
         }
         if (page === "signup") {
             navigate("/auth/signup")
