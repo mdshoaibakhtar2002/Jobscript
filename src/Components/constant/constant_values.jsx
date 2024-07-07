@@ -1,5 +1,5 @@
 import company_logo from '../../img/company_logo.png'
-export const endpoint = "http://localhost:3000/api";
+export const endpoint = "https://0biwoyhopa.execute-api.us-west-2.amazonaws.com/poc";
 export const data = [
   {
     job_role : 'Software Development-2',
