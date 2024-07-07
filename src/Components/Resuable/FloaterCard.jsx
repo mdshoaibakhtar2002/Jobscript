@@ -23,7 +23,7 @@ const StyledDrawer = styled(SwipeableDrawer)(() => ({
         display: 'none'
     }
 }));
-export default function FloaterCard({ showDrawer, toggleDrawer, contentToShow, setShowDrawer, setUserName }) {
+export default function FloaterCard({ showDrawer, toggleDrawer, contentToShow, setShowDrawer }) {
     return (
         <StyledDrawer
             anchor='top'
@@ -34,7 +34,7 @@ export default function FloaterCard({ showDrawer, toggleDrawer, contentToShow, s
             <IconButton sx={{ alignSelf: 'end', padding: '0' }} onClick={toggleDrawer(null)}>
                 <CloseIcon sx={{ cursor: 'pointer' }} />
             </IconButton>
-            <LogIn floater={true} toggleDrawer={toggleDrawer} showDrawer={showDrawer} setShowDrawer={setShowDrawer} setUserName={setUserName} />
+            <LogIn floater={true} toggleDrawer={toggleDrawer} showDrawer={showDrawer} setShowDrawer={setShowDrawer} />
         </StyledDrawer>
     );
 }

@@ -33,10 +33,11 @@ export default function LogIn(props) {
             props.setShowDrawer(!props.showDrawer)
         }
         if (page === "signin") {
+            dispatch(Loading(true))
             axios.post(endpoint + "/login", loginCredentials).then(res => {
                 if (res?.["data"]?.["statusCode"] === 200) {
                     saveToken(res['data']['token'])
-                    navigate('/app/')
+                    navigate('/')
                     dispatch(Loading(false))
                 } else {
                     dispatch(Loading(false))

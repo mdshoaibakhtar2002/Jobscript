@@ -9,15 +9,29 @@ import ViewJobDetails from './ViewJobDetails';
 import AdvFilter from '../Resuable/AdvFilter';
 import SkeletonLoader from './SkeletonLoader';
 import { isMobile } from "react-device-detect";
+import { getToken } from "../Utilities/HelperUtils";
+import { useNavigate } from 'react-router';
+import { Loading } from '../../Redux/Reducer';
+import { useDispatch } from 'react-redux';
 
 export default function JobCards() {
     const [modalShow, setModalShow] = useState(false);
     const [modalType, setmodalType] = useState("");
     const [jobList, setJobList] = useState([])
     const [search, setSearch] = useState('')
+    let navigate = useNavigate()
+    const dispatch = useDispatch();
     const handleShow = (e) => {
         setModalShow(true)
-        setmodalType(e)
+        if(e === 'applyNow'){
+            if(getToken()){
+                setmodalType(e)
+            }else{
+                dispatch(Loading(true))
+                navigate("/auth/")
+                dispatch(Loading(false))
+            }
+        }
     }
     const [showDrawer, setShowDrawer] = useState(false);
     const [skeletonLoader, setSkeletonLoader] = useState(true);
