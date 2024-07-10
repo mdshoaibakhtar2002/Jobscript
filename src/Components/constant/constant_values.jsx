@@ -1,5 +1,5 @@
 import company_logo from '../../img/company_logo.png'
-export const endpoint = "http://127.0.0.1:8000/v1/api";
+export const endpoint = "https://jobscript-api.vercel.app/v1/api/";
 export const data = [
   {
     job_role : 'Software Development-2',
