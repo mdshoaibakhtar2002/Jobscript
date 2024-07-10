@@ -13,6 +13,7 @@ import { Divider, Stack } from "@mui/material";
 import Footer from "./Components/Resuable/Footer";
 import CircularLoader from "./Components/Resuable/CircularLoader";
 import { ChatBubble } from "@mui/icons-material";
+import JobPosting from './Components/Job Posting/JobPosting';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard />}></Route>
           <Route path="/fulltimejob" element={<Home />}></Route>
+          <Route path="/jobpost" element={<JobPosting />}></Route>
           <Route path='/auth/*' element={<Test />} />
         </Routes>
         {!(window.location.pathname).includes('/auth') && <Footer />}
