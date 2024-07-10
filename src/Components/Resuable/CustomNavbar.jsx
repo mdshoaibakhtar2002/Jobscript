@@ -72,6 +72,9 @@ function ResponsiveAppBar() {
     if (page === "Fulltime Job") {
       navigate("/fulltimejob")
     }
+    if (page === "Job Posting") {
+      navigate("/jobpost")
+    }
   };
   const navigate = useNavigate();
   const gotoPage = (page) => {
@@ -81,6 +84,9 @@ function ResponsiveAppBar() {
     }
     if (page === "Fulltime Job") {
       navigate("/fulltimejob")
+    }
+    if (page === "Job Posting") {
+      navigate("/jobpost")
     }
   }
   const [showDrawer, setShowDrawer] = React.useState(false);

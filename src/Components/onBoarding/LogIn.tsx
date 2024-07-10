@@ -34,7 +34,7 @@ export default function LogIn(props) {
         }
         if (page === "signin") {
             dispatch(Loading(true))
-            axios.post(endpoint + "/login", loginCredentials).then(res => {
+            axios.post(endpoint + "/authenticateuser", loginCredentials).then(res => {
                 if (res?.["data"]?.["statusCode"] === 200) {
                     saveToken(res['data']['token'])
                     navigate('/')
