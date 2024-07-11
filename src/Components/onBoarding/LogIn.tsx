@@ -15,6 +15,7 @@ import React from 'react';
 import axios from 'axios';
 import { endpoint } from '../constant/constant_values';
 import { saveToken } from '../Utilities/HelperUtils';
+import { toast } from 'react-toastify';
 
 export default function LogIn(props) {
     const { control, handleSubmit, formState: { errors } } = useForm();
@@ -40,9 +41,11 @@ export default function LogIn(props) {
                     navigate('/')
                     dispatch(Loading(false))
                 } else {
+                    toast.error("Please try again",{position:'top-center'});
                     dispatch(Loading(false))
                 }
             }).catch((err) => {
+                toast.error("Please try again",{position:'top-center'});
                 dispatch(Loading(false))
             })
         }
@@ -52,6 +55,7 @@ export default function LogIn(props) {
         if (page === "forgotpassword") {
             navigate("/auth/forgotpassword")
         }
+
     }
     const handleLoginCredentials = (e) => {
         setLoginCredentials({ ...loginCredentials, [e.target.name]: e.target.value })
