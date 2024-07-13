@@ -35,8 +35,8 @@ function App() {
   return (
     <Router>
       {isLoading && <CircularLoader />}
-      <Stack display={'flex'} justifyContent={'center'} alignItems={'center'}>
-        <ToastContainer />
+      <Stack textAlign={'start'}>
+        <ToastContainer newestOnTop/>
       </Stack>
       <CustomNavbar />
       <Stack sx={isLoading ? { opacity: '0.3', zIndex: '99999' } : { opacity: '1' }}>
