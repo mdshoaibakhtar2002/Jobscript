@@ -14,7 +14,8 @@ import Footer from "./Components/Resuable/Footer";
 import CircularLoader from "./Components/Resuable/CircularLoader";
 import { ChatBubble } from "@mui/icons-material";
 import JobPosting from './Components/Job Posting/JobPosting';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const { isLoading } = useSelector<any>(state => state.myAppState)
@@ -34,6 +35,9 @@ function App() {
   return (
     <Router>
       {isLoading && <CircularLoader />}
+      <Stack textAlign={'start'}>
+        <ToastContainer newestOnTop/>
+      </Stack>
       <CustomNavbar />
       <Stack sx={isLoading ? { opacity: '0.3', zIndex: '99999' } : { opacity: '1' }}>
         <Routes>
