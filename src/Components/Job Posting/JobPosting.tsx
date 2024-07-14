@@ -14,7 +14,6 @@ import dayjs from 'dayjs';
 import moment from "moment";
 
 const JobPosting = () => {
-    const [value, setValue] = React.useState<any>(dayjs('2022-06-17'));
     const [formData, setFormData] = useState(
         {
             job_id: uid(),
@@ -29,8 +28,8 @@ const JobPosting = () => {
             // logo: '',
             // start_date: '',
             experience: 1.5,
-            last_date: '',
-            probation_period: '',
+            last_date: moment(new Date()).format('L'),
+            // probation_period: '',
             skills: [],
             requirements: [{ requirements: '', unique_id: uid() }],
             key_responsibilities: [{ key_responsibilities: '', unique_id: uid() }],
@@ -48,7 +47,11 @@ const JobPosting = () => {
         }
     }
     const handleAutoCompleteChange = (e, newValue, type) => {
-        setFormData({ ...formData, [type]: newValue['Id'] })
+        if (type === 'skills') {
+            setFormData({ ...formData, [type]: newValue })
+        } else {
+            setFormData({ ...formData, [type]: newValue['Id'] })
+        }
     }
     const updateDateFormat = (date_to_be_format) => {
         const parsedDate = moment(new Date(date_to_be_format)).format();
@@ -217,37 +220,18 @@ const JobPosting = () => {
                 </Stack>
                 <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4}>
                     <Stack direction={'column'} textAlign={'left'} width={'45%'}>
-                        <Typography fontSize={'14px'} fontWeight={'600'} color={'black'}>Probation period</Typography>
-                        <Typography fontSize={'14px'}>What would be the Probation period</Typography>
-                    </Stack>
-                    <Stack width={'55%'}>
-                        <Autocomplete
-                            disablePortal
-                            id="combo-box-demo"
-                            options={probationPeriod}
-                            sx={{
-                                '& .MuiInputBase-input::placeholder': {
-                                    fontSize: '13px',
-                                }
-                            }}
-                            value={stringToTitleCase(formData['probation_period'])}
-                            onChange={(e, selectedValue) => handleAutoCompleteChange(e, selectedValue, 'probation_period')}
-                            renderInput={(params) => <TextField {...params} placeholder="Probation period" size="small" />}
-                        />
-                    </Stack>
-                </Stack>
-                <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4}>
-                    <Stack direction={'column'} textAlign={'left'} width={'45%'}>
                         <Typography fontSize={'14px'} fontWeight={'600'} color={'black'}>Last date</Typography>
                         <Typography fontSize={'14px'}>Application closing date</Typography>
                     </Stack>
                     <Stack width={'55%'}>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DatePicker
-                                value={value}
-                                sx={{height:'42px !important', '.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root':{
-                                    height:'41px', fontSize:'14px'
-                                }}}
+                                value={dayjs(formData?.['last_date'])}
+                                sx={{
+                                    height: '42px !important', '.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root': {
+                                        height: '41px', fontSize: '14px'
+                                    }
+                                }}
                                 onChange={(newValue) => updateDateFormat(newValue)}
                             />
                         </LocalizationProvider>
@@ -261,48 +245,21 @@ const JobPosting = () => {
                     <Stack width={'55%'}>
                         <Autocomplete
                             multiple
-                            onChange={(e) => handleFormOnChange(e)}
-                            id="size-small-outlined-multi"
-                            size="small"
+                            limitTags={4}
+                            id={`multiple-limit-tags-1`}
                             options={skillset}
+                            onChange={(e, newValue) => handleAutoCompleteChange(e, newValue, 'skills')}
+                            size="small"
+                            disableListWrap={true}
                             sx={{
                                 '& .MuiInputBase-input::placeholder': {
                                     fontSize: '13px',
                                 }
                             }}
-                            getOptionLabel={(option) => option.label}
                             renderInput={(params) => (
-                                <TextField {...params} placeholder="Skills" />
+                                <TextField {...params} placeholder="Skills" size="small" />
                             )}
                         />
-                        {/* <Autocomplete
-                            // key={ind}
-                            multiple
-                            limitTags={4}
-                            id={`multiple-limit-tags-1`}
-                            options={typeof (formData['skills']) !== 'string' ? formData['skills'] : []}
-                            getOptionLabel={(option) => option !== undefined && option.title}
-                            value={selectedValues || []}
-                            onChange={(e, newValue) => handleAutocompleteChange(e, newValue, index, ind)}
-                            onKeyDown={(e) => handleKeyDown(e, index, ind)}
-                            inputValue={inputValues[index]?.[ind] || ''}
-                            onInputChange={(e, newValue) => handleInputChange(e, newValue, index, ind)}
-                            name={`item_value_${index}_${ind}`}
-                            size="small"
-                            disableListWrap={true}
-                            sx={{
-                                width: '100% !important',
-                                '.MuiChip-root': {
-                                    height: '22px !important'
-                                },
-                                '.MuiAutocomplete-tag': {
-                                    margin: '0px 2px'
-                                }
-                            }}
-                            renderInput={(params) => (
-                                <TextField {...params} label="Enum" size="small" />
-                            )}
-                        /> */}
                     </Stack>
                 </Stack>
                 <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4} borderBottom={'1px solid #efefef'}>
@@ -320,7 +277,7 @@ const JobPosting = () => {
                                 background: 'white',
                                 color: 'black', borderColor: 'black'
                             }
-                        }}>Cancel</Button>
+                        }}>Reset</Button>
                         <Button variant="contained" sx={{
                             width: '14rem', marginRight: '1.8rem', color: 'white', borderColor: 'black', background: 'black', ':hover': {
                                 background: 'black'
