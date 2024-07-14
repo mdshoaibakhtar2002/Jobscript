@@ -13,31 +13,33 @@ import { uid } from "uid";
 import dayjs from 'dayjs';
 import moment from "moment";
 
+const intitial_form_data = 
+{
+    job_id: uid(),
+    job_role: '',
+    job_description: '',
+    job_type: 'fullTime',
+    // company_name: '',
+    job_location: '',
+    work_mode: '',
+    job_offer: [6, 11],
+    // company_size: '',
+    // logo: '',
+    // start_date: '',
+    experience: 1.5,
+    last_date: moment(new Date()).format('L'),
+    // probation_period: '',
+    skills: [],
+    requirements: [{ requirements: '', unique_id: uid() }],
+    key_responsibilities: [{ key_responsibilities: '', unique_id: uid() }],
+    preferred_qualifications: [{ preferred_qualifications: '', unique_id: uid() }],
+    // joining_date: '',
+    immediate_joining: true
+}
 const JobPosting = () => {
-    const [formData, setFormData] = useState(
-        {
-            job_id: uid(),
-            job_role: '',
-            job_description: '',
-            job_type: 'fullTime',
-            // company_name: '',
-            job_location: '',
-            work_mode: '',
-            job_offer: [6, 11],
-            // company_size: '',
-            // logo: '',
-            // start_date: '',
-            experience: 1.5,
-            last_date: moment(new Date()).format('L'),
-            // probation_period: '',
-            skills: [],
-            requirements: [{ requirements: '', unique_id: uid() }],
-            key_responsibilities: [{ key_responsibilities: '', unique_id: uid() }],
-            preferred_qualifications: [{ preferred_qualifications: '', unique_id: uid() }],
-            // joining_date: '',
-            immediate_joining: true
-        }
-    )
+    const [formData, setFormData] = useState(intitial_form_data)
+    const [disableButton, setDisableButton] = useState(true)
+    const [refreshKey, setRefreshKey] = useState(true)
     const handleFormOnChange = (event) => {
         console.log(event.target.name, event.target.value);
         if (event.target.name === 'immediate_joining') {
@@ -58,9 +60,28 @@ const JobPosting = () => {
         const formattedDate = moment(parsedDate).format('L')
         setFormData({ ...formData, last_date: formattedDate })
     }
+    const handleJobPost = () => {
+        console.log(formData);
+    }
+    const resetForm = (e) =>{
+        e.preventDefault()
+        intitial_form_data['preferred_qualifications'] = [{ preferred_qualifications: '', unique_id: uid() }]
+        intitial_form_data['requirements'] = [{ requirements: '', unique_id: uid() }]
+        intitial_form_data['key_responsibilities'] = [{ key_responsibilities: '', unique_id: uid() }]
+        setFormData(intitial_form_data)
+        setRefreshKey(!refreshKey)
+    }
+  const validate = () => {
+    // console.log(formData);
+    if (!formData?.['job_role'] || !formData?.['job_description'] || !formData?.['work_mode']) {
+      setDisableButton(true)
+    } else {
+      setDisableButton(false)
+    }
+  }
     return (
-        <Grid container mt={12} display={'flex'} justifyContent={'center'}>
-            <Grid item xs={8} p={2} borderRadius={'8px'} boxShadow={'0 4px 8px 0 rgb(255 255 255 / 20%), 0 6px 20px 0 rgb(169 169 169 / 19%)'}>
+        <Grid container mt={12} display={'flex'} justifyContent={'center'} key={+refreshKey}>
+            <Grid item xs={8} p={2} borderRadius={'8px'} boxShadow={'0 4px 8px 0 rgb(255 255 255 / 20%), 0 6px 20px 0 rgb(169 169 169 / 19%)'} key={+refreshKey}>
                 <Stack direction={'row'} justifyContent={'space-between'} gap={2} borderBottom={'1px solid #efefef'}>
                     <Stack direction={'column'} textAlign={'left'} width={'50%'}>
                         <Typography fontSize={'18px'} fontWeight={'600'} color={'black'}>Please fill up the job role details and requirement</Typography>
@@ -81,6 +102,7 @@ const JobPosting = () => {
                             }
                             name="job_role"
                             onChange={(e) => handleFormOnChange(e)}
+                            onBlur={() => validate()}
                         />
                     </Stack>
                 </Stack>
@@ -97,6 +119,7 @@ const JobPosting = () => {
                         }
                         }
                             name="job_description"
+                            onBlur={() => validate()}
                             onChange={(e) => handleFormOnChange(e)} />
                     </Stack>
                 </Stack>
@@ -141,6 +164,7 @@ const JobPosting = () => {
                                     fontSize: '13px',
                                 }
                             }}
+                            onBlur={() => validate()}
                             value={stringToTitleCase(formData['work_mode'])}
                             onChange={(e, selectedValue) => handleAutoCompleteChange(e, selectedValue, 'work_mode')}
                             renderInput={(params) => <TextField {...params} placeholder="Work mode" size="small" />}
@@ -250,6 +274,7 @@ const JobPosting = () => {
                             options={skillset}
                             onChange={(e, newValue) => handleAutoCompleteChange(e, newValue, 'skills')}
                             size="small"
+                            onBlur={() => validate()}
                             disableListWrap={true}
                             sx={{
                                 '& .MuiInputBase-input::placeholder': {
@@ -272,17 +297,32 @@ const JobPosting = () => {
                     <Stack direction={'column'} textAlign={'left'} width={'45%'}>
                     </Stack>
                     <Stack width={'55%'} justifyContent={'space-between'} direction={'row'}>
-                        <Button variant="outlined" sx={{
-                            width: '12rem', color: 'black', borderColor: 'black', ':hover': {
-                                background: 'white',
-                                color: 'black', borderColor: 'black'
-                            }
-                        }}>Reset</Button>
-                        <Button variant="contained" sx={{
-                            width: '14rem', marginRight: '1.8rem', color: 'white', borderColor: 'black', background: 'black', ':hover': {
-                                background: 'black'
-                            }
-                        }}>Save</Button>
+                        <Button
+                            variant="outlined"
+                            sx={{
+                                width: '12rem',
+                                color: 'black',
+                                borderColor: 'black',
+                                ':hover': {
+                                    background: 'white',
+                                    color: 'black', borderColor: 'black'
+                                }
+                            }}
+                            onClick={(e) => resetForm(e)}
+                        >Reset</Button>
+                        <Button variant="contained"
+                            onClick={() => handleJobPost()}
+                            disabled = {disableButton}
+                            sx={{
+                                width: '14rem',
+                                marginRight: '1.8rem',
+                                color: 'white',
+                                borderColor: 'black',
+                                background: 'black',
+                                ':hover': {
+                                    background: 'black'
+                                }
+                            }}>Save</Button>
                     </Stack>
                 </Stack>
             </Grid>

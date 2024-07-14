@@ -66,8 +66,6 @@ export default function SignUp() {
   }
 
   const validate = () => {
-    console.log(!newUserDetails?.['first_name'] || !newUserDetails?.['email'] || !newUserDetails?.['phone_number'] ||
-      !newUserDetails?.['password'] || !newUserDetails?.['confirm_password']);
     if (!newUserDetails?.['first_name'] || !newUserDetails?.['email'] || !newUserDetails?.['phone_number'] ||
       !newUserDetails?.['password'] || !newUserDetails?.['confirm_password']) {
       setDisableButton(true)
