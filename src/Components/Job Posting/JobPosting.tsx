@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Grid, Typography, Checkbox, Autocomplete, IconButton, Button, FormControl, RadioGroup, Radio } from '@mui/material';
+import { Grid, Typography, Checkbox, Autocomplete, IconButton, Button, FormControl, RadioGroup, Radio, FormHelperText } from '@mui/material';
 import { TextField } from '@mui/material';
 import { Stack } from '@mui/material';
 import { FormControlLabel } from '@mui/material';
@@ -36,8 +36,21 @@ const intitial_form_data =
     // joining_date: '',
     immediate_joining: true
 }
+
+const intitial_error = 
+{
+    job_role: false,
+    job_description: false,
+    job_location: false,
+    work_mode: false,
+    skills: false,
+    requirements: false,
+    key_responsibilities: false,
+    preferred_qualifications: false,
+}
 const JobPosting = () => {
     const [formData, setFormData] = useState(intitial_form_data)
+    const [validation, setValidation] = useState(intitial_error)
     const [disableButton, setDisableButton] = useState(true)
     const [refreshKey, setRefreshKey] = useState(true)
     const handleFormOnChange = (event) => {
@@ -93,17 +106,22 @@ const JobPosting = () => {
                         <Typography fontSize={'14px'}>A job title must be describe one position only</Typography>
                     </Stack>
                     <Stack width={'55%'}>
-                        <TextField variant="outlined" size="small" placeholder="e.g. Software Developer" fullWidth
+                        <TextField 
+                        variant="outlined" 
+                        size="small" 
+                        placeholder="e.g. Software Developer" 
+                        fullWidth
                             sx={{
                                 '& .MuiInputBase-input::placeholder': {
                                     fontSize: '13px',
                                 },
-                            }
-                            }
+                            }}
                             name="job_role"
                             onChange={(e) => handleFormOnChange(e)}
                             onBlur={() => validate()}
+                            error = {validation['job_role']}
                         />
+                        {validation['job_role'] && <FormHelperText error>Job title must be filled.</FormHelperText>}
                     </Stack>
                 </Stack>
                 <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4}>
@@ -120,7 +138,10 @@ const JobPosting = () => {
                         }
                             name="job_description"
                             onBlur={() => validate()}
-                            onChange={(e) => handleFormOnChange(e)} />
+                            onChange={(e) => handleFormOnChange(e)} 
+                            error = {validation['job_description']}
+                        />
+                        {validation['job_description'] && <FormHelperText error>Job description must be filled.</FormHelperText>}
                     </Stack>
                 </Stack>
                 <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4}>
@@ -169,6 +190,7 @@ const JobPosting = () => {
                             onChange={(e, selectedValue) => handleAutoCompleteChange(e, selectedValue, 'work_mode')}
                             renderInput={(params) => <TextField {...params} placeholder="Work mode" size="small" />}
                         />
+                        {validation['work_mode'] && <FormHelperText error>Please select work mode.</FormHelperText>}
                     </Stack>
                 </Stack>
                 <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4}>
@@ -191,6 +213,7 @@ const JobPosting = () => {
                             onChange={(e, selectedValue) => handleAutoCompleteChange(e, selectedValue, 'job_location')}
                             renderInput={(params) => <TextField {...params} placeholder="Job location" size="small" />}
                         />
+                        {validation['job_location'] && <FormHelperText error>Please select the job location.</FormHelperText>}
                     </Stack>
                 </Stack>
                 <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4}>
@@ -285,6 +308,7 @@ const JobPosting = () => {
                                 <TextField {...params} placeholder="Skills" size="small" />
                             )}
                         />
+                        {validation['skills'] && <FormHelperText error>Please select atleast one skill.</FormHelperText>}
                     </Stack>
                 </Stack>
                 <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4} borderBottom={'1px solid #efefef'}>
