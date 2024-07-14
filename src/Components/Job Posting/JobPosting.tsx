@@ -1,129 +1,60 @@
-import React from "react"
-import { Grid, Typography, Checkbox, Autocomplete, IconButton, Button } from '@mui/material';
+import React, { useState } from "react"
+import { Grid, Typography, Checkbox, Autocomplete, IconButton, Button, FormControl, RadioGroup, Radio } from '@mui/material';
 import { TextField } from '@mui/material';
 import { Stack } from '@mui/material';
 import { FormControlLabel } from '@mui/material';
 import { Slider } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateField } from "@mui/x-date-pickers";
-import { DeleteOutlineRounded } from "@mui/icons-material";
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import { DatePicker } from "@mui/x-date-pickers";
+import { techHubCity, workMode, probationPeriod, skillset, stringToTitleCase } from '../constant/constant_values';
+import AdditionalInfo from './AdditionalInfo';
+import { uid } from "uid";
+import dayjs from 'dayjs';
+import moment from "moment";
 
 const JobPosting = () => {
-    const techHubCity = [
-        { label: 'Kolkata', Id: 'kolkata' },
-        { label: 'Bangalore', Id: 'bangalore' },
-        { label: 'Chennai', Id: 'chennai' },
-        { label: 'Hyderabad', Id: 'hyderabad' },
-        { label: 'Pune', Id: 'pune' },
-        { label: 'Mumbai', Id: 'mumbai' },
-        { label: 'Delhi', Id: 'delhi' },
-        { label: 'Gurgaon', Id: 'gurgaon' },
-        { label: 'Noida', Id: 'noida' },
-        { label: 'Ahmedabad', Id: 'ahmedabad' }
-    ];
-    const workMode = [
-        { label: 'In office', Id: 'office' },
-        { label: 'Work from home', Id: 'home' },
-        { label: 'Hybrid', Id: 'hybrid' },
-    ];
-    const probationPeriod = [
-        { label: '1 month', Id: '1month' },
-        { label: '2 month', Id: '2month' },
-        { label: '3 month', Id: '3month' },
-        { label: '4 month', Id: '4month' },
-        { label: '5 month', Id: '5month' },
-        { label: '6 month', Id: '6month' },
-        { label: '7 month', Id: '7month' },
-        { label: '8 month', Id: '8month' },
-        { label: '9 month', Id: '9month' },
-        { label: '10 month', Id: '10month' },
-        { label: '11 month', Id: '11month' },
-        { label: '12 month', Id: '12month' },
-    ];
-    const skillset = [
-        { label: 'Python', Id: 'python' },
-        { label: 'Java', Id: 'java' },
-        { label: 'JavaScript', Id: 'javascript' },
-        { label: 'TypeScript', Id: 'typescript' },
-        { label: 'Web Development', Id: 'web_development' },
-        { label: 'VS Code', Id: 'vs_code' },
-        { label: 'Git', Id: 'git' },
-        { label: 'Jira', Id: 'jira' },
-        { label: 'HTML', Id: 'html' },
-        { label: 'CSS', Id: 'css' },
-        { label: 'React', Id: 'react' },
-        { label: 'Angular', Id: 'angular' },
-        { label: 'Vue.js', Id: 'vuejs' },
-        { label: 'Node.js', Id: 'nodejs' },
-        { label: 'Express.js', Id: 'expressjs' },
-        { label: 'Django', Id: 'django' },
-        { label: 'Flask', Id: 'flask' },
-        { label: 'Spring Boot', Id: 'spring_boot' },
-        { label: 'Ruby on Rails', Id: 'ruby_on_rails' },
-        { label: 'PHP', Id: 'php' },
-        { label: 'Laravel', Id: 'laravel' },
-        { label: 'SQL', Id: 'sql' },
-        { label: 'MySQL', Id: 'mysql' },
-        { label: 'PostgreSQL', Id: 'postgresql' },
-        { label: 'MongoDB', Id: 'mongodb' },
-        { label: 'Firebase', Id: 'firebase' },
-        { label: 'AWS', Id: 'aws' },
-        { label: 'Azure', Id: 'azure' },
-        { label: 'Google Cloud', Id: 'google_cloud' },
-        { label: 'Docker', Id: 'docker' },
-        { label: 'Kubernetes', Id: 'kubernetes' },
-        { label: 'Terraform', Id: 'terraform' },
-        { label: 'Ansible', Id: 'ansible' },
-        { label: 'Jenkins', Id: 'jenkins' },
-        { label: 'CI/CD', Id: 'ci_cd' },
-        { label: 'Agile', Id: 'agile' },
-        { label: 'Scrum', Id: 'scrum' },
-        { label: 'Project Management', Id: 'project_management' },
-        { label: 'Linux', Id: 'linux' },
-        { label: 'Unix', Id: 'unix' },
-        { label: 'Shell Scripting', Id: 'shell_scripting' },
-        { label: 'C', Id: 'c' },
-        { label: 'C++', Id: 'cpp' },
-        { label: 'C#', Id: 'csharp' },
-        { label: '.NET', Id: 'dotnet' },
-        { label: 'Swift', Id: 'swift' },
-        { label: 'Kotlin', Id: 'kotlin' },
-        { label: 'Objective-C', Id: 'objective_c' },
-        { label: 'Android Development', Id: 'android_development' },
-        { label: 'iOS Development', Id: 'ios_development' },
-        { label: 'Machine Learning', Id: 'machine_learning' },
-        { label: 'Data Science', Id: 'data_science' },
-        { label: 'Artificial Intelligence', Id: 'artificial_intelligence' },
-        { label: 'Deep Learning', Id: 'deep_learning' },
-        { label: 'NLP', Id: 'nlp' },
-        { label: 'Computer Vision', Id: 'computer_vision' },
-        { label: 'Big Data', Id: 'big_data' },
-        { label: 'Hadoop', Id: 'hadoop' },
-        { label: 'Spark', Id: 'spark' },
-        { label: 'Tableau', Id: 'tableau' },
-        { label: 'Power BI', Id: 'power_bi' },
-        { label: 'Excel', Id: 'excel' },
-        { label: 'Business Intelligence', Id: 'business_intelligence' },
-        { label: 'Data Analysis', Id: 'data_analysis' },
-        { label: 'Cybersecurity', Id: 'cybersecurity' },
-        { label: 'Penetration Testing', Id: 'penetration_testing' },
-        { label: 'Network Security', Id: 'network_security' },
-        { label: 'Cryptography', Id: 'cryptography' }
-    ];
-
-    function valuetext(value: number) {
-        return `${value}°C`;
+    const [value, setValue] = React.useState<any>(dayjs('2022-06-17'));
+    const [formData, setFormData] = useState(
+        {
+            job_id: uid(),
+            job_role: '',
+            job_description: '',
+            job_type: 'fullTime',
+            // company_name: '',
+            job_location: '',
+            work_mode: '',
+            job_offer: [6, 11],
+            // company_size: '',
+            // logo: '',
+            // start_date: '',
+            experience: 1.5,
+            last_date: '',
+            probation_period: '',
+            skills: [],
+            requirements: [{ requirements: '', unique_id: uid() }],
+            key_responsibilities: [{ key_responsibilities: '', unique_id: uid() }],
+            preferred_qualifications: [{ preferred_qualifications: '', unique_id: uid() }],
+            // joining_date: '',
+            immediate_joining: true
+        }
+    )
+    const handleFormOnChange = (event) => {
+        console.log(event.target.name, event.target.value);
+        if (event.target.name === 'immediate_joining') {
+            setFormData({ ...formData, [event.target.name]: event.target.checked })
+        } else {
+            setFormData({ ...formData, [event.target.name]: event.target.value })
+        }
     }
-    const [value, setValue] = React.useState<number[]>([12, 23]);
-
-    const handleChange = (event: Event, newValue: number | number[]) => {
-        setValue(newValue as number[]);
-    };
-
-
+    const handleAutoCompleteChange = (e, newValue, type) => {
+        setFormData({ ...formData, [type]: newValue['Id'] })
+    }
+    const updateDateFormat = (date_to_be_format) => {
+        const parsedDate = moment(new Date(date_to_be_format)).format();
+        const formattedDate = moment(parsedDate).format('L')
+        setFormData({ ...formData, last_date: formattedDate })
+    }
     return (
         <Grid container mt={12} display={'flex'} justifyContent={'center'}>
             <Grid item xs={8} p={2} borderRadius={'8px'} boxShadow={'0 4px 8px 0 rgb(255 255 255 / 20%), 0 6px 20px 0 rgb(169 169 169 / 19%)'}>
@@ -138,12 +69,16 @@ const JobPosting = () => {
                         <Typography fontSize={'14px'}>A job title must be describe one position only</Typography>
                     </Stack>
                     <Stack width={'55%'}>
-                        <TextField variant="outlined" size="small" placeholder="e.g. Software Developer" fullWidth sx={{
-                            '& .MuiInputBase-input::placeholder': {
-                                fontSize: '13px',
-                            },
-                        }
-                        } />
+                        <TextField variant="outlined" size="small" placeholder="e.g. Software Developer" fullWidth
+                            sx={{
+                                '& .MuiInputBase-input::placeholder': {
+                                    fontSize: '13px',
+                                },
+                            }
+                            }
+                            name="job_role"
+                            onChange={(e) => handleFormOnChange(e)}
+                        />
                     </Stack>
                 </Stack>
                 <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4}>
@@ -152,112 +87,151 @@ const JobPosting = () => {
                         <Typography fontSize={'14px'}>Provide a short description about the job. Keep it short and to the point.</Typography>
                     </Stack>
                     <Stack width={'55%'}>
-                        <TextField variant="outlined" size="small" multiline minRows={8} maxRows={8} placeholder="We are looking for an ..." fullWidth sx={{
+                        <TextField variant="outlined" size="small" multiline minRows={8} maxRows={8} placeholder="e.g. Develop and maintain web applications using ReactJS" fullWidth sx={{
                             '& .MuiInputBase-input::placeholder': {
                                 fontSize: '13px',
                             },
                         }
-                        } />
+                        }
+                            name="job_description"
+                            onChange={(e) => handleFormOnChange(e)} />
                     </Stack>
                 </Stack>
                 <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4}>
                     <Stack direction={'column'} textAlign={'left'} width={'45%'}>
                         <Typography fontSize={'14px'} fontWeight={'600'} color={'black'}>Employment type</Typography>
-                        <Typography fontSize={'14px'}>what would be the type of employee you are hiring for.</Typography>
+                        <Typography fontSize={'14px'}>What would be the type of employee you are hiring for.</Typography>
                     </Stack>
                     <Stack width={'55%'}>
-                        <FormControlLabel control={<Checkbox defaultChecked />} label="Full-time" />
-                        <FormControlLabel control={<Checkbox defaultChecked />} label="Part-time" />
-                        <FormControlLabel control={<Checkbox defaultChecked />} label="On demand" />
-                        <FormControlLabel control={<Checkbox defaultChecked />} label="Negotiable" />
-                    </Stack>
-                </Stack>
-                <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4}>
-                    <Stack direction={'column'} textAlign={'left'} width={'45%'}>
-                        <Typography fontSize={'14px'} fontWeight={'600'} color={'black'}>City</Typography>
-                        <Typography fontSize={'14px'}>Your preferred city.</Typography>
-                    </Stack>
-                    <Stack width={'55%'}>
-                        <Autocomplete
-                            disablePortal
-                            id="combo-box-demo"
-                            options={techHubCity}
-                            renderInput={(params) => <TextField {...params} placeholder="City" size="small" />}
-                        />
+                        <FormControl>
+                            <RadioGroup
+                                aria-labelledby="demo-controlled-radio-buttons-group"
+                                name="job_type"
+                                value={formData['job_type']}
+                                onChange={(e) => handleFormOnChange(e)}
+                                sx={{
+                                    '.css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked': {
+                                        color: "black"
+                                    }
+                                }}
+                            >
+                                <FormControlLabel value="fullTime" control={<Radio />} label="Full-time" />
+                                <FormControlLabel value="partTime" control={<Radio />} label="Part-time" />
+                                <FormControlLabel value="freelancing" control={<Radio />} label="Freelancing" />
+                                <FormControlLabel value="internship" control={<Radio />} label="Internship" />
+                            </RadioGroup>
+                        </FormControl>
                     </Stack>
                 </Stack>
                 <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4}>
                     <Stack direction={'column'} textAlign={'left'} width={'45%'}>
                         <Typography fontSize={'14px'} fontWeight={'600'} color={'black'}>Work mode</Typography>
-                        <Typography fontSize={'14px'}>Are you offering for hybrid mode or other.</Typography>
+                        <Typography fontSize={'14px'}>Please specify the work mode.</Typography>
                     </Stack>
                     <Stack width={'55%'}>
                         <Autocomplete
                             disablePortal
                             id="combo-box-demo"
                             options={workMode}
+                            sx={{
+                                '& .MuiInputBase-input::placeholder': {
+                                    fontSize: '13px',
+                                }
+                            }}
+                            value={stringToTitleCase(formData['work_mode'])}
+                            onChange={(e, selectedValue) => handleAutoCompleteChange(e, selectedValue, 'work_mode')}
                             renderInput={(params) => <TextField {...params} placeholder="Work mode" size="small" />}
                         />
                     </Stack>
                 </Stack>
                 <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4}>
                     <Stack direction={'column'} textAlign={'left'} width={'45%'}>
-                        <Typography fontSize={'14px'} fontWeight={'600'} color={'black'}>Immediate joining</Typography>
-                        <Typography fontSize={'14px'}>Looking for immediate joining.</Typography>
+                        <Typography fontSize={'14px'} fontWeight={'600'} color={'black'}>Job location</Typography>
+                        <Typography fontSize={'14px'}>Provide the city name for which you want to hire.</Typography>
                     </Stack>
                     <Stack width={'55%'}>
-                        <FormControlLabel control={<Checkbox defaultChecked />} label="Immediate" />
+                        <Autocomplete
+                            disabled={formData['work_mode'] === 'work_from_home'}
+                            disablePortal
+                            id="job_location"
+                            options={techHubCity}
+                            sx={{
+                                '& .MuiInputBase-input::placeholder': {
+                                    fontSize: '13px',
+                                }
+                            }}
+                            value={formData['work_mode'] === 'work_from_home' ? '' : stringToTitleCase(formData['job_location'])}
+                            onChange={(e, selectedValue) => handleAutoCompleteChange(e, selectedValue, 'job_location')}
+                            renderInput={(params) => <TextField {...params} placeholder="Job location" size="small" />}
+                        />
+                    </Stack>
+                </Stack>
+                <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4}>
+                    <Stack direction={'column'} textAlign={'left'} width={'45%'}>
+                        <Typography fontSize={'14px'} fontWeight={'600'} color={'black'}>Immediate joining</Typography>
+                        <Typography fontSize={'14px'}>Looking for immediate joinee?</Typography>
+                    </Stack>
+                    <Stack width={'55%'}>
+                        <FormControlLabel control={<Checkbox />} label="Immediate" name="immediate_joining" checked={formData['immediate_joining']}
+                            onChange={(e) => handleFormOnChange(e)} />
                     </Stack>
                 </Stack>
                 <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4}>
                     <Stack direction={'column'} textAlign={'left'} width={'45%'}>
                         <Typography fontSize={'14px'} fontWeight={'600'} color={'black'}>Experience(In years)</Typography>
-                        <Typography fontSize={'14px'}>How much experience is needed.</Typography>
+                        <Typography fontSize={'14px'}>Minimum experience for this role would be.</Typography>
                     </Stack>
                     <Stack width={'55%'}>
                         <Slider
-                            aria-label="Temperature"
                             defaultValue={2}
-                            getAriaValueText={valuetext}
                             valueLabelDisplay="auto"
                             shiftStep={0.5}
                             step={0.5}
                             marks
                             min={0}
                             max={10}
+                            value={formData['experience']}
+                            name="experience"
+                            onChange={(e) => handleFormOnChange(e)}
                         />
                     </Stack>
                 </Stack>
                 <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4}>
                     <Stack direction={'column'} textAlign={'left'} width={'45%'}>
                         <Typography fontSize={'14px'} fontWeight={'600'} color={'black'}>Package range(In lpa)</Typography>
-                        <Typography fontSize={'14px'}>Offering package</Typography>
+                        <Typography fontSize={'14px'}>Mention the package range (In lpa)</Typography>
                     </Stack>
                     <Stack width={'55%'}>
                         <Slider
-                            getAriaLabel={() => 'Temperature range'}
-                            value={value}
+                            value={formData['job_offer']}
                             shiftStep={0.5}
                             step={1}
                             marks
                             min={4}
                             max={45}
-                            onChange={handleChange}
+                            name="job_offer"
+                            onChange={(e) => handleFormOnChange(e)}
                             valueLabelDisplay="auto"
-                            getAriaValueText={valuetext}
                         />
                     </Stack>
                 </Stack>
                 <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4}>
                     <Stack direction={'column'} textAlign={'left'} width={'45%'}>
                         <Typography fontSize={'14px'} fontWeight={'600'} color={'black'}>Probation period</Typography>
-                        <Typography fontSize={'14px'}>Probation duration</Typography>
+                        <Typography fontSize={'14px'}>What would be the Probation period</Typography>
                     </Stack>
                     <Stack width={'55%'}>
                         <Autocomplete
                             disablePortal
                             id="combo-box-demo"
                             options={probationPeriod}
+                            sx={{
+                                '& .MuiInputBase-input::placeholder': {
+                                    fontSize: '13px',
+                                }
+                            }}
+                            value={stringToTitleCase(formData['probation_period'])}
+                            onChange={(e, selectedValue) => handleAutoCompleteChange(e, selectedValue, 'probation_period')}
                             renderInput={(params) => <TextField {...params} placeholder="Probation period" size="small" />}
                         />
                     </Stack>
@@ -269,26 +243,66 @@ const JobPosting = () => {
                     </Stack>
                     <Stack width={'55%'}>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DateField size="small" />
+                            <DatePicker
+                                value={value}
+                                sx={{height:'42px !important', '.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root':{
+                                    height:'41px', fontSize:'14px'
+                                }}}
+                                onChange={(newValue) => updateDateFormat(newValue)}
+                            />
                         </LocalizationProvider>
                     </Stack>
                 </Stack>
                 <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4}>
                     <Stack direction={'column'} textAlign={'left'} width={'45%'}>
                         <Typography fontSize={'14px'} fontWeight={'600'} color={'black'}>Skills</Typography>
-                        <Typography fontSize={'14px'}>List of skills whihc is required for the job role.</Typography>
+                        <Typography fontSize={'14px'}>Please select the skills for which you are hiring.</Typography>
                     </Stack>
                     <Stack width={'55%'}>
                         <Autocomplete
                             multiple
+                            onChange={(e) => handleFormOnChange(e)}
                             id="size-small-outlined-multi"
                             size="small"
                             options={skillset}
+                            sx={{
+                                '& .MuiInputBase-input::placeholder': {
+                                    fontSize: '13px',
+                                }
+                            }}
                             getOptionLabel={(option) => option.label}
                             renderInput={(params) => (
                                 <TextField {...params} placeholder="Skills" />
                             )}
                         />
+                        {/* <Autocomplete
+                            // key={ind}
+                            multiple
+                            limitTags={4}
+                            id={`multiple-limit-tags-1`}
+                            options={typeof (formData['skills']) !== 'string' ? formData['skills'] : []}
+                            getOptionLabel={(option) => option !== undefined && option.title}
+                            value={selectedValues || []}
+                            onChange={(e, newValue) => handleAutocompleteChange(e, newValue, index, ind)}
+                            onKeyDown={(e) => handleKeyDown(e, index, ind)}
+                            inputValue={inputValues[index]?.[ind] || ''}
+                            onInputChange={(e, newValue) => handleInputChange(e, newValue, index, ind)}
+                            name={`item_value_${index}_${ind}`}
+                            size="small"
+                            disableListWrap={true}
+                            sx={{
+                                width: '100% !important',
+                                '.MuiChip-root': {
+                                    height: '22px !important'
+                                },
+                                '.MuiAutocomplete-tag': {
+                                    margin: '0px 2px'
+                                }
+                            }}
+                            renderInput={(params) => (
+                                <TextField {...params} label="Enum" size="small" />
+                            )}
+                        /> */}
                     </Stack>
                 </Stack>
                 <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4} borderBottom={'1px solid #efefef'}>
@@ -296,83 +310,22 @@ const JobPosting = () => {
                         <Typography fontSize={'16px'} fontWeight={'600'} color={'black'}>Additional information</Typography>
                     </Stack>
                 </Stack>
-
-                <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4}>
-                    <Stack direction={'column'} textAlign={'left'} width={'45%'}>
-                        <Typography fontSize={'14px'} fontWeight={'600'} color={'black'}>Key Responsibilities</Typography>
-                        <Typography fontSize={'14px'}>Provide the key responsibilities for this role</Typography>
-                    </Stack>
-                    <Stack width={'55%'} justifyContent={'space-between'} direction={'column'}>
-                        <Stack width={'100%'} justifyContent={'space-between'} direction={'row'}>
-                            <TextField variant="outlined" size="small" placeholder="Key responsibilities" fullWidth sx={{ '& .MuiInputBase-input::placeholder': { fontSize: '13px' } }} />
-                            <IconButton sx={{ padding: '0px 0px 0px 4px' }}>
-                                <CloseRoundedIcon />
-                            </IconButton>
-                        </Stack>
-                        <Stack sx={{
-                            cursor: 'pointer'
-                        }} width={'94.4%'} mt={2} justifyContent={'center'} direction={'row'} border={'2px dotted #c4c4c4'} borderRadius={'4px'} height={'2.2rem'}>
-                            <IconButton sx={{ padding: '0px 0px 0px 4px' }}>
-                                <AddRoundedIcon />
-                            </IconButton>
-                        </Stack>
-                    </Stack>
-                </Stack>
-
-                <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4}>
-                    <Stack direction={'column'} textAlign={'left'} width={'45%'}>
-                        <Typography fontSize={'14px'} fontWeight={'600'} color={'black'}>Requirements</Typography>
-                        <Typography fontSize={'14px'}>Specify the requirement for this position</Typography>
-                    </Stack>
-                    <Stack width={'55%'} justifyContent={'space-between'} direction={'column'}>
-                        <Stack width={'100%'} justifyContent={'space-between'} direction={'row'}>
-                            <TextField variant="outlined" size="small" placeholder="Requirements" fullWidth sx={{ '& .MuiInputBase-input::placeholder': { fontSize: '13px' } }} />
-                            <IconButton sx={{ padding: '0px 0px 0px 4px' }}>
-                                <CloseRoundedIcon />
-                            </IconButton>
-                        </Stack>
-                        <Stack sx={{
-                            cursor: 'pointer'
-                        }} width={'94.4%'} mt={2} justifyContent={'center'} direction={'row'} border={'2px dotted #c4c4c4'} borderRadius={'4px'} height={'2.2rem'}>
-                            <IconButton sx={{ padding: '0px 0px 0px 4px' }}>
-                                <AddRoundedIcon />
-                            </IconButton>
-                        </Stack>
-                    </Stack>
-                </Stack>
-
-                <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4}>
-                    <Stack direction={'column'} textAlign={'left'} width={'45%'}>
-                        <Typography fontSize={'14px'} fontWeight={'600'} color={'black'}>Preferred qualifications</Typography>
-                        <Typography fontSize={'14px'}>What would be the preferred qualifications for this job role.</Typography>
-                    </Stack>
-                    <Stack width={'55%'} justifyContent={'space-between'} direction={'column'}>
-                        <Stack width={'100%'} justifyContent={'space-between'} direction={'row'}>
-                            <TextField variant="outlined" size="small" placeholder="Preferred qualifications" fullWidth sx={{ '& .MuiInputBase-input::placeholder': { fontSize: '13px' } }} />
-                            <IconButton sx={{ padding: '0px 0px 0px 4px' }}>
-                                <CloseRoundedIcon />
-                            </IconButton>
-                        </Stack>
-                        <Stack sx={{
-                            cursor: 'pointer'
-                        }} width={'94.4%'} mt={2} justifyContent={'center'} direction={'row'} border={'2px dotted #c4c4c4'} borderRadius={'4px'} height={'2.2rem'}>
-                            <IconButton sx={{ padding: '0px 0px 0px 4px' }}>
-                                <AddRoundedIcon />
-                            </IconButton>
-                        </Stack>
-                    </Stack>
-                </Stack>
+                <AdditionalInfo formData={formData} setFormData={setFormData} />
                 <Stack direction={'row'} justifyContent={'space-between'} gap={2} mt={4}>
                     <Stack direction={'column'} textAlign={'left'} width={'45%'}>
                     </Stack>
                     <Stack width={'55%'} justifyContent={'space-between'} direction={'row'}>
-                        <Button variant="outlined" sx={{width:'12rem', color:'black', borderColor:'black', ':hover':{
-                            background:'white',
-                            color:'black', borderColor:'black'
-                        }}}>Cancel</Button>
-                        <Button variant="contained" sx={{width:'14rem', marginRight:'1.8rem', color:'white', borderColor:'black', background:'black', ':hover':{
-                            background:'black'
-                        }}}>Save</Button>
+                        <Button variant="outlined" sx={{
+                            width: '12rem', color: 'black', borderColor: 'black', ':hover': {
+                                background: 'white',
+                                color: 'black', borderColor: 'black'
+                            }
+                        }}>Cancel</Button>
+                        <Button variant="contained" sx={{
+                            width: '14rem', marginRight: '1.8rem', color: 'white', borderColor: 'black', background: 'black', ':hover': {
+                                background: 'black'
+                            }
+                        }}>Save</Button>
                     </Stack>
                 </Stack>
             </Grid>

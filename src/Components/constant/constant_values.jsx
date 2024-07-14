@@ -925,3 +925,119 @@ export const data = [
 ];
 
 export const noteForHR = 'Dear Hiring Manager,\n\nI am excited to express my keen interest in the developer role at your esteemed company. With a strong background in [mention relevant skills or technologies], I am confident in my ability to make valuable contributions to your dynamic and innovative team.\n\nThroughout my career, I have successfully [mention specific achievements or projects], showcasing my problem-solving skills and dedication to creating high-quality software solutions. My expertise in [mention specific technologies, languages, or frameworks] aligns seamlessly with the positions requirements.\n\nI am drawn to your companys commitment to [mention specific values or goals of the company], and I believe that my technical proficiency and collaborative approach make me a strong fit for your team.\nThank you for considering my application. I look forward to the possibility of discussing how my skills and experiences align with your teams needs.\n\nSincerely, [Your Full Name]'
+export const techHubCity = [
+  { label: 'Kolkata', Id: 'kolkata' },
+  { label: 'Bangalore', Id: 'bangalore' },
+  { label: 'Chennai', Id: 'chennai' },
+  { label: 'Hyderabad', Id: 'hyderabad' },
+  { label: 'Pune', Id: 'pune' },
+  { label: 'Mumbai', Id: 'mumbai' },
+  { label: 'Delhi', Id: 'delhi' },
+  { label: 'Gurgaon', Id: 'gurgaon' },
+  { label: 'Noida', Id: 'noida' },
+  { label: 'Ahmedabad', Id: 'ahmedabad' }
+];
+export const workMode = [
+  { label: 'In office', Id: 'in_office' },
+  { label: 'Work from home', Id: 'work_from_home' },
+  { label: 'Hybrid', Id: 'hybrid' },
+];
+export const probationPeriod = [
+  { label: '1 month', Id: '1month' },
+  { label: '2 month', Id: '2month' },
+  { label: '3 month', Id: '3month' },
+  { label: '4 month', Id: '4month' },
+  { label: '5 month', Id: '5month' },
+  { label: '6 month', Id: '6month' },
+  { label: '7 month', Id: '7month' },
+  { label: '8 month', Id: '8month' },
+  { label: '9 month', Id: '9month' },
+  { label: '10 month', Id: '10month' },
+  { label: '11 month', Id: '11month' },
+  { label: '12 month', Id: '12month' },
+];
+export const skillset = [
+  { label: 'Python', Id: 'python' },
+  { label: 'Java', Id: 'java' },
+  { label: 'JavaScript', Id: 'javascript' },
+  { label: 'TypeScript', Id: 'typescript' },
+  { label: 'Web Development', Id: 'web_development' },
+  { label: 'VS Code', Id: 'vs_code' },
+  { label: 'Git', Id: 'git' },
+  { label: 'Jira', Id: 'jira' },
+  { label: 'HTML', Id: 'html' },
+  { label: 'CSS', Id: 'css' },
+  { label: 'React', Id: 'react' },
+  { label: 'Angular', Id: 'angular' },
+  { label: 'Vue.js', Id: 'vuejs' },
+  { label: 'Node.js', Id: 'nodejs' },
+  { label: 'Express.js', Id: 'expressjs' },
+  { label: 'Django', Id: 'django' },
+  { label: 'Flask', Id: 'flask' },
+  { label: 'Spring Boot', Id: 'spring_boot' },
+  { label: 'Ruby on Rails', Id: 'ruby_on_rails' },
+  { label: 'PHP', Id: 'php' },
+  { label: 'Laravel', Id: 'laravel' },
+  { label: 'SQL', Id: 'sql' },
+  { label: 'MySQL', Id: 'mysql' },
+  { label: 'PostgreSQL', Id: 'postgresql' },
+  { label: 'MongoDB', Id: 'mongodb' },
+  { label: 'Firebase', Id: 'firebase' },
+  { label: 'AWS', Id: 'aws' },
+  { label: 'Azure', Id: 'azure' },
+  { label: 'Google Cloud', Id: 'google_cloud' },
+  { label: 'Docker', Id: 'docker' },
+  { label: 'Kubernetes', Id: 'kubernetes' },
+  { label: 'Terraform', Id: 'terraform' },
+  { label: 'Ansible', Id: 'ansible' },
+  { label: 'Jenkins', Id: 'jenkins' },
+  { label: 'CI/CD', Id: 'ci_cd' },
+  { label: 'Agile', Id: 'agile' },
+  { label: 'Scrum', Id: 'scrum' },
+  { label: 'Project Management', Id: 'project_management' },
+  { label: 'Linux', Id: 'linux' },
+  { label: 'Unix', Id: 'unix' },
+  { label: 'Shell Scripting', Id: 'shell_scripting' },
+  { label: 'C', Id: 'c' },
+  { label: 'C++', Id: 'cpp' },
+  { label: 'C#', Id: 'csharp' },
+  { label: '.NET', Id: 'dotnet' },
+  { label: 'Swift', Id: 'swift' },
+  { label: 'Kotlin', Id: 'kotlin' },
+  { label: 'Objective-C', Id: 'objective_c' },
+  { label: 'Android Development', Id: 'android_development' },
+  { label: 'iOS Development', Id: 'ios_development' },
+  { label: 'Machine Learning', Id: 'machine_learning' },
+  { label: 'Data Science', Id: 'data_science' },
+  { label: 'Artificial Intelligence', Id: 'artificial_intelligence' },
+  { label: 'Deep Learning', Id: 'deep_learning' },
+  { label: 'NLP', Id: 'nlp' },
+  { label: 'Computer Vision', Id: 'computer_vision' },
+  { label: 'Big Data', Id: 'big_data' },
+  { label: 'Hadoop', Id: 'hadoop' },
+  { label: 'Spark', Id: 'spark' },
+  { label: 'Tableau', Id: 'tableau' },
+  { label: 'Power BI', Id: 'power_bi' },
+  { label: 'Excel', Id: 'excel' },
+  { label: 'Business Intelligence', Id: 'business_intelligence' },
+  { label: 'Data Analysis', Id: 'data_analysis' },
+  { label: 'Cybersecurity', Id: 'cybersecurity' },
+  { label: 'Penetration Testing', Id: 'penetration_testing' },
+  { label: 'Network Security', Id: 'network_security' },
+  { label: 'Cryptography', Id: 'cryptography' }
+];
+
+export function stringToTitleCase(input) {
+  // Convert the string to lowercase
+  let result = input.toLowerCase();
+
+  // Replace underscores with spaces
+  result = result.replace(/_/g, ' ');
+
+  // Capitalize only the first letter of the string
+  if (result.length > 0) {
+    result = result.charAt(0).toUpperCase() + result.slice(1);
+  }
+
+  return result;
+}
