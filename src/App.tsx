@@ -39,7 +39,7 @@ function App() {
         <ToastContainer newestOnTop/>
       </Stack>
       <CustomNavbar />
-      <Stack sx={isLoading ? { opacity: '0.3', zIndex: '99999' } : { opacity: '1' }}>
+      <Stack sx={isLoading ? { opacity: '0.3', zIndex: '99999', position:'fixed'} : { opacity: '1' }}>
         <Routes>
           <Route path="/" element={<Dashboard />}></Route>
           <Route path="/fulltimejob" element={<Home />}></Route>
