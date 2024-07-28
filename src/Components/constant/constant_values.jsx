@@ -3,8 +3,8 @@ import company_logo from '../../img/company_logo.png'
 export const endpoint = "http://127.0.0.1:8000/v1/api";
 export const data = [
   {
-    job_id : 'iu3ju0hdiz',
-    job_role : 'Software Development-2',
+    job_id: 'iu3ju0hdiz',
+    job_role: 'Software Development-2',
     company_name: 'Microsoft',
     location: 'Delhi',
     work_mode: 'in-office',
@@ -43,8 +43,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : 'kio46vdgye9',
-    job_role : 'Quality Assurance',
+    job_id: 'kio46vdgye9',
+    job_role: 'Quality Assurance',
     company_name: 'Google',
     location: 'Gurgaon',
     work_mode: 'hybrid',
@@ -83,8 +83,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : '6gdt8gd2m9',
-    job_role : 'Full-stack Developer',
+    job_id: '6gdt8gd2m9',
+    job_role: 'Full-stack Developer',
     company_name: 'Amazon',
     location: 'Noida',
     work_mode: 'remote',
@@ -123,8 +123,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : '9ie4mjkfct',
-    job_role : 'Software Engineer-2',
+    job_id: '9ie4mjkfct',
+    job_role: 'Software Engineer-2',
     company_name: 'Facebook',
     location: 'Hyderabad',
     work_mode: 'in-office',
@@ -163,8 +163,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : 'p7evg7dv0b',
-    job_role : 'IOS Developer-2',
+    job_id: 'p7evg7dv0b',
+    job_role: 'IOS Developer-2',
     company_name: 'Apple',
     location: 'Bangalore',
     work_mode: 'hybrid',
@@ -203,8 +203,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : 'pod3nj9dv9',
-    job_role : 'Android Developer',
+    job_id: 'pod3nj9dv9',
+    job_role: 'Android Developer',
     company_name: 'Tesla',
     location: 'Kolkata',
     work_mode: 'in-office',
@@ -243,8 +243,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : '8gv0o1hstb',
-    job_role : 'Frontend Developer',
+    job_id: '8gv0o1hstb',
+    job_role: 'Frontend Developer',
     company_name: 'Netflix',
     location: 'Delhi',
     work_mode: 'remote',
@@ -283,8 +283,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : '7vu2yvy0ou',
-    job_role : 'Fullstack Developer',
+    job_id: '7vu2yvy0ou',
+    job_role: 'Fullstack Developer',
     company_name: 'LinkedIn',
     location: 'Gurgaon',
     work_mode: 'hybrid',
@@ -323,8 +323,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : 'poi35vc80m3',
-    job_role : 'Backend Developer',
+    job_id: 'poi35vc80m3',
+    job_role: 'Backend Developer',
     company_name: 'Uber',
     location: 'Noida',
     work_mode: 'in-office',
@@ -363,8 +363,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : 'poevu9d8h3',
-    job_role : 'IOS Developer',
+    job_id: 'poevu9d8h3',
+    job_role: 'IOS Developer',
     company_name: 'Twitter',
     location: 'Delhi',
     work_mode: 'remote',
@@ -403,8 +403,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : '9eic83bh4c',
-    job_role : 'Portal Engineer-2',
+    job_id: '9eic83bh4c',
+    job_role: 'Portal Engineer-2',
     company_name: 'Salesforce',
     location: 'Gurgaon',
     work_mode: 'hybrid',
@@ -443,8 +443,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : 'h7gd03hw9c',
-    job_role : 'React Developer',
+    job_id: 'h7gd03hw9c',
+    job_role: 'React Developer',
     company_name: 'Adobe',
     location: 'Noida',
     work_mode: 'in-office',
@@ -483,8 +483,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : 'p3vtc8bcy6',
-    job_role : 'AI Engineer',
+    job_id: 'p3vtc8bcy6',
+    job_role: 'AI Engineer',
     company_name: 'Intel',
     location: 'Hyderabad',
     work_mode: 'remote',
@@ -523,8 +523,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : 'vdt87cyt01',
-    job_role : 'Cloud Architect-4',
+    job_id: 'vdt87cyt01',
+    job_role: 'Cloud Architect-4',
     company_name: 'IBM',
     location: 'Bangalore',
     work_mode: 'in-office',
@@ -563,8 +563,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : 'fd6bh8e9d0',
-    job_role : 'Network Engineer',
+    job_id: 'fd6bh8e9d0',
+    job_role: 'Network Engineer',
     company_name: 'Cisco',
     location: 'Kolkata',
     work_mode: 'hybrid',
@@ -603,8 +603,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : 'vy50x8n7e0',
-    job_role : 'Game Developer',
+    job_id: 'vy50x8n7e0',
+    job_role: 'Game Developer',
     company_name: 'HP',
     location: 'Delhi',
     work_mode: 'remote',
@@ -643,8 +643,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : 'yvct67k97v',
-    job_role : 'Database Engineer',
+    job_id: 'yvct67k97v',
+    job_role: 'Database Engineer',
     company_name: 'Oracle',
     location: 'Gurgaon',
     work_mode: 'in-office',
@@ -683,8 +683,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : '78bgy9f6gb',
-    job_role : '.Net Developer-2',
+    job_id: '78bgy9f6gb',
+    job_role: '.Net Developer-2',
     company_name: 'Dell',
     location: 'Noida',
     work_mode: 'hybrid',
@@ -723,8 +723,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : 'y63hy0eb9c',
-    job_role : 'Machine Learning Engineer',
+    job_id: 'y63hy0eb9c',
+    job_role: 'Machine Learning Engineer',
     company_name: 'NVIDIA',
     location: 'Hyderabad',
     work_mode: 'remote',
@@ -763,8 +763,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : '6tf83i8vu7',
-    job_role : 'Databse Engineer-4',
+    job_id: '6tf83i8vu7',
+    job_role: 'Databse Engineer-4',
     company_name: 'VMware',
     location: 'Kolkata',
     work_mode: 'in-office',
@@ -803,8 +803,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : 'uyh7gy6dv7',
-    job_role : 'DevOps Engineer-4',
+    job_id: 'uyh7gy6dv7',
+    job_role: 'DevOps Engineer-4',
     company_name: 'Accenture',
     location: 'Delhi',
     work_mode: 'hybrid',
@@ -843,8 +843,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : '9ubyt94ft5',
-    job_role : 'ERP Engineer',
+    job_id: '9ubyt94ft5',
+    job_role: 'ERP Engineer',
     company_name: 'SAP',
     location: 'Gurgaon',
     work_mode: 'remote',
@@ -883,8 +883,8 @@ export const data = [
     joining_date: 'Immediate'
   },
   {
-    job_id : 'hyd89b73b9',
-    job_role : 'Java Developer',
+    job_id: 'hyd89b73b9',
+    job_role: 'Java Developer',
     company_name: 'Capgemini',
     location: 'Noida',
     work_mode: 'in-office',

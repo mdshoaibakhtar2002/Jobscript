@@ -16,6 +16,7 @@ import { ChatBubble } from "@mui/icons-material";
 import JobPosting from './Components/Job Posting/JobPosting';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import VerifyOTP from './Components/onBoarding/VerifyOTP';
 
 function App() {
   const { isLoading } = useSelector<any>(state => state.myAppState)
@@ -27,6 +28,7 @@ function App() {
           <Route path='/signup' element={<SignUp />} />
           <Route path='/forgotpassword' element={<ForgotPassword />} />
           <Route path='/changepassword' element={<ChangePassword />} />
+          <Route path='/verifyOtp' element={<VerifyOTP />} />
         </Routes>
       </Stack>
     )
@@ -36,10 +38,10 @@ function App() {
     <Router>
       {isLoading && <CircularLoader />}
       <Stack textAlign={'start'}>
-        <ToastContainer newestOnTop/>
+        <ToastContainer newestOnTop />
       </Stack>
       <CustomNavbar />
-      <Stack sx={isLoading ? { opacity: '0.3', zIndex: '99999' } : { opacity: '1' }}>
+      <Stack sx={isLoading ? { opacity: '0.3', zIndex: '99999', position: 'fixed' } : { opacity: '1' }}>
         <Routes>
           <Route path="/" element={<Dashboard />}></Route>
           <Route path="/fulltimejob" element={<Home />}></Route>

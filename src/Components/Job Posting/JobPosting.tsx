@@ -7,19 +7,24 @@ import { Slider } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from "@mui/x-date-pickers";
-import { techHubCity, workMode, probationPeriod, skillset, stringToTitleCase } from '../constant/constant_values';
+import { techHubCity, workMode, probationPeriod, skillset, stringToTitleCase, endpoint } from '../constant/constant_values';
 import AdditionalInfo from './AdditionalInfo';
 import { uid } from "uid";
 import dayjs from 'dayjs';
 import moment from "moment";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { Loading } from "../../Redux/Reducer";
+import { useNavigate } from "react-router-dom";
 
-const intitial_form_data = 
+const intitial_form_data =
 {
     job_id: uid(),
     job_role: '',
     job_description: '',
     job_type: 'fullTime',
-    // company_name: '',
+    company_name: '',
     job_location: '',
     work_mode: '',
     job_offer: [6, 11],
@@ -37,7 +42,7 @@ const intitial_form_data =
     immediate_joining: true
 }
 
-const intitial_error = 
+const intitial_error =
 {
     job_role: false,
     job_description: false,
@@ -51,8 +56,10 @@ const intitial_error =
 const JobPosting = () => {
     const [formData, setFormData] = useState(intitial_form_data)
     const [validation, setValidation] = useState(intitial_error)
-    const [disableButton, setDisableButton] = useState(true)
+    const [disableButton, setDisableButton] = useState(false)
     const [refreshKey, setRefreshKey] = useState(true)
+    let navigate = useNavigate()
+    const dispatch = useDispatch()
     const handleFormOnChange = (event) => {
         console.log(event.target.name, event.target.value);
         if (event.target.name === 'immediate_joining') {
@@ -73,10 +80,7 @@ const JobPosting = () => {
         const formattedDate = moment(parsedDate).format('L')
         setFormData({ ...formData, last_date: formattedDate })
     }
-    const handleJobPost = () => {
-        console.log(formData);
-    }
-    const resetForm = (e) =>{
+    const resetForm = (e) => {
         e.preventDefault()
         intitial_form_data['preferred_qualifications'] = [{ preferred_qualifications: '', unique_id: uid() }]
         intitial_form_data['requirements'] = [{ requirements: '', unique_id: uid() }]
@@ -84,14 +88,45 @@ const JobPosting = () => {
         setFormData(intitial_form_data)
         setRefreshKey(!refreshKey)
     }
-  const validate = () => {
-    // console.log(formData);
-    if (!formData?.['job_role'] || !formData?.['job_description'] || !formData?.['work_mode']) {
-      setDisableButton(true)
-    } else {
-      setDisableButton(false)
+    const validate = () => {
+        if (!formData?.['job_role'] || !formData?.['job_description'] || !formData?.['work_mode']) {
+            setDisableButton(true)
+        } else {
+            setDisableButton(false)
+        }
     }
-  }
+    const handleAdditionalInformation = (data, dataType) =>{
+        let updatedList = []
+        data.map(each =>{
+            if(dataType === 'key_responsibilities'){
+                updatedList.push(each['key_responsibilities'])
+            }else if(dataType === 'requirements'){
+                updatedList.push(each['requirements'])
+            }else if(dataType === 'preferred_qualifications'){
+                updatedList.push(each['preferred_qualifications'])
+            }
+        })
+        return updatedList
+    }
+    const handleJobPost = () =>{
+        dispatch(Loading(true))
+        let requestBody = {...formData}
+        requestBody['key_responsibilities'] = handleAdditionalInformation(formData['key_responsibilities'], 'key_responsibilities')
+        requestBody['requirements'] = handleAdditionalInformation(formData['requirements'], 'requirements')
+        requestBody['preferred_qualifications'] = handleAdditionalInformation(formData['preferred_qualifications'], 'preferred_qualifications')
+
+        axios.post(endpoint+'/createjob', requestBody).then(res =>{
+            if(res['data']['statusCode'] == 200){
+                dispatch(Loading(false))
+                navigate("/fulltimejob")
+                toast.success("New job is successfully posted.", { position: 'top-center' });
+            }
+        }).catch(err =>{
+            console.log(err);
+            toast.error("Something went wrong", { position: 'top-center' });
+            dispatch(Loading(false))
+        })
+    }
     return (
         <Grid container mt={12} display={'flex'} justifyContent={'center'} key={+refreshKey}>
             <Grid item xs={8} p={2} borderRadius={'8px'} boxShadow={'0 4px 8px 0 rgb(255 255 255 / 20%), 0 6px 20px 0 rgb(169 169 169 / 19%)'} key={+refreshKey}>
@@ -106,11 +141,11 @@ const JobPosting = () => {
                         <Typography fontSize={'14px'}>A job title must be describe one position only</Typography>
                     </Stack>
                     <Stack width={'55%'}>
-                        <TextField 
-                        variant="outlined" 
-                        size="small" 
-                        placeholder="e.g. Software Developer" 
-                        fullWidth
+                        <TextField
+                            variant="outlined"
+                            size="small"
+                            placeholder="e.g. Software Developer"
+                            fullWidth
                             sx={{
                                 '& .MuiInputBase-input::placeholder': {
                                     fontSize: '13px',
@@ -119,7 +154,7 @@ const JobPosting = () => {
                             name="job_role"
                             onChange={(e) => handleFormOnChange(e)}
                             onBlur={() => validate()}
-                            error = {validation['job_role']}
+                            error={validation['job_role']}
                         />
                         {validation['job_role'] && <FormHelperText error>Job title must be filled.</FormHelperText>}
                     </Stack>
@@ -138,8 +173,8 @@ const JobPosting = () => {
                         }
                             name="job_description"
                             onBlur={() => validate()}
-                            onChange={(e) => handleFormOnChange(e)} 
-                            error = {validation['job_description']}
+                            onChange={(e) => handleFormOnChange(e)}
+                            error={validation['job_description']}
                         />
                         {validation['job_description'] && <FormHelperText error>Job description must be filled.</FormHelperText>}
                     </Stack>
@@ -336,7 +371,7 @@ const JobPosting = () => {
                         >Reset</Button>
                         <Button variant="contained"
                             onClick={() => handleJobPost()}
-                            disabled = {disableButton}
+                            disabled={disableButton}
                             sx={{
                                 width: '14rem',
                                 marginRight: '1.8rem',

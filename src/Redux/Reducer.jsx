@@ -1,20 +1,25 @@
-import { createSlice} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    isLoading : false
+    isLoading: false,
+    userDetails: {}
 }
 
 const appSlice = createSlice({
-    name : "myApp",
+    name: "myApp",
     initialState,
-    reducers:{
-        Loading : (state, action) =>{
+    reducers: {
+        Loading: (state, action) => {
             state.isLoading = action.payload;
+        },
+        setUserDetails: (state, action) => {
+            state.userDetails = action.payload;
         }
     }
 })
 
 export const {
     Loading,
+    setUserDetails
 } = appSlice.actions;
 export default appSlice.reducer
