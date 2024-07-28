@@ -7,23 +7,36 @@ import { useNavigate } from 'react-router';
 import { ButtonStyle, MarginStyle } from '../Theme/Palette';
 import React from 'react';
 import { Typography } from '@mui/material';
+import axios from 'axios';
+import { endpoint } from '../constant/constant_values';
+import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { Loading } from '../../Redux/Reducer';
+
 export default function ForgotPassword() {
     const [showPassword, setShowPassword] = useState(false);
-    const [codeSended, setCodeSended] = useState(false)
+    const [mobileNumber, setMobileNumber] = useState()
     const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const dispatch = useDispatch()
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
 
     let navigate = useNavigate()
-    const pageChanger = (e, page) => {
+    const sendVerificationCode = (e) => {
         e.preventDefault()
-        if (page === "verificationcode") {
-            setCodeSended(true);
-        }
-        if (page === "verified") {
-            navigate("/auth/changepassword")
-        }
+        dispatch(Loading(true))
+        localStorage.setItem("newUserDetails", JSON.stringify({ "phone_number": mobileNumber }))
+        axios.post(endpoint + "/forgot-password", { "phone_number": mobileNumber }).then((result) => {
+            if (result?.['data']?.['status_code'] === 200) {
+                toast.success("Successfully OTP sent.", { position: 'top-center' });
+                navigate("/auth/verifyOtp")
+                dispatch(Loading(false))
+            }
+        }).catch((err) => {
+            toast.error("Something went wrong", { position: 'top-center' });
+            dispatch(Loading(false))
+        });
     }
     return (
         <Grid container spacing={{ xs: 0, sm: 0, md: 0 }} sx={{ '&.MuiGrid-root': { width: '100%', marginLeft: '0px', marginTop: '0px' } }} columns={{ xs: 3.3, sm: 12, md: 20 }} height={'100vh'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
@@ -40,12 +53,13 @@ export default function ForgotPassword() {
                 <Stack>
                     <FormControl>
                         <Stack direction={'column'} width={'100%'} mb={2}>
-                            <Typography textAlign={'start'}>Email</Typography>
+                            <Typography textAlign={'start'}>Mobile number</Typography>
                             <TextField
                                 size='small'
-                                placeholder='Email'
+                                placeholder='Mobile number'
                                 fullWidth
-                                name="email"
+                                name="phone_number"
+                                onChange={(e) => setMobileNumber(e.target.value)}
                                 sx={{
                                     '& .MuiInputBase-input::placeholder': {
                                         fontSize: '13px',
@@ -54,39 +68,7 @@ export default function ForgotPassword() {
                             />
                         </Stack>
                     </FormControl>
-                    {!codeSended ?
-                        <Button variant="contained" onClick={(e) => pageChanger(e, "verificationcode")} style={ButtonStyle}>Send Verification Code</Button> :
-                        <Stack direction={'column'} width={'100%'} mb={2}>
-                            <Typography textAlign={'start'}>Verification code</Typography>
-                            <FormControl variant="outlined" sx={{ marginBottom: '1rem' }}>
-                                <OutlinedInput
-                                    id="outlined-adornment-password"
-                                    type={showPassword ? 'text' : 'password'}
-                                    name="password"
-                                    size='small'
-                                    sx={{
-                                        '& .MuiInputBase-input::placeholder': {
-                                            fontSize: '13px',
-                                        }
-                                    }}
-                                    endAdornment={
-                                        <InputAdornment position="end">
-                                            <IconButton
-                                                aria-label="toggle password visibility"
-                                                onClick={handleClickShowPassword}
-                                                onMouseDown={handleMouseDownPassword}
-                                                edge="end"
-                                            >
-                                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                                            </IconButton>
-                                        </InputAdornment>
-                                    }
-                                    placeholder="Verification code"
-                                />
-                            </FormControl>
-                            <Button variant="contained" onClick={(e) => pageChanger(e, "verified")} style={ButtonStyle}>Verify Code</Button>
-                        </Stack>
-                    }
+                    <Button variant="contained" onClick={(e) => sendVerificationCode(e)} style={ButtonStyle}>Send Verification Code</Button>
                 </Stack>
             </Grid>
         </Grid>

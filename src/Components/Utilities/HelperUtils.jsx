@@ -5,9 +5,10 @@ export const saveToken = (token) => {
 };
 
 export const getToken = () => {
-    return Cookies.get('jwtToken');
-  };
+  return Cookies.get('jwtToken');
+};
 
 export const removeToken = () => {
-    Cookies.remove('jwtToken');
-  };
+  Cookies.remove('jwtToken');
+  localStorage.clear()
+};

@@ -11,10 +11,14 @@ import { Stack } from '@mui/material';
 import axios from 'axios';
 import { endpoint } from '../constant/constant_values';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { Loading } from '../../Redux/Reducer';
+
 export default function ChangePassword() {
     const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({})
     const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const dispatch = useDispatch()
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
@@ -27,19 +31,20 @@ export default function ChangePassword() {
             setWarning(true)
             return
         }
+        dispatch(Loading(true))
         const requestBody = {
             "phone_number": newUserDetails?.['phone_number'],
             "password": formData?.['password'],
             "confirm_password": formData?.['confirm_password'],
         }
         axios.post(endpoint + "/reset-password", requestBody).then((result) => {
-            console.log(result);
             if (result.data.status_code === 200) {
                 toast.success("Password change successfully", { position: 'top-center' });
                 navigate("/auth/")
+                dispatch(Loading(false))
             }
         }).catch((err) => {
-            console.log(err);
+            dispatch(Loading(false))
             toast.error("Something went wrong", { position: 'top-center' });
         });
     }
