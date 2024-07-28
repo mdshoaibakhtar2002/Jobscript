@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
-import { Loading } from '../../Redux/Reducer';
+import { Loading, setUserDetails } from '../../Redux/Reducer';
 import { ButtonStyle, MarginStyle } from '../Theme/Palette';
 import googleIcon from "../../img/googleG.png";
 import { Typography } from '@mui/material';
@@ -45,16 +45,21 @@ export default function SignUp() {
       newUserDetails['is_organization'] = 'true'
       newUserDetails['last_name'] = ''
       newUserDetails['job_id'] = []
+      newUserDetails['password'] = ''
+      newUserDetails['confirm_password'] = ''
     } else {
       newUserDetails['is_organization'] = 'false'
       newUserDetails['job_id'] = []
       newUserDetails['last_name'] = !newUserDetails['last_name'] ? '' : newUserDetails['last_name']
+      newUserDetails['password'] = ''
+      newUserDetails['confirm_password'] = ''
     }
     axios.post(endpoint + "/createuser", newUserDetails).then(res => {
       if (res?.['data']?.["statusCode"] === 200) {
         dispatch(Loading(false))
-        navigate("/auth/")
-        toast.success("User created successfully", { position: 'top-center' });
+        dispatch(setUserDetails(newUserDetails))
+        navigate("/auth/verifyOtp")
+        toast.success("We've sent you a 6-digit SMS code. Please verify it.", { position: 'top-center' });
       } else {
         dispatch(Loading(false))
         toast.error("Something went wrong", { position: 'top-center' });
@@ -66,8 +71,7 @@ export default function SignUp() {
   }
 
   const validate = () => {
-    if (!newUserDetails?.['first_name'] || !newUserDetails?.['email'] || !newUserDetails?.['phone_number'] ||
-      !newUserDetails?.['password'] || !newUserDetails?.['confirm_password']) {
+    if (!newUserDetails?.['first_name'] || !newUserDetails?.['email'] || !newUserDetails?.['phone_number']) {
       setDisableButton(true)
     } else {
       setDisableButton(false)
@@ -128,63 +132,16 @@ export default function SignUp() {
             }
           >Employee</Button>
         </Grid>
-        {activeButton ? <Grid item xs={12}>
-          <Stack direction={'column'} width={'100%'} mb={2}>
-            <Typography>Company name</Typography>
-            <TextField
-              size='small'
-              placeholder='Company name'
-              fullWidth
-              name="first_name"
-              required
-              onChange={(e) => handleChange(e)}
-              onBlur={() => validate()}
-              sx={{
-                '& .MuiInputBase-input::placeholder': {
-                  fontSize: '13px',
-                }
-              }}
-            />
-          </Stack>
-          <Stack direction={'column'} width={'100%'} mb={2}>
-            <Typography>Work email</Typography>
-            <TextField
-              size='small'
-              placeholder='Work email'
-              fullWidth
-              name="email"
-              onChange={(e) => handleChange(e)}
-              onBlur={() => validate()}
-              sx={{
-                '& .MuiInputBase-input::placeholder': {
-                  fontSize: '13px',
-                }
-              }}
-            />
-          </Stack>
-          <Stack direction={'column'} width={'100%'} mb={2}>
-            <Typography>Mobile Number</Typography>
-            <TextField
-              size='small'
-              placeholder='Mobile Number'
-              fullWidth
-              name="phone_number"
-              onChange={(e) => handleChange(e)}
-              onBlur={() => validate()}
-              sx={{
-                '& .MuiInputBase-input::placeholder': {
-                  fontSize: '13px',
-                }
-              }}
-            />
-          </Stack>
-          <Stack direction={'column'} width={'100%'} mb={2}>
-            <Typography>Password</Typography>
-            <FormControl variant="outlined" >
-              <OutlinedInput
-                id="outlined-adornment-password"
-                type={showPassword ? 'text' : 'password'}
-                name="password"
+        {activeButton ?
+          <Grid item xs={12}>
+            <Stack direction={'column'} width={'100%'} mb={2}>
+              <Typography>Company name</Typography>
+              <TextField
+                size='small'
+                placeholder='Company name'
+                fullWidth
+                name="first_name"
+                required
                 onChange={(e) => handleChange(e)}
                 onBlur={() => validate()}
                 sx={{
@@ -192,30 +149,15 @@ export default function SignUp() {
                     fontSize: '13px',
                   }
                 }}
-                size='small'
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                placeholder="Password"
               />
-            </FormControl>
-          </Stack>
-          <Stack direction={'column'} width={'100%'} mb={2}>
-            <Typography>Confirm password</Typography>
-            <FormControl variant="outlined" >
-              <OutlinedInput
-                id="outlined-adornment-password"
-                type={showConfirmPassword ? 'text' : 'password'}
-                name="confirm_password"
+            </Stack>
+            <Stack direction={'column'} width={'100%'} mb={2}>
+              <Typography>Work email</Typography>
+              <TextField
+                size='small'
+                placeholder='Work email'
+                fullWidth
+                name="email"
                 onChange={(e) => handleChange(e)}
                 onBlur={() => validate()}
                 sx={{
@@ -223,24 +165,87 @@ export default function SignUp() {
                     fontSize: '13px',
                   }
                 }}
-                size='small'
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickConfirmShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                placeholder="Confirm Password"
               />
-            </FormControl>
-          </Stack>
-        </Grid> :
+            </Stack>
+            <Stack direction={'column'} width={'100%'} mb={2}>
+              <Typography>Mobile Number</Typography>
+              <TextField
+                size='small'
+                placeholder='Mobile Number'
+                fullWidth
+                name="phone_number"
+                onChange={(e) => handleChange(e)}
+                onBlur={() => validate()}
+                sx={{
+                  '& .MuiInputBase-input::placeholder': {
+                    fontSize: '13px',
+                  }
+                }}
+              />
+            </Stack>
+            {/* <Stack direction={'column'} width={'100%'} mb={2}>
+              <Typography>Password</Typography>
+              <FormControl variant="outlined" >
+                <OutlinedInput
+                  id="outlined-adornment-password"
+                  type={showPassword ? 'text' : 'password'}
+                  name="password"
+                  onChange={(e) => handleChange(e)}
+                  onBlur={() => validate()}
+                  sx={{
+                    '& .MuiInputBase-input::placeholder': {
+                      fontSize: '13px',
+                    }
+                  }}
+                  size='small'
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  placeholder="Password"
+                />
+              </FormControl>
+            </Stack>
+            <Stack direction={'column'} width={'100%'} mb={2}>
+              <Typography>Confirm password</Typography>
+              <FormControl variant="outlined" >
+                <OutlinedInput
+                  id="outlined-adornment-password"
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  name="confirm_password"
+                  onChange={(e) => handleChange(e)}
+                  onBlur={() => validate()}
+                  sx={{
+                    '& .MuiInputBase-input::placeholder': {
+                      fontSize: '13px',
+                    }
+                  }}
+                  size='small'
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickConfirmShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  placeholder="Confirm Password"
+                />
+              </FormControl>
+            </Stack> */}
+          </Grid> :
           <Grid item xs={12}>
             <Stack direction={'row'} width={'100%'} gap={2}>
               <Stack direction={'column'} width={'100%'} mb={2}>
@@ -311,7 +316,7 @@ export default function SignUp() {
                 }}
               />
             </Stack>
-            <Stack direction={'column'} width={'100%'} mb={2}>
+            {/* <Stack direction={'column'} width={'100%'} mb={2}>
               <Typography>Password</Typography>
               <FormControl variant="outlined" >
                 <OutlinedInput
@@ -372,7 +377,7 @@ export default function SignUp() {
                   placeholder="Confirm Password"
                 />
               </FormControl>
-            </Stack>
+            </Stack> */}
           </Grid>}
         <button onClick={(e) => pageChanger(e, "login")}>Already have an account, log in</button>
         {/* WARNING FOR THE DISABLE SX */}
